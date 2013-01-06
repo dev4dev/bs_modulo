@@ -12,7 +12,7 @@ class Runner
   protected
   def load_modules
     @modules = []
-    for module_file in Dir.glob "#{@modules_dir}/*_module.rb"
+    for module_file in Dir.glob "#{@modules_dir}*_module.rb"
       require module_file
       module_name = File.basename(module_file, '.rb').gsub('_', ' ').ucwords.gsub(' ', '')
       @modules << module_name
