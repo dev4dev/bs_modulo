@@ -2,7 +2,7 @@
 module BuildModule
   extend self
   
-  def run config
+  def run runner
     puts 'Building project...'
   end
 end

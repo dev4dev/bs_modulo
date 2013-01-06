@@ -2,7 +2,7 @@
 module PackDsymModule
   extend self
   
-  def run config
+  def run runner
     puts 'Packing dSYMs...'
   end
 end

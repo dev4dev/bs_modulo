@@ -2,7 +2,7 @@
 module UploadDoaModule
   extend self
   
-  def run config
+  def run runner
     puts 'Uploading build...'
   end
 end

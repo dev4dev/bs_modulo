@@ -2,8 +2,8 @@
 module BumpVersionModule
   extend self
   
-  def run config
-    puts "BUMP VERSION BY 1"
+  def run runner
+    puts "Bumping version..."
   end
   
 end

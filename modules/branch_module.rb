@@ -2,7 +2,7 @@
 module BranchModule
   extend self
   
-  def run config
-    puts "branch, #{config}"
+  def run runner
+    puts "switch to branch, #{runner.config['branch']}..."
   end
 end

@@ -2,7 +2,7 @@
 module CleanModule
   extend self
   
-  def run config
+  def run runner
     puts 'Cleaning project...'
   end
 end

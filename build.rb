@@ -1,11 +1,15 @@
-require "./lib/helpers.rb"
-require "./lib/runner.rb"
+__DIR__ = File.expand_path(File.dirname(__FILE__)) + '/'
+require "#{__DIR__}lib/helpers.rb"
+require "#{__DIR__}lib/loader.rb"
+require "#{__DIR__}lib/runner.rb"
 require "yaml"
 
-WORKSPACE = ENV['WORKSPACE']
+CONFIGURATION   = ENV['CONFIGURATION']
+PROJECT_DIR     = real_dir ENV['WORKSPACE']
+CONFIG_FILE     = PROJECT_DIR + 'builder.yml'
+MODULES_DIR     = __DIR__ + 'modules'
 
-yaml = YAML::load_file('./config.yml')
-queue = yaml['queue']
-config = yaml['default']
+fail 'config builder.yml file not found' unless File.exists? CONFIG_FILE
 
-runner = Runner.new queue, config
+queue, config = load_config CONFIG_FILE, CONFIGURATION
+runner = Runner.new queue, config, MODULES_DIR

@@ -2,7 +2,7 @@
 module TestsModule
   extend self
   
-  def run config
+  def run runner
     puts 'Running tests...'
   end
 end
