@@ -22,6 +22,8 @@ class Runner
       if @modules.include? module_name
         puts %Q{\n ===> Running module #{id}...}
         eval(module_name).public_send(:run, @config)
+      else
+        puts %Q{\n\tERROR: module not found "#{id} => #{module_name}"}
       end
     end
   end
