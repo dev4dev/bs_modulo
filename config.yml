@@ -1,0 +1,7 @@
+queue:
+    branch: BranchModule
+    clean: CleanModule
+
+default: &default
+    sdk:            iphoneos
+    configuration:  AdHoc
