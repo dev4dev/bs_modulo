@@ -4,5 +4,6 @@ module BumpVersionAndroidModule
   
   def run runner
     puts  "ANDROID VERSION!!111FTW!11"
+    true
   end
 end

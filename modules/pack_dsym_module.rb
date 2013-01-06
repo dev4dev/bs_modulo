@@ -4,5 +4,6 @@ module PackDsymModule
   
   def run runner
     puts 'Packing dSYMs...'
+    true
   end
 end

@@ -4,5 +4,6 @@ module SignIpaModule
   
   def run runner
     puts 'Signing IPA...'
+    true
   end
 end

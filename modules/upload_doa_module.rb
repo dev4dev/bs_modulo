@@ -4,5 +4,6 @@ module UploadDoaModule
   
   def run runner
     puts 'Uploading build...'
+    true
   end
 end

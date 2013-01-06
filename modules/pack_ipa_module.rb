@@ -4,5 +4,6 @@ module PackIpaModule
   
   def run runner
     puts 'Packing IPA...'
+    true
   end
 end

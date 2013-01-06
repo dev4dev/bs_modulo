@@ -8,7 +8,7 @@ queue:
     sign_ipa:       SignIpaModule
     pack_dsym:      PackDsymModule
     upload_doa:     UploadDoaModule
-    broken:         BadModule
+    # broken:         BadModule
 
 
 default: &default

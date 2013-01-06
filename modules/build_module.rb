@@ -4,5 +4,6 @@ module BuildModule
   
   def run runner
     puts 'Building project...'
+    true
   end
 end
