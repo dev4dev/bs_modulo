@@ -1,1 +1,1 @@
-WORKSPACE=. CONFIGURATION=adhoc ruby build.rb
+WORKSPACE=. CONFIGURATION=adhoc builder

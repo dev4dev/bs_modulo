@@ -27,7 +27,6 @@ default: &default
         run:        false
         target:     TestProjectTest
     ipa_dir:        ~/Desktop/
-    bump_version:   true
     pack_dsym:      false
     profile:
         file:       profiles/adhoc.mobileprovision

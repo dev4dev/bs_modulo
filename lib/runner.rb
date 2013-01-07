@@ -1,5 +1,6 @@
 class Runner
-  attr_reader :queue, :config
+  attr_reader :queue
+  attr_accessor :config
   
   def initialize queue, config, modules_dir
     @queue = queue
