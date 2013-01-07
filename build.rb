@@ -17,6 +17,6 @@ config['run'] = {
   'project_dir'   => PROJECT_DIR,
   'configuration' => CONFIGURATION,
   'build_dir'     => "#{PROJECT_DIR}build/#{config['build']['configuration']}-#{config['build']['sdk']}/",
-  'app_file_name' => config['using_pods'] ? config['workspace']['schema'] : config['project']['target']
+  'app_file_name' => config['using_pods'] ? config['workspace']['scheme'] : config['project']['target']
 }
 runner = Runner.new queue, config, MODULES_DIR
