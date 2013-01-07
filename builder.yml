@@ -13,7 +13,6 @@ queue:
 
 default: &default
     branch:         master
-    app_name:       TestProject
     using_pods:     false
     build:
         configuration:  Release
@@ -28,9 +27,10 @@ default: &default
         target:     TestProjectTest
     ipa_dir:        ~/Desktop/
     pack_dsym:      false
+    bump_version:   false
     profile:
         file:       profiles/adhoc.mobileprovision
-        identity:   "iPhone Distribution: Trololo, LLC"
+        identity:   "iPhone Developer: Trololo, LLC"
 
 adhoc:
     <<: *default
