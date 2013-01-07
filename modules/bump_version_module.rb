@@ -3,6 +3,11 @@ module BumpVersionModule
   extend self
   
   def run runner
+    unless runner.config['bump_version']
+      puts 'skipping...'
+      return true
+    end
+    
     puts "Bumping version..."
     
     system "agvtool bump -all"
