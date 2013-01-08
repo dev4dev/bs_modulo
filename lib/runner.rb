@@ -15,13 +15,14 @@ class Runner
     @modules = []
     for module_file in Dir.glob "#{@modules_dir}*_module.rb"
       require module_file
-      module_name = File.basename(module_file, '.rb').gsub('_', ' ').ucwords.gsub(' ', '')
+      module_name = module_name_from_id File.basename(module_file, '.rb')
       @modules << module_name
     end
   end
   
   def run_queue
-    @queue.each_pair do |id, module_name|
+    @queue.each do |id|
+      module_name = module_name_from_id(id + '_module')
       if @modules.include? module_name
         puts %Q{\n ===> Running module #{id}...}
         begin

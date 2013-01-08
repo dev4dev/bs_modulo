@@ -13,7 +13,6 @@ module PackIpaModule
     ipa_dir = File.expand_path(runner.config['ipa_dir']) + '/'
     runner.config['ipa_dir'] = ipa_dir
     file_mask = "#{runner.config['branch']}_#{runner.config['build']['configuration']}"
-    runner.config['file_mask'] = file_mask
     #we are already in the runner.PROJDIR
     FileUtils.cd(runner.config['run']['build_dir']) do
       app_name = runner.config['run']['app_file_name']
@@ -22,7 +21,7 @@ module PackIpaModule
       FileUtils.mkdir_p 'Payload/Payload'
       FileUtils.cp_r("#{app_name}.app", 'Payload/Payload', {:preserve => true})
       if File.exists? "#{app_name}.app/iTunesArtwork"
-         FileUtils.cp "#{app_name}.app/iTunesArtwork", 'Payload/iTunesArtwork'
+         cp "#{app_name}.app/iTunesArtwork", 'Payload/iTunesArtwork'
       end
       system "ditto -c -k Payload \"#{ipa_file}\""
       begin
@@ -38,12 +37,12 @@ module PackIpaModule
       end
   
       begin
-        FileUtils.cp ipa_file, ipa_dir, {:verbose => true}
+        cp ipa_file, ipa_dir
       rescue
         fail "Failed to copy ipa"
       end
       begin
-        rm_rf ipa_file
+        rm_f ipa_file
         rm_rf "Payload"
       rescue
         fail "Failed to remove working files after IPA packing"
