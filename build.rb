@@ -14,7 +14,7 @@ else
 end
 
 if ENV['WORKSPACE']
-  PROJECT_DIR     = real_dir ENV['WORKSPACE']
+  WORKSPACE   = real_dir ENV['WORKSPACE']
 else
   errors << "\tpass WORKSPACE parameter"
 end
@@ -28,12 +28,13 @@ unless errors.empty?
   exit(-1)
 end
 
-CONFIG_FILE     = PROJECT_DIR + 'builder.yml'
+CONFIG_FILE     = WORKSPACE + 'builder.yml'
 MODULES_DIR     = __DIR__ + 'modules/'
 
 fail 'config builder.yml file not found' unless File.exists? CONFIG_FILE
 
 queue, config = load_config CONFIG_FILE, CONFIGURATION
+PROJECT_DIR = real_dir(WORKSPACE + config['project_dir'])
 config['run'] = {
   'project_dir'   => PROJECT_DIR,
   'configuration' => CONFIGURATION,

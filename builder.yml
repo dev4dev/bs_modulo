@@ -14,6 +14,7 @@ queue:
 default: &default
     branch:         master
     using_pods:     false
+    project_dir:    .
     build:
         configuration:  Release
         sdk:            iphoneos
