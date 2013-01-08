@@ -5,16 +5,27 @@ require "#{__DIR__}lib/helpers.rb"
 require "#{__DIR__}lib/loader.rb"
 require "#{__DIR__}lib/runner.rb"
 
+## check input parameters
+errors = []
 if ENV['CONFIGURATION']
   CONFIGURATION = ENV['CONFIGURATION']
 else
-  fail "pass CONFIGURATION parameter"
+  errors << "\tpass CONFIGURATION parameter"
 end
 
 if ENV['WORKSPACE']
   PROJECT_DIR     = real_dir ENV['WORKSPACE']
 else
-  fail "pass WORKSPACE parameter"
+  errors << "\tpass WORKSPACE parameter"
+end
+
+unless errors.empty?
+  puts "Usage of builder:"
+  puts "  WORKSPACE=/path/to/project CONFIGURATION=configuration_name builder\n\n"
+  
+  puts "Error:\n"
+  puts errors.join "\n"
+  exit(-1)
 end
 
 CONFIG_FILE     = PROJECT_DIR + 'builder.yml'
@@ -29,4 +40,7 @@ config['run'] = {
   'build_dir'     => "#{PROJECT_DIR}build/#{config['build']['configuration']}-#{config['build']['sdk']}/",
   'app_file_name' => config['using_pods'] ? config['workspace']['scheme'] : config['project']['target']
 }
-runner = Runner.new queue, config, MODULES_DIR
+
+FileUtils.cd PROJECT_DIR do
+  runner = Runner.new queue, config, MODULES_DIR
+end
