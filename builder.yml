@@ -34,8 +34,8 @@ default: &default
         file:       profiles/adhoc.mobileprovision
         identity:   "iPhone Developer: Trololo, LLC"
     doa:
-        host: http://doa.dev/
-        guid: dc29906db05105245bf9c4aac1f6e040
+        host: http://doa.domain/
+        guid: app_guid
 
 adhoc:
     <<: *default
