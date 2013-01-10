@@ -1,3 +1,6 @@
+require 'FileUtils'
+require 'rest_client'
+require 'json'
 
 class String
   def ucwords
@@ -14,9 +17,6 @@ def real_dir path
   File.expand_path(path) + '/'
 end
 
-require 'rest_client'
-require 'json'
-
 def post url, params, files
   puts "post data to #{url} with params #{params} and files #{files}"
   params ||= {}
@@ -27,8 +27,6 @@ def post url, params, files
   end
   JSON.parse(RestClient.post(url, params, {:accept => :json}))
 end
-
-require "FileUtils"
 
 def rm_f path
   FileUtils.rm_f path, :verbose => true
