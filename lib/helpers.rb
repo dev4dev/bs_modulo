@@ -14,6 +14,20 @@ def real_dir path
   File.expand_path(path) + '/'
 end
 
+require 'rest_client'
+require 'json'
+
+def post url, params, files
+  puts "post data to #{url} with params #{params} and files #{files}"
+  params ||= {}
+  unless files.empty?
+    files.each_pair do |name, file|
+      params[name] = File.new(file, 'rb')
+    end
+  end
+  JSON.parse(RestClient.post(url, params, {:accept => :json}))
+end
+
 require "FileUtils"
 
 def rm_f path

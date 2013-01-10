@@ -5,8 +5,13 @@ module SignIpaModule
   def run runner
     puts 'Signing IPA...'
     
+    ipa_file = runner.config['ipa_file']
+    sdk = runner.config['build']['sdk']
+    app_file = runner.config['app_name'] + ".app"
+    identity = runner.config['profile']['identity']
+    profile_file = runner.config['run']['project_dir'] + runner.config['profile']['file']
     unless runner.config['profile']['identity']
-      system "xcrun -sdk \"#{runner.config['build']['sdk']}\" PackageApplication -v \"#{runner.config['app_name']}.app\" -o \"#{runner.config['ipa_dir']}#{runner.config['ipa_file']}\" --sign \"#{$config['profile']['identity']}\" --embed \"#{runner.config['run']['project_dir']}#{$config['profile']['file']}\"" or fail "Failed xcrun packaging and signing ipa"
+      system "xcrun -sdk \"#{sdk}\" PackageApplication -v \"#{app_file}\" -o \"#{ipa_file}\" --sign \"#{identity}\" --embed \"#{profile_file}\"" or fail "Failed xcrun packaging and signing ipa"
     end
     
     true

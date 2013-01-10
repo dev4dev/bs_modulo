@@ -8,10 +8,8 @@ module PackIpaModule
     output_file_name = "#{runner.config['run']['app_file_name']}_#{runner.config['branch']}_#{runner.config['build']['configuration']}"
     runner.config['output_file_name'] = output_file_name
     ipa_file = "#{output_file_name}.ipa"
-    runner.config['ipa_file'] = ipa_file
+    runner.config['ipa_file'] = runner.config['run']['build_dir'] + ipa_file
     
-    ipa_dir = File.expand_path(runner.config['ipa_dir']) + '/'
-    runner.config['ipa_dir'] = ipa_dir
     file_mask = "#{runner.config['branch']}_#{runner.config['build']['configuration']}"
     #we are already in the runner.PROJDIR
     FileUtils.cd(runner.config['run']['build_dir']) do
@@ -24,29 +22,8 @@ module PackIpaModule
          cp "#{app_name}.app/iTunesArtwork", 'Payload/iTunesArtwork'
       end
       system "ditto -c -k Payload \"#{ipa_file}\""
-      begin
-        FileUtils.cd ipa_dir do
-          begin
-            rm_f "*#{file_mask}.ipa"
-          rescue
-            fail "failed to remove IPA in #{ipa_dir}"
-          end
-        end
-      rescue
-        fail "no directory '#{ipa_dir}'"
-      end
   
-      begin
-        cp ipa_file, ipa_dir
-      rescue
-        fail "Failed to copy ipa"
-      end
-      begin
-        rm_f ipa_file
-        rm_rf "Payload"
-      rescue
-        fail "Failed to remove working files after IPA packing"
-      end
+      rm_rf "Payload"
     end
     
     true
