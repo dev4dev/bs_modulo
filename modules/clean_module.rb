@@ -5,7 +5,7 @@ module CleanModule
   def run runner
     puts "Cleaning build dir..."
 
-    rm_rf "#{runner.config['run']['project_dir']}/build/"
+    rm_rf "#{runner.config['runtime']['project_dir']}/build/"
     
     true
   end

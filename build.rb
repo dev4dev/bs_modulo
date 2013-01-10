@@ -35,7 +35,7 @@ fail 'config builder.yml file not found' unless File.exists? CONFIG_FILE
 
 queue, config = load_config CONFIG_FILE, CONFIGURATION
 PROJECT_DIR = real_dir(WORKSPACE + config['project_dir'])
-config['run'] = {
+config['runtime'] = {
   'project_dir'   => PROJECT_DIR,
   'configuration' => CONFIGURATION,
   'build_dir'     => "#{PROJECT_DIR}build/#{config['build']['configuration']}-#{config['build']['sdk']}/",

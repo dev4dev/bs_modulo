@@ -5,15 +5,15 @@ module PackIpaModule
   def run runner
     puts 'Packing IPA...'
     
-    output_file_name = "#{runner.config['run']['app_file_name']}_#{runner.config['branch']}_#{runner.config['build']['configuration']}"
-    runner.config['output_file_name'] = output_file_name
+    output_file_name = "#{runner.config['runtime']['app_file_name']}_#{runner.config['branch']}_#{runner.config['build']['configuration']}"
+    runner.config['runtime']['output_file_name'] = output_file_name
     ipa_file = "#{output_file_name}.ipa"
-    runner.config['ipa_file'] = runner.config['run']['build_dir'] + ipa_file
+    runner.config['runtime']['ipa_file'] = runner.config['runtime']['build_dir'] + ipa_file
     
     file_mask = "#{runner.config['branch']}_#{runner.config['build']['configuration']}"
     #we are already in the runner.PROJDIR
-    FileUtils.cd(runner.config['run']['build_dir']) do
-      app_name = runner.config['run']['app_file_name']
+    FileUtils.cd(runner.config['runtime']['build_dir']) do
+      app_name = runner.config['runtime']['app_file_name']
       rm_rf 'Payload'
       rm_f "#{app_name}.*.ipa"
       FileUtils.mkdir_p 'Payload/Payload'
