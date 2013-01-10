@@ -7,7 +7,7 @@ module SignIpaModule
     
     ipa_file = runner.config['runtime']['ipa_file']
     sdk = runner.config['build']['sdk']
-    app_file = runner.config['app_name'] + ".app"
+    app_file = runner.config['runtime']['app_file_name'] + ".app"
     identity = runner.config['profile']['identity']
     profile_file = runner.config['runtime']['project_dir'] + runner.config['profile']['file']
     unless runner.config['profile']['identity']
