@@ -1,4 +1,4 @@
-require 'FileUtils'
+require 'fileutils'
 require 'rest_client'
 require 'json'
 
