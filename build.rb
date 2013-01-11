@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby -wKU
+#!/usr/bin/env ruby -KU
 
 __DIR__ = File.expand_path(File.dirname(File.readlink(__FILE__))) + '/'
 require "#{__DIR__}lib/helpers.rb"
