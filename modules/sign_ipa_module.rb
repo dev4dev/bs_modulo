@@ -9,7 +9,7 @@ module SignIpaModule
     sdk = runner.config['build']['sdk']
     app_file = runner.config['runtime']['app_file_name'] + ".app"
     identity = runner.config['profile']['identity']
-    profile_file = runner.config['runtime']['project_dir'] + runner.config['profile']['file']
+    profile_file = real_file runner.config['profile']['file']
     unless runner.config['profile']['identity']
       system "xcrun -sdk \"#{sdk}\" PackageApplication -v \"#{app_file}\" -o \"#{ipa_file}\" --sign \"#{identity}\" --embed \"#{profile_file}\"" or fail "Failed xcrun packaging and signing ipa"
     end

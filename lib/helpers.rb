@@ -17,6 +17,10 @@ def real_dir path
   File.expand_path(path) + '/'
 end
 
+def real_file path
+  File.expand_path(path)
+end
+
 def post url, params, files
   puts "post data to #{url} with params #{params} and files #{files}"
   params ||= {}
