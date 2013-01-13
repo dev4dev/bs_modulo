@@ -1,10 +1,20 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    activesupport (3.2.11)
+      i18n (~> 0.6)
+      multi_json (~> 1.0)
+    colored (1.2)
+    i18n (0.6.1)
     json (1.7.6)
     mime-types (1.19)
+    multi_json (1.5.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    trollop (2.0)
+    xcodeproj (0.4.0)
+      activesupport (~> 3.2.6)
+      colored (~> 1.2)
 
 PLATFORMS
   ruby
@@ -12,3 +22,5 @@ PLATFORMS
 DEPENDENCIES
   json (~> 1.7.6)
   rest-client (~> 1.6.7)
+  trollop (~> 2.0)
+  xcodeproj (~> 0.4.0)
