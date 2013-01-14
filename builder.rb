@@ -3,15 +3,17 @@ require "trollop"
 require "xcodeproj"
 
 VERSION = 1.0
-BANNER = <<-EOS
+INFO = <<-EOS
 Build system v#{VERSION} © 2013 Alex Antonyuk
 
 Usage:
-  builder build
+  WORKSPACE=/path/to/workspace CONFIGURATION=conf_name builder build
   builder generate [--workspace|-w <file>] [--project|-p <file>]
-
-Options:
 EOS
+
+BANNER = INFO + "
+Options:
+"
 
 SUB_COMMANDS = %w(build generate)
 global_opts = Trollop::options do
@@ -20,17 +22,21 @@ global_opts = Trollop::options do
   stop_on SUB_COMMANDS
 end
 
-action = ARGV.shift || 'build'
+action = ARGV.shift
 action_opts = case action
   when "build"
     Trollop::options do
-      
+      banner BANNER
     end
+    
   when "generate"
     Trollop::options do
       banner BANNER
       opt :project, "Xcode project file", :type => :string
       opt :workspace, "Xcode workspace file", :type => :string
     end
+    
+  else
+    puts INFO
   end
 
