@@ -3,7 +3,7 @@ module PackDsymModule
   extend self
   
   def run runner
-    unless runner.config['pack_dsym']
+    unless runner.config['pack_dsym']['enabled']
       puts 'skipping...'
       return true
     end

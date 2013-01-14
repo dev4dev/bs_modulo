@@ -27,9 +27,10 @@ default: &default
     tests:
         run:        false
         target:     TestProjectTest
-    ipa_dir:        ~/Desktop/
-    pack_dsym:      false
-    bump_version:   false
+    pack_dsym:
+        enabled:    false
+    bump_version:
+        enabled:    false
     profile:
         file:       profiles/adhoc.mobileprovision
         identity:   "iPhone Developer: Trololo, LLC"

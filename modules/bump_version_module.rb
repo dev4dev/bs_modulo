@@ -3,7 +3,7 @@ module BumpVersionModule
   extend self
   
   def run runner
-    unless runner.config['bump_version']
+    unless runner.config['bump_version']['enabled']
       puts 'skipping...'
       return true
     end
