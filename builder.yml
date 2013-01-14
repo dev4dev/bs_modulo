@@ -45,6 +45,7 @@ default: &default
         host:       http://doa.domain/
         guid:       app_guid
     ipa_publisher:
+        enabled:    false
         fs_path:    /var/www/app/
         web_path:   http://server.com/app/
         template:   builder/publisher_template.html

@@ -3,6 +3,11 @@ module IpaPublisherModule
   extend self
   
   def run runner
+    unless runner.config['ipa_publisher']['enabled']
+      puts 'skipping...'
+      return true
+    end
+    
     puts "Publishing IPA..."
 
     FileUtils.cd(runner.config['runtime']['build_dir']) do
