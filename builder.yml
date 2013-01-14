@@ -5,7 +5,6 @@ queue:
     - build
     - tests
     - pack_ipa
-    - sign_ipa
     - pack_dsym
     - upload_doa
 #    - broken => Names convention: broken_module.rb|BrokenModule

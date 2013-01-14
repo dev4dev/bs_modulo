@@ -12,8 +12,8 @@ module PackIpaModule
     
     file_mask = "#{runner.config['branch']['name']}_#{runner.config['build']['configuration']}"
     #we are already in the runner.PROJDIR
+    app_name = runner.config['runtime']['app_file_name']
     FileUtils.cd(runner.config['runtime']['build_dir']) do
-      app_name = runner.config['runtime']['app_file_name']
       rm_rf 'Payload'
       rm_f "#{app_name}.*.ipa"
       FileUtils.mkdir_p 'Payload/Payload'
@@ -24,6 +24,16 @@ module PackIpaModule
       system "ditto -c -k Payload \"#{ipa_file}\""
   
       rm_rf "Payload"
+    end
+    
+    puts 'Signing IPA...'
+    
+    unless runner.config['profile']['identity']
+      sdk = runner.config['build']['sdk']
+      app_file = app_name + ".app"
+      identity = runner.config['profile']['identity']
+      profile_file = real_file runner.config['profile']['file']
+      system "xcrun -sdk \"#{sdk}\" PackageApplication -v \"#{app_file}\" -o \"#{ipa_file}\" --sign \"#{identity}\" --embed \"#{profile_file}\"" or fail "Failed xcrun packaging and signing ipa"
     end
     
     true
