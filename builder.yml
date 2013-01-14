@@ -30,6 +30,7 @@ default: &default
         target:     TestProjectTest
     pack_dsym:
         enabled:    false
+        output_dir: ~/Desktop/
     bump_version:
         enabled:    false
     profile:
