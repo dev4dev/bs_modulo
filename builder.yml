@@ -12,7 +12,9 @@ queue:
 
 
 default: &default
-    branch:         master
+    branch:
+        name:       master
+        submodules: true
     using_pods:     false
     project_dir:    .
     build:

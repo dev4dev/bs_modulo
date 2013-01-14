@@ -4,10 +4,13 @@ module BranchModule
   
   def run runner
 
-    branch = runner.config['branch']
-    puts "Switch to branch #{branch}...";
-    system "git checkout #{branch}"
-    system "git pull origin #{branch}"
+    branch_name = runner.config['branch']['name']
+    puts "Switch to branch #{branch_name}...";
+    system "git checkout #{branch_name}"
+    system "git pull origin #{branch_name}"
+    if runner.config['branch']['submodules']
+      system "git submodules update --init"
+    end
 
     true
   end
