@@ -10,7 +10,7 @@ module IpaPublisherModule
     
     puts "Publishing IPA..."
 
-    template_path = real_dir runner.config['ipa_publisher']['template']
+    template_path = real_file runner.config['ipa_publisher']['template']
     FileUtils.cd(runner.config['runtime']['build_dir']) do
       ipa_file = runner.config['runtime']['ipa_file']
       tmp_dir = real_dir './tmp/'
