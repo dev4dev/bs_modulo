@@ -18,6 +18,7 @@ default: &default
         submodules: true
     using_pods:     false
     project_dir:    .
+    prefix:         TestProject
     build:
         configuration:  Release
         sdk:            iphoneos
