@@ -42,6 +42,7 @@ default: &default
     copy_ipa:
         enabled:    true
         output_dir: ~/Desktop/
+        clear_old:  true
     doa:
         host:       http://doa.domain/
         guid:       app_guid
