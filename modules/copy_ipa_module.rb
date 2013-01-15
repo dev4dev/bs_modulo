@@ -11,7 +11,7 @@ module CopyIpaModule
     output_dir = real_dir runner.config['copy_ipa']['output_dir']
     if runner.config['copy_ipa']['clear_old']
       FileUtils.cd output_dir do
-        rm_f runner.config['runtim']['output_file_mask']
+        rm_f runner.config['runtime']['output_file_mask']
       end
     end
     
