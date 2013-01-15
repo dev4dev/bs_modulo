@@ -17,7 +17,7 @@ module IpaPublisherModule
       FileUtils.mkdir_p tmp_dir
       system %Q[/usr/local/bin/IpaPublisher -ipaPath #{ipa_file} -o #{tmp_dir} -htmlPath #{template_path} -URL #{runner.config['ipa_publisher']['web_path']}]
       system %Q[scp -r #{tmp_dir}* #{runner.config['ipa_publisher']['fs_path']}]
-      FileUtils.rm_rf tmp_dir, {:secure => true}
+      rm_rf tmp_dir
     end
     
     true

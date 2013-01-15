@@ -33,11 +33,11 @@ def post url, params, files
 end
 
 def rm_f path
-  FileUtils.rm_f path, :verbose => true
+  FileUtils.rm_f path, {:verbose => true}
 end
 
 def rm_rf path
-  FileUtils.rm_rf path, :verbose => true
+  FileUtils.rm_rf path, {:verbose => true, :secure => true}
 end
 
 def cp src, dest
