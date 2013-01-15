@@ -18,7 +18,7 @@ module PackIpaModule
     app_name = runner.config['runtime']['app_file_name']
     FileUtils.cd(runner.config['runtime']['build_dir']) do
       rm_rf 'Payload'
-      rm_f "#{app_name}.*.ipa"
+      rm_f "*.ipa"
       FileUtils.mkdir_p 'Payload/Payload'
       FileUtils.cp_r("#{app_name}.app", 'Payload/Payload', {:preserve => true})
       if File.exists? "#{app_name}.app/iTunesArtwork"
