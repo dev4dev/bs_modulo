@@ -5,9 +5,11 @@ module PackIpaModule
   def run runner
     puts 'Packing IPA...'
     
-    prefix = runner.config['prefix'] ?  runner.config['prefix'] + '_' : ''
-    output_file_name = "#{prefix}#{runner.config['runtime']['app_file_name']}_#{runner.config['branch']['name']}_#{runner.config['build']['configuration']}"
+    output_file_name = runner.config['prefix'] ?  runner.config['prefix'] + '_' : ''
+    output_file_name += "#{runner.config['runtime']['app_file_name']}_#{runner.config['branch']['name']}_#{runner.config['build']['configuration']}"
+    output_file_name += runner.config['runtime']['version'] ? '_' + runner.config['runtime']['version'] : ''
     runner.config['runtime']['output_file_name'] = output_file_name
+    
     ipa_file = "#{output_file_name}.ipa"
     runner.config['runtime']['ipa_file'] = runner.config['runtime']['build_dir'] + ipa_file
     
