@@ -15,7 +15,7 @@ module BumpVersionModule
     system "agvtool new-marketing-version '#{version_number}'"
     puts "Push updated version numbers to git"
     system "git commit -am \"AUTOBUILD -- configuration: #{runner.config['runtime']['configuration']}, ver: #{version_number}\""
-    system "git push origin #{runner.config['branch']}"
+    system "git push origin #{runner.config['branch']['name']}"
     
     true
   end
