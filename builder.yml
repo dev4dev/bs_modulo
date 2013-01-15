@@ -19,6 +19,7 @@ default: &default
     using_pods:     false
     project_dir:    .
     prefix:         TestProject
+    append_version: false
     build:
         configuration:  Release
         sdk:            iphoneos
@@ -42,7 +43,7 @@ default: &default
     copy_ipa:
         enabled:    true
         output_dir: ~/Desktop/
-        clear_old:  true
+        clear_old:  false
     doa:
         host:       http://doa.domain/
         guid:       app_guid
