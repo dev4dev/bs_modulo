@@ -11,7 +11,7 @@ module BumpVersionModule
     puts "Bumping version..."
     
     system %Q[agvtool bump -all]
-    version_number = system %Q[agvtool vers -terse]
+    version_number = `agvtool vers -terse`.strip
     system %Q[agvtool new-marketing-version "#{version_number}"]
     puts "Push updated version numbers to git"
     system %Q[git commit -am "AUTOBUILD -- configuration: #{runner.config.runtime.configuration}, ver: #{version_number}"]
