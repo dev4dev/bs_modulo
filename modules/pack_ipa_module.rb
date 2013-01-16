@@ -9,7 +9,7 @@ module PackIpaModule
     output_file_name += "#{runner.config.runtime.app_file_name}_#{runner.config.branch.name}_#{runner.config.build.configuration}"
     runner.config.runtime.output_file_mask = "#{output_file_name}*"
     if runner.config.naming.append_version?
-      version_number = `agvtool vers -terse`.strip
+      version_number = system %Q[agvtool vers -terse]
       output_file_name += version_number ? '_v' + version_number : ''
     end
     runner.config.runtime.output_file_name = output_file_name
@@ -26,7 +26,7 @@ module PackIpaModule
       if File.exists? "#{app_name}.app/iTunesArtwork"
          cp "#{app_name}.app/iTunesArtwork", 'Payload/iTunesArtwork'
       end
-      system "ditto -c -k Payload \"#{ipa_file}\""
+      system %Q[ditto -c -k Payload "#{ipa_file}"]
       
       rm_rf "Payload"
     end
