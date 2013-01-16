@@ -17,7 +17,6 @@ module PackIpaModule
     ipa_file = "#{output_file_name}.ipa"
     runner.config.runtime.ipa_file = runner.config.runtime.build_dir + ipa_file
     
-    #we are already in the runner.PROJDIR
     app_name = runner.config.runtime.app_file_name
     FileUtils.cd(runner.config.runtime.build_dir) do
       rm_rf 'Payload'
@@ -28,7 +27,7 @@ module PackIpaModule
          cp "#{app_name}.app/iTunesArtwork", 'Payload/iTunesArtwork'
       end
       system "ditto -c -k Payload \"#{ipa_file}\""
-  
+      
       rm_rf "Payload"
     end
     
