@@ -5,10 +5,10 @@ module PackIpaModule
   def run runner
     puts 'Packing IPA...'
     
-    output_file_name = runner.config.prefix ?  runner.config.prefix + '_' : ''
+    output_file_name = runner.config.naming.prefix ?  runner.config.naming.prefix + '_' : ''
     output_file_name += "#{runner.config.runtime.app_file_name}_#{runner.config.branch.name}_#{runner.config.build.configuration}"
     runner.config.runtime.output_file_mask = "#{output_file_name}*"
-    if runner.config.append_version?
+    if runner.config.naming.append_version?
       output_file_name += runner.config.runtime.version ? '_v' + runner.config.runtime.version : ''
     end
     runner.config.runtime.output_file_name = output_file_name
