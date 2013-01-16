@@ -2,4 +2,11 @@ queue:
     - ipa_resign
 
 default: &default
-    
+    app_file_name:  AppFile.app
+    ipa_file:
+        input:      ~/path/to/file.ipa
+        output:     ~/path/to/file_resigned.ipa
+    profile:
+        file:       ~/path/to/profile.mobileprovision
+        identity:   "iPhone Developer: Trololo, LLC"
+
