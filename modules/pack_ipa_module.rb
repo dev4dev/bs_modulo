@@ -9,7 +9,8 @@ module PackIpaModule
     output_file_name += "#{runner.config.runtime.app_file_name}_#{runner.config.branch.name}_#{runner.config.build.configuration}"
     runner.config.runtime.output_file_mask = "#{output_file_name}*"
     if runner.config.naming.append_version?
-      output_file_name += runner.config.runtime.version ? '_v' + runner.config.runtime.version : ''
+      version_number = `agvtool vers -terse`.strip
+      output_file_name += version_number ? '_v' + version_number : ''
     end
     runner.config.runtime.output_file_name = output_file_name
     
