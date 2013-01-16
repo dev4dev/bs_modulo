@@ -9,7 +9,7 @@ queue:
     - upload_doa
     - copy_ipa
     - ipa_publisher
-#    - broken => Names convention: broken_module.rb|BrokenModule
+    # - dummy => Names convention: dummy_module.rb|DummyModule
 
 
 default: &default

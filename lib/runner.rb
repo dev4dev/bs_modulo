@@ -1,10 +1,12 @@
+require "hashr"
+
 class Runner
   attr_reader :queue
   attr_accessor :config
   
   def initialize queue, config, modules_dir
     @queue = queue
-    @config = config
+    @config = Hashr.new config
     @modules_dir = modules_dir
     self.load_modules
     self.run_queue
