@@ -3,10 +3,10 @@ module PackIpaModule
   extend self
   
   def run runner
-    output_file_name = runner.config.naming.prefix ?  runner.config.naming.prefix + '_' : ''
+    output_file_name = runner.config.pack_ipa.naming.prefix ?  runner.config.pack_ipa.naming.prefix + '_' : ''
     output_file_name += "#{runner.config.runtime.app_file_name}_#{runner.config.branch.name}_#{runner.config.build.configuration}"
     runner.config.runtime.output_file_mask = "#{output_file_name}*"
-    if runner.config.naming.append_version?
+    if runner.config.pack_ipa.naming.append_version?
       version_number = `agvtool vers -terse`.strip
       output_file_name += version_number ? '_v' + version_number : ''
     end

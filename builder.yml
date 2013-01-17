@@ -18,9 +18,6 @@ default: &default
         submodules: true
     using_pods:     false
     project_dir:    .
-    naming:
-        prefix:         TestProject
-        append_version: false
     build:
         configuration:  Release
         sdk:            iphoneos
@@ -38,6 +35,10 @@ default: &default
         output_dir: ~/Desktop/
     bump_version:
         enabled:    false
+    pack_ipa:
+        naming:
+            prefix:         TestProject
+            append_version: false
     profile:
         file:       profiles/adhoc.mobileprovision
         identity:   "iPhone Developer: Trololo, LLC"
