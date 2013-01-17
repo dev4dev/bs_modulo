@@ -17,11 +17,11 @@ module BuildModule
     ]
     if runner.config.using_pods?
       ## build workspace
-      build_parameters.unshift %Q[-workspace "#{runner.config.workspace.name}.xcworkspace"]
-      build_parameters.unshift %Q[-scheme "#{runner.config.workspace.scheme}"]
+      build_parameters.unshift %Q[-workspace "#{runner.config.build.workspace.name}.xcworkspace"]
+      build_parameters.unshift %Q[-scheme "#{runner.config.build.workspace.scheme}"]
     else
-      build_parameters.unshift %Q[-project "#{runner.config.project.name}.xcodeproj"]
-      build_parameters.unshift %Q[-target "#{runner.config.project.target}"]
+      build_parameters.unshift %Q[-project "#{runner.config.build.project.name}.xcodeproj"]
+      build_parameters.unshift %Q[-target "#{runner.config.build.project.target}"]
     end
     result = system %Q[xcodebuild #{build_parameters.join(' ')}]
     rm_f build_profile

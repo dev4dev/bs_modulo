@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby -KU
 
-__DIR__ = File.expand_path(File.dirname(File.readlink(__FILE__))) + '/'
+__DIR__ = File.expand_path(File.dirname(begin File.readlink(__FILE__) rescue __FILE__ end))) + '/'
 require "#{__DIR__}lib/helpers.rb"
 require "#{__DIR__}lib/loader.rb"
 require "#{__DIR__}lib/runner.rb"

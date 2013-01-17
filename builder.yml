@@ -24,12 +24,12 @@ default: &default
     build:
         configuration:  Release
         sdk:            iphoneos
-    workspace:
-        name:       TestProject
-        scheme:     TestProject
-    project:
-        name:       TestProject
-        target:     TestProject
+        workspace:
+            name:       TestProject
+            scheme:     TestProject
+        project:
+            name:       TestProject
+            target:     TestProject
     tests:
         run:        false
         target:     TestProjectTest
