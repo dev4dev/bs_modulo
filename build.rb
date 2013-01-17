@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby -KU
 
-__DIR__ = File.expand_path(File.dirname(File.readlink(__FILE__))) + '/'
+__DIR__ = File.expand_path(File.dirname(begin File.readlink(__FILE__) rescue __FILE__ end)) + '/'
 require "#{__DIR__}lib/helpers.rb"
 require "#{__DIR__}lib/loader.rb"
 require "#{__DIR__}lib/runner.rb"
@@ -21,14 +21,23 @@ end
 
 unless errors.empty?
   puts "Usage of builder:"
-  puts "  WORKSPACE=/path/to/project CONFIGURATION=configuration_name builder\n\n"
+  puts "  WORKSPACE=/path/to/project CONFIGURATION=configuration_name [RESIGN=true/false] [CONFIG_FILE=config_file] builder [config_file]\n\n"
   
   puts "Error:\n"
   puts errors.join "\n"
   exit(-1)
 end
 
-CONFIG_FILE     = WORKSPACE + 'builder.yml'
+# config file name
+config_file = ENV['CONFIG_FILE'] || ARGV[0] || 'builder.yml'
+
+# resign
+resign = if (ENV['RESIGN'] && ENV['RESIGN'].to_b) then true else false end
+if resign
+  config_file = 'resign.yml'
+end
+
+CONFIG_FILE     = WORKSPACE + config_file
 MODULES_DIR     = __DIR__ + 'modules/'
 
 fail 'config builder.yml file not found' unless File.exists? CONFIG_FILE

@@ -6,6 +6,10 @@ class String
   def ucwords
     self.split(' ').select {|w| w.capitalize! || w }.join(' ')
   end
+  
+  def to_b
+    self == 'true'
+  end
 end
 
 def fail message
