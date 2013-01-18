@@ -12,16 +12,16 @@ module PackIpaModule
     end
     runner.config.runtime.output_file_name = output_file_name
     
-    ipa_file = "#{output_file_name}.ipa"
-    ipa_output_path = runner.config.runtime.build_dir + ipa_file
+    ipa_file                       = "#{output_file_name}.ipa"
+    ipa_output_path                = runner.config.runtime.build_dir + ipa_file
     runner.config.runtime.ipa_file = ipa_output_path
     
     app_name = runner.config.runtime.app_file_name
     if runner.config.profile.identity
       puts 'Packing & Signing IPA...'
-      sdk = runner.config.build.sdk
-      app_file = app_name + ".app"
-      identity = runner.config.profile.identity
+      sdk          = runner.config.build.sdk
+      app_file     = app_name + ".app"
+      identity     = runner.config.profile.identity
       profile_file = real_file runner.config.profile.file
       FileUtils.cd(runner.config.runtime.build_dir) do
         system %Q[xcrun -sdk "#{sdk}" PackageApplication -v "#{app_file}" -o "#{ipa_output_path}" --sign "#{identity}" --embed "#{profile_file}"] or fail "Failed xcrun packaging and signing ipa"

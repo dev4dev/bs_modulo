@@ -14,8 +14,7 @@ module CopyIpaModule
       rm_rf output_dir + runner.config.runtime.output_file_mask
     end
     
-    ipa_file = runner.config.runtime.ipa_file
-    FileUtils.cp ipa_file, output_dir
+    FileUtils.cp runner.config.runtime.ipa_file, output_dir
     
     true
   end

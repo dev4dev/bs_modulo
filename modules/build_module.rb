@@ -5,7 +5,7 @@ module BuildModule
   def run runner
     puts 'Building project...'
     
-    profile_file = real_file runner.config.profile.file
+    profile_file  = real_file runner.config.profile.file
     build_profile = real_file '~/Library/MobileDevice/Provisioning Profiles/build.mobileprovision'
     FileUtils.cp profile_file, build_profile
     build_parameters = [
