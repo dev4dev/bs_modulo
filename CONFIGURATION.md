@@ -13,7 +13,7 @@ Global Configuration Parameters:
 ###Modules
 
 1. **Branch Module**  
-	*Checkout Git Repo to specified branch*  
+	_Checkout Git Repo to specified branch_  
 	Name: `branch`  
 	Config Parameters:  
 
@@ -26,7 +26,7 @@ Global Configuration Parameters:
 	Name: `clean`  
 	Config Parameter: nothing
 3. **Bump Version Module**  
-	*Increase project version number*  
+	_Increase project version number_  
 	Name: `bump_version`  
 	Config Parameters:
 	
@@ -34,7 +34,7 @@ Global Configuration Parameters:
 			enabled:    false
 	`bump_version.enabled` **[bool]** - enable or disable module for configuration
 4. **Build Module**  
-	*Main build module for iOS Projects*  
+	_Main build module for iOS Projects_  
 	Name: `build`  
 	Config Parameters:
 	
@@ -54,7 +54,7 @@ Global Configuration Parameters:
 	`build.project.name` **[string]** - project name if not using pods  
 	`build.project.target` **[string]** - target name if not using pods  
 5. **Tests Module**  
-	*Module for running tests from iOS Project*  
+	_Module for running tests from iOS Project_  
 	Name: `tests`  
 	Config Parameters:
 	
@@ -65,7 +65,7 @@ Global Configuration Parameters:
 	`tests.target` **[string]** - tests target name
 
 6. **Pack IPA Module**  
-	*Packing build into IPA file and sign with specified profile if needed*  
+	_Packing build into IPA file and sign with specified profile if needed_  
 	Name: `pack_ipa`  
 	Config Parameters:
 	
@@ -77,7 +77,7 @@ Global Configuration Parameters:
 	`pack_ipa.naming.append_version` **[bool]** - whether append version number to output IPA filename of not
 
 7. **Pack dSYM Module**  
-	*Pack dSYM data of build*  
+	_Pack dSYM data of build_  
 	Name: `pack_dsym`  
 	Config Parameters:
 	
@@ -87,8 +87,8 @@ Global Configuration Parameters:
 	`pack_dsym.enabled` **[bool]** - enable or disable module for configuration  
 	`pack_dsym.output_dir` **[string]** - path to output directory
 
-8. **Upload DOA Module *[Abandoned]***  
-	*Upload IPA to DOA service*  
+8. **Upload DOA Module _[Abandoned]_**  
+	_Upload IPA to DOA service_  
 	Name: `upload_doa`  
 	Config Parameters:
 	
@@ -97,7 +97,7 @@ Global Configuration Parameters:
 			guid:       app_guid
 
 9. **Copy IPA Module**  
-	*Copy IPA file to specified directory*  
+	_Copy IPA file to specified directory_  
 	Name: `copy_ipa`  
 	Config Parameters:
 	
@@ -109,8 +109,8 @@ Global Configuration Parameters:
 	`copy_ipa.output_dir` **[string]** - path to output directiry  
 	`copy_ipa.clear_old` **[bool]** - clear or not old builds
 
-10. **IPA Publisher *[Deprecated]***  
-	*Old style publisher for IPAs to distrib them over air*  
+10. **IPA Publisher _[Deprecated]_**  
+	_Old style publisher for IPAs to distrib them over air_  
 	Name: `ipa_publisher`  
 	Config Parameters:
 	
@@ -124,8 +124,8 @@ Global Configuration Parameters:
 	`ipa_publisher.web_path` **[string]** - http address of page  
 	`ipa_publisher.template` **[string]** - html template for page  
 
-11. **Resign IPA Module *[Abandoned]***  
-	*Resign IPA file*  
+11. **Resign IPA Module _[Abandoned]_**  
+	_Resign IPA file_  
 	Name: `ipa_resign`  
 	Config Parameters:
 	
