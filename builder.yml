@@ -53,7 +53,7 @@ default: &default
         enabled:    false
         fs_path:    /var/www/app/
         web_path:   http://server.com/app/
-        template:   builder/publisher_template.html
+        template:   publisher_template.html
 
 adhoc:
     <<: *default
