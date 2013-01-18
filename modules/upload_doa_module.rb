@@ -16,7 +16,7 @@ module UploadDoaModule
     
     unless result["result"]
       puts result["message"]
-      false
+      return false
     end
     
     true
