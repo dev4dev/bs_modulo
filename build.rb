@@ -39,7 +39,7 @@ config['runtime'] = {
   'project_dir'   => PROJECT_DIR,
   'configuration' => CONFIGURATION,
   'build_dir'     => "#{PROJECT_DIR}build/#{config['build']['configuration']}-#{config['build']['sdk']}/",
-  'app_file_name' => config['using_pods'] ? config['workspace']['scheme'] : config['project']['target']
+  'app_file_name' => config['using_pods'] ? config['build']['workspace']['scheme'] : config['build']['project']['target']
 }
 
 FileUtils.cd PROJECT_DIR do
