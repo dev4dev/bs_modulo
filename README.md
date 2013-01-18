@@ -2,9 +2,10 @@
 
 #### Install
 
-	cd <builder_dir>
+	git clone https://github.com/dev4dev/bs_modulo.git
+	cd bs_modulo
 	gem install
-	ln -s </path/to/build.rb> /usr/local/bin/builder
+	ln -s "`pwd`/build.rb" /usr/local/bin/builder
 
 #### Usage
 Run `WORKSPACE=/project/dir CONFIGURATION=conf_name builder` in project directory (where builder.yml file is located)
