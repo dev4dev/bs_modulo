@@ -4,7 +4,7 @@ require 'json'
 
 class String
   def ucwords
-    self.split(' ').select {|w| w.capitalize! || w }.join(' ')
+    self.gsub(/\b./) {|m| m.upcase}
   end
 end
 
