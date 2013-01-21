@@ -95,6 +95,8 @@ Global Configuration Parameters:
 		doa:
 			host:       http://doa.domain/
 			guid:       app_guid
+	`doa.host` **[string]** - host address of DOA server  
+	`doa.guid` **[string]** - application's id on DOA server
 
 9. **Copy IPA Module**  
 	_Copy IPA file to specified directory_  
