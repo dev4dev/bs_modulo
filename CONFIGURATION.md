@@ -74,7 +74,7 @@ Global Configuration Parameters:
 				prefix:         TestProject
 				append_version: false
 	`pack_ipa.naming.prefix` **[string]** - prefix for output IPA filename [default: `<empty string>`]  
-	`pack_ipa.naming.append_version` **[bool]** - whether append version number to output IPA filename of not
+	`pack_ipa.naming.append_version` **[bool]** - enable or disable appending version number to output IPA filename
 
 7. **Pack dSYM Module**  
 	_Pack dSYM data of build_  
