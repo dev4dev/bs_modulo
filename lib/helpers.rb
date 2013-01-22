@@ -29,10 +29,16 @@ def post url, params = {}, files = {}, *headers
       params[name] = File.new(file, 'rb')
     end
   end
+  
+  default_headers = {:accept => :json}
+  unless headers.empty?
+    default_headers.merge!(*headers)
+  end
+  
   poster_data ||= []
   poster_data << url
   poster_data << params
-  poster_data << {:accept => :json}.merge!(*headers)
+  poster_data << default_headers
   RestClient.post(*poster_data)
 end
 
