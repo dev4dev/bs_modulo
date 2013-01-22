@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'rest_client'
+require 'json'
 
 class String
   def ucwords
