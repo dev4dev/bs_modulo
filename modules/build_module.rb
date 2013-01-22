@@ -7,7 +7,7 @@ module BuildModule
     
     profile_file  = real_file runner.config.profile.file
     build_profile = real_file '~/Library/MobileDevice/Provisioning Profiles/build.mobileprovision'
-    FileUtils.cp profile_file, build_profile
+    cp profile_file, build_profile
     build_parameters = [
       %Q[-configuration "#{runner.config.build.configuration}"],
       %Q[-sdk "#{runner.config.build.sdk}"],
