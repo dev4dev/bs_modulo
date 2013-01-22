@@ -9,6 +9,7 @@ queue:
     - upload_doa
     - copy_ipa
     - ipa_publisher
+    - hockeyapp
     # - dummy => Names convention: dummy_module.rb|DummyModule
 
 
@@ -54,6 +55,10 @@ default: &default
         fs_path:    /var/www/app/
         web_path:   http://server.com/app/
         template:   publisher_template.html
+    hockeyapp:
+        enabled:    false
+        token:      token
+        app_id:     app_id
 
 adhoc:
     <<: *default
