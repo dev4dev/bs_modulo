@@ -16,8 +16,9 @@ module PackDsymModule
       runner.config.runtime.dsym_file = runner.config.runtime.build_dir + dsym_file
       system %Q[zip -r "#{dsym_file}" "#{runner.config.runtime.app_file_name}.app.dSYM"]
       rm_f "#{output_dir}#{dsym_file}" or fail "failed to remove dSYM in #{output_dir}"
-      cp dsym_file, output_dir
-      rm_f dsym_file
+      if runner.config.pack_dsym.copy?
+        cp dsym_file, output_dir
+      end
     end
     
     true
