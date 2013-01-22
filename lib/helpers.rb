@@ -1,6 +1,5 @@
 require 'fileutils'
 require 'rest_client'
-require 'json'
 
 class String
   def ucwords
@@ -21,7 +20,7 @@ def real_file path
   File.expand_path(path)
 end
 
-def post url, params, files
+def post url, params = {}, files = {}, *headers
   puts "post data to #{url} with params #{params} and files #{files}"
   params ||= {}
   unless files.empty?
@@ -29,7 +28,11 @@ def post url, params, files
       params[name] = File.new(file, 'rb')
     end
   end
-  JSON.parse(RestClient.post(url, params, {:accept => :json}))
+  poster_data ||= []
+  poster_data << url
+  poster_data << params
+  poster_data << {:accept => :json}.merge!(*headers)
+  RestClient.post(*poster_data)
 end
 
 def rm_f path
