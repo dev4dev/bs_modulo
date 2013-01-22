@@ -23,7 +23,7 @@ module HockeyappModule
     }
     
     if runner.config.pack_dsym.enabled?
-      files << {:dsym => runner.config.runtime.dsym_file}
+      files[:dsym] = runner.config.runtime.dsym_file
     end
     
     result = post(url, params, files, headers)
