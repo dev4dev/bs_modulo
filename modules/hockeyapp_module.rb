@@ -8,10 +8,10 @@ module HockeyappModule
       return true
     end
     
-    url = "https://rink.hockeyapp.net/api/2/apps/#{runner.config.apphockey.app_id}/app_versions"
+    url = "https://rink.hockeyapp.net/api/2/apps/#{runner.config.hockeyapp.app_id}/app_versions"
     
     headers = {
-      "X-HockeyAppToken" => runner.config.apphockey.token
+      "X-HockeyAppToken" => runner.config.hockeyapp.token
     }
     
     params = {
