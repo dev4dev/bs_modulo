@@ -27,7 +27,7 @@ module HockeyappModule
     end
     
     result = post(url, params, files, headers)
-    if result.code !== 201
+    if result.code != 201
       obj = JSON.parse(result)
       errors = obj['errors']
       message = ["Errors:\n"]
