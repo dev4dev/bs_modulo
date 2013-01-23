@@ -44,6 +44,8 @@ module HockeyappModule
       end
       puts message.join "\n"
       return false
+    else
+      puts result
     end
     
     true
