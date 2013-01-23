@@ -132,3 +132,16 @@ Global Configuration Parameters:
 	Config Parameters:
 	
 		...
+12. **HockeyApp Module**  
+	_Upload build to HockeyApp Service_  
+	Name: `hockeyapp`  
+	Config Parameters:
+	
+		hockeyapp:
+			enabled:    false
+			token:      token
+			app_id:     app_id
+	`hockeyapp.enabled` **[bool]** - enabled or disabled module for configuration  
+	`hockeyapp.token` **[string]** - HockeyApp API Token  
+	`hockeyapp.app_id` **[string]** - HockeyApp App ID
+	
