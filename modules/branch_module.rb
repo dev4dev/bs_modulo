@@ -9,7 +9,7 @@ module BranchModule
     system %Q[git checkout #{branch_name}]
     system %Q[git pull origin #{branch_name}]
     if runner.config.branch.submodules?
-      system %Q[git submodules update --init]
+      system %Q[git submodule update --init]
     end
 
     true
