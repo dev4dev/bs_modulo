@@ -16,7 +16,15 @@ module HockeyappModule
     
     params = {
       # nothing for now
+      :notify => 1,
+      :status => 2
     }
+    
+    notes = ENV['HOCKEYAPP_NOTES'] || ''
+    unless notes.empty?
+      params[:notes] = notes
+      params[:notes_type] = 1
+    end
     
     files = {
       :ipa => runner.config.runtime.ipa_file
