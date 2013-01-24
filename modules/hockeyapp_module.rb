@@ -15,7 +15,7 @@ module HockeyappModule
     }
     
     params = {
-      :notify => runner.config.notufy? ? 1 : 0,
+      :notify => runner.config.notify? ? 1 : 0,
       :status => runner.config.download? ? 2 : 1
     }
     
