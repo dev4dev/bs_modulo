@@ -60,6 +60,8 @@ default: &default
         enabled:    false
         token:      token
         app_id:     app_id
+        notify:     false
+        download:   false
 
 adhoc:
     <<: *default

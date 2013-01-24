@@ -15,9 +15,8 @@ module HockeyappModule
     }
     
     params = {
-      # nothing for now
-      :notify => 1,
-      :status => 2
+      :notify => runner.config.notufy? ? 1 : 0,
+      :status => runner.config.download? ? 2 : 1
     }
     
     notes = ENV['HOCKEYAPP_NOTES'] || ''
