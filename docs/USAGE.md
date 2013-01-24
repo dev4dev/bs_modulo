@@ -15,7 +15,7 @@
 			- copy_ipa
 			- ipa_publisher
 
-	> Description for all config params you can find in [CONFIGURATION.md](https://github.com/dev4dev/bs_modulo/blob/master/CONFIGURATION.md) file.
+	> Description for all config params you can find in [CONFIGURATION.md](https://github.com/dev4dev/bs_modulo/blob/master/docs/CONFIGURATION.md) file.
 3. Change default values to your project's ones.
 4. Add config file to commit and push it to remote repo.
 5. Create new job in Jenkins.

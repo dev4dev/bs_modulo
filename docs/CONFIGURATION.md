@@ -143,5 +143,6 @@ Global Configuration Parameters:
 			app_id:     app_id
 	`hockeyapp.enabled` **[bool]** - enabled or disabled module for configuration  
 	`hockeyapp.token` **[string]** - HockeyApp API Token  
-	`hockeyapp.app_id` **[string]** - HockeyApp App ID
+	`hockeyapp.app_id` **[string]** - HockeyApp App ID  
+	Accepts parameter `HOCKEYAPP_NOTES` as release note for upload. You can add it in Jenkins build job as "Text Field" parameter. Or just pass as ENV parameter.
 	
