@@ -21,7 +21,7 @@ def real_file path
   File.expand_path(path)
 end
 
-def post url, params = {}, files = {}, *headers
+def post url, params = {}, files = {}, *more_headers
   puts "post data to #{url} with params #{params} and files #{files}"
   params ||= {}
   unless files.empty?
@@ -30,16 +30,12 @@ def post url, params = {}, files = {}, *headers
     end
   end
   
-  default_headers = {:accept => :json}
-  unless headers.empty?
-    default_headers.merge!(*headers)
+  headers = {:accept => :json}
+  unless more_headers.empty?
+    headers.merge!(*more_headers)
   end
   
-  poster_data ||= []
-  poster_data << url
-  poster_data << params
-  poster_data << default_headers
-  RestClient.post(*poster_data)
+  RestClient.post(url, params, headers)
 end
 
 def rm_f path
