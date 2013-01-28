@@ -49,3 +49,9 @@ If you want to inherit new configuration from different configuration than `defa
 		<<: *adhoc <- now we can use it here for inheritance
 		build:
 			configuration:	AdHoc_Free  <- and override necessary config parameter
+
+## Jenkins
+[Jenkins job setup](https://github.com/dev4dev/bs_modulo/blob/master/docs/JENKINS.md)
+
+## Migration from old version
+[MIGRATION.md](https://github.com/dev4dev/bs_modulo/blob/master/docs/MIGRATION.md)
