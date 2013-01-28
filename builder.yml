@@ -20,7 +20,7 @@ default: &default
     using_pods:     false
     project_dir:    .
     build:
-        configuration:  Release
+        configuration:  AdHoc
         sdk:            iphoneos
         workspace:
             name:       TestProject
@@ -34,7 +34,7 @@ default: &default
     pack_dsym:
         enabled:    false
         copy:       false
-        output_dir: ~/Desktop/
+        output_dir: "~/Dropbox/<your_project_dir>"
     bump_version:
         enabled:    false
     pack_ipa:
@@ -42,11 +42,11 @@ default: &default
             prefix:         TestProject
             append_version: false
     profile:
-        file:       profiles/adhoc.mobileprovision
+        file:       "~/Dropbox/<your_project_dir>/adhoc.mobileprovision"
         identity:   "iPhone Developer: Trololo, LLC"
     copy_ipa:
         enabled:    true
-        output_dir: ~/Desktop/
+        output_dir: "~/Dropbox/<your_project_dir>"
         clear_old:  false
     doa:
         host:       http://doa.domain/
@@ -55,7 +55,7 @@ default: &default
         enabled:    false
         fs_path:    /var/www/app/
         web_path:   http://server.com/app/
-        template:   publisher_template.html
+        template:   "~/Dropbox/<your_project_dir>/publisher_template.html"
     hockeyapp:
         enabled:    false
         token:      token
