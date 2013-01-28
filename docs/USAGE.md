@@ -31,3 +31,21 @@
 			git pull origin master
 			/usr/local/bin/builder
 	4. Click Save button
+
+## Configuration file
+### 1. Add new configuration
+
+Just add new section to configuration file and inherit it from one of existed configurations. Example:
+
+	appstore: <- Configuration name
+		<<: *default  <- inherited from default configuration
+
+If you want to inherit new configuration from different configuration than `default`, you have to add alias for inheried configuration. Example:
+
+	adhoc: &adhoc  <- adding alias for configuration
+		<<: *default
+
+	adhoc_free:
+		<<: *adhoc <- now we can use it here for inheritance
+		build:
+			configuration:	AdHoc_Free  <- and override necessary config parameter
