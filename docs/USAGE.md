@@ -1,5 +1,5 @@
 ## Build System Usage
-### NB!! CONFIG FILE MUST BE IN `MASTER` BRANCH!
+### NB!! CONFIG FILE MUST BE LOCATED IN `MASTER` BRANCH!
 
 1. Save [builder.yml](https://raw.github.com/dev4dev/bs_modulo/master/builder.yml) file into your project's repo root folder.
 2. Comment out unnceserry modules from `queue` block.
