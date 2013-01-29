@@ -42,6 +42,7 @@ config['runtime'] = {
   'app_file_name' => config['using_pods'] ? config['build']['workspace']['scheme'] : config['build']['project']['target']
 }
 
+FileUtils.mkdir_p PROJECT_DIR unless File.exists? PROJECT_DIR
 FileUtils.cd PROJECT_DIR do
   runner = Runner.new queue, config, MODULES_DIR
 end
