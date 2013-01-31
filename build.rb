@@ -28,19 +28,36 @@ unless errors.empty?
   exit(-1)
 end
 
-CONFIG_FILE     = WORKSPACE + 'builder.yml'
+CONFIG_FILE_NAME = ARGV[0] || 'builder.yml'
+
+CONFIG_FILE     = WORKSPACE + CONFIG_FILE_NAME
 MODULES_DIR     = __DIR__ + 'modules/'
 
 fail 'config builder.yml file not found' unless File.exists? CONFIG_FILE
 
 queue, config = load_config CONFIG_FILE, CONFIGURATION
 PROJECT_DIR = real_dir(WORKSPACE + config['project_dir'])
+
 config['runtime'] = {
+  'workspace'     => WORKSPACE,
   'project_dir'   => PROJECT_DIR,
-  'configuration' => CONFIGURATION,
-  'build_dir'     => "#{PROJECT_DIR}build/#{config['build']['configuration']}-#{config['build']['sdk']}/",
-  'app_file_name' => config['using_pods'] ? config['build']['workspace']['scheme'] : config['build']['project']['target']
+  'configuration' => CONFIGURATION
 }
+
+platform_runtime = {}
+case config['platform']
+  when 'ios'
+    platform_runtime = {
+      'build_dir'     => "#{PROJECT_DIR}build/#{config['build']['configuration']}-#{config['build']['sdk']}/",
+      'app_file_name' => config['using_pods'] ? config['build']['workspace']['scheme'] : config['build']['project']['target']
+    }
+    
+  when 'android'
+    platform_runtime = {
+      
+    }
+end
+config['runtime'].merge! platform_runtime
 
 FileUtils.mkdir_p PROJECT_DIR unless File.exists? PROJECT_DIR
 FileUtils.cd PROJECT_DIR do
