@@ -37,7 +37,7 @@ module PackIpaModule
         if File.exists? "#{app_name}.app/iTunesArtwork"
            cp "#{app_name}.app/iTunesArtwork", 'Payload/iTunesArtwork'
         end
-        system %Q[ditto -c -k Payload "#{ipa_file}"]
+        system %Q[ditto -c -k Payload "#{ipa_file}"] or fail "Failed to pack API arch file."
         rm_rf "Payload"
       end
     end
