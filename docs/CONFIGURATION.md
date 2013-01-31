@@ -1,9 +1,10 @@
 ## Build System
 Global Configuration Parameters:  
-1. `using_pods` **[bool]** - whether project uses CocoaPods  
-2. `project_dir` **[string]** - path to project's dir [default: `.`]  
-3. `profile.file` **[string]** - path to profile file  
-4. `profile.identity` **[string]** - profile's identity string  
+1. `platform` **[choice (ios, android)]** - project platform  
+2. `using_pods` **[bool]** - whether project uses CocoaPods [iOS only]  
+3. `project_dir` **[string]** - path to project's dir [default: `.`]  
+4. `profile.file` **[string]** - path to profile file [iOS only]  
+5. `profile.identity` **[string]** - profile's identity string [iOS only]  
 	Example:
 	
 		profile:
@@ -24,7 +25,7 @@ Global Configuration Parameters:
 	`branch.submodules` **[bool]** - init submodules or not
 2. **Clean Module**  
 	Name: `clean`  
-	Config Parameter: nothing
+	Config Parameters: nothing
 3. **Bump Version Module**  
 	_Increase project version number_  
 	Name: `bump_version`  
@@ -108,7 +109,7 @@ Global Configuration Parameters:
 			output_dir: ~/Desktop/
 			clear_old:  false
 	`copy_ipa.enabled` **[bool]** - enable or disable module for configuration  
-	`copy_ipa.output_dir` **[string]** - path to output directiry  
+	`copy_ipa.output_dir` **[string]** - path to output directory  
 	`copy_ipa.clear_old` **[bool]** - clear or not old builds
 
 10. **IPA Publisher _[Deprecated]_**  
@@ -145,4 +146,51 @@ Global Configuration Parameters:
 	`hockeyapp.token` **[string]** - HockeyApp API Token  
 	`hockeyapp.app_id` **[string]** - HockeyApp App ID  
 	Accepts parameter `HOCKEYAPP_NOTES` as release note for upload. You can add it in Jenkins build job as "Text Field" parameter. Or just pass as ENV parameter.
+
+13.	**Update Config [Android] Module**  
+	_Update configurations for android project & dependencies, generate build.xml files for ant._  
+	Name: `update_configs_android`  
+	Config Parameters:
 	
+	    update_configs_android:
+	        enabled:    true
+	`update_configs_android.enabled` **[bool]** - whether is module enabled for configuration
+
+14. **Clean [Android] Module**  
+	_Clean project & dependencies before build_  
+	Name: `clean_android`  
+	Config Parameters: nothing
+15. **Bump Version [Android] Module**  
+	_Bump version in android project_  
+	Name: `bump_version_android`  
+	Config Parameters:
+	
+	    bump_version_android:
+	        enabled:    false
+	`bump_version_android.enabled` **[bool]** - whether is module enabled for configuration.
+
+16. **Build [Android] Module**  
+	_Build android project_  
+	Name: `build_android`  
+	Config Parameters:
+	
+	    build_android:
+	        configuration:  release
+	        android_target: "Google Inc.:Google APIs:17"
+	        dependencies:
+	            - dep1
+	            - dep2
+	`build_android.configuration` **[string]** - configuration to build  
+	`build_android.android_target` **[string]** - android SDK version  
+	`build_android.dependencies` **[list]** - project's dependencies
+
+17. **Copy APK Module**	
+	_Copy APK file to specified directory_  
+	Name: `copy_apk`  
+	Config Parameters:
+	
+		copy_apk:
+	        enabled:    false
+	        output_dir: "~/Dropbox/<your_project_dir>"
+	`copy_apk.enabled` **[bool]** - whether is module enabled for configuration  
+	`copy_apk.output_dir` **[string]** - path to output directory

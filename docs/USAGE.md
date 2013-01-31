@@ -1,9 +1,10 @@
 ## Build System Usage
 ### NB!! CONFIG FILE MUST BE LOCATED IN `MASTER` BRANCH!
 
-1. Save [builder.yml](https://raw.github.com/dev4dev/bs_modulo/master/builder.yml) file into your project's repo root folder.
-2. Comment out unnecessary modules from `queue` block.
-
+1. Save [builder.yml](https://raw.github.com/dev4dev/bs_modulo/master/builder.yml) ([builder_android.yml](https://raw.github.com/dev4dev/bs_modulo/master/builder_android.yml) for android) file into your project's repo root folder.
+2. Comment out unnecessary modules from `queue` block.  
+	iOS:
+	
 		queue:
 			- branch
 			- clean
@@ -16,6 +17,17 @@
 			- copy_ipa
 			- ipa_publisher
 
+	Android:
+	
+		queue:
+		    - branch
+		    - update_configs_android
+		    - clean_android
+		    - bump_version_android
+		    - build_android
+		    - copy_apk
+		    - hockeyapp
+		    
 	> Description for all config params you can find in [CONFIGURATION.md](https://github.com/dev4dev/bs_modulo/blob/master/docs/CONFIGURATION.md) file.
 3. Change default values to your project's ones.
 4. Add config file to commit and push it to remote repo.
