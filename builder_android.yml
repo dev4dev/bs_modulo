@@ -1,0 +1,39 @@
+queue:
+    - branch
+    - update_configs_android
+    - clean_android
+    - bump_version_android
+    - build_android
+    - copy_apk
+    - hockeyapp
+    # - dummy => Names convention: dummy_module.rb|DummyModule
+
+
+default: &default
+    platform:       android
+    branch:
+        name:       master
+        submodules: false
+    project_dir:    .
+    update_configs_android:
+        enabled:    true
+    build_android:
+        configuration:  release
+        android_target: "Google Inc.:Google APIs:17"
+        dependencies:
+            - dep1
+            - dep2
+    bump_version_android:
+        enabled:    false
+    copy_apk:
+        enabled:    false
+        output_dir: "~/Dropbox/<your_project_dir>"
+    hockeyapp:
+        enabled:    false
+        token:      token
+        app_id:     app_id
+        notify:     false
+        download:   false
+
+release:
+    <<: *default

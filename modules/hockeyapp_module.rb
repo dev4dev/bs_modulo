@@ -25,12 +25,20 @@ module HockeyappModule
       params[:notes_type] = 1
     end
     
-    files = {
-      :ipa => runner.config.runtime.ipa_file
-    }
-    
-    if runner.config.pack_dsym.enabled?
-      files[:dsym] = runner.config.runtime.dsym_file
+    case runner.config.platform
+      when 'ios'
+        files = {
+          :ipa => runner.config.runtime.ipa_file
+        }
+        
+        if runner.config.pack_dsym && runner.config.pack_dsym.enabled?
+          files[:dsym] = runner.config.runtime.dsym_file
+        end
+        
+      when 'android'
+        files = {
+          :ipa => runner.config.runtime.apk_file
+        }
     end
     
     result = post(url, params, files, headers)
