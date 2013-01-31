@@ -2,7 +2,7 @@
 ### NB!! CONFIG FILE MUST BE LOCATED IN `MASTER` BRANCH!
 
 1. Save [builder.yml](https://raw.github.com/dev4dev/bs_modulo/master/builder.yml) file into your project's repo root folder.
-2. Comment out unnceserry modules from `queue` block.
+2. Comment out unnecessary modules from `queue` block.
 
 		queue:
 			- branch
@@ -20,7 +20,7 @@
 3. Change default values to your project's ones.
 4. Add config file to commit and push it to remote repo.
 5. Create new job in Jenkins.
-	1. Add Choise build parameter with name `CONFIGURATION` and list of configurations from you `builder.yml` file.
+	1. Add Choice build parameter with name `CONFIGURATION` and list of configurations from you `builder.yml` file.
 			
 			adhoc
 			appstore
@@ -41,7 +41,7 @@ Just add new section to configuration file and inherit it from one of existed co
 	appstore: <- Configuration name
 		<<: *default  <- inherited from default configuration
 
-If you want to inherit new configuration from different configuration than `default`, you have to add alias for inheried configuration. Example:
+If you want to inherit new configuration from different configuration than `default`, you have to add alias for inherited configuration. Example:
 
 	adhoc: &adhoc  <- adding alias for configuration
 		<<: *default

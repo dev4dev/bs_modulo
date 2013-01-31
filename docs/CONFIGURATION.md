@@ -4,7 +4,7 @@ Global Configuration Parameters:
 2. `project_dir` **[string]** - path to project's dir [default: `.`]  
 3. `profile.file` **[string]** - path to profile file  
 4. `profile.identity` **[string]** - profile's identity string  
-	Examle:
+	Example:
 	
 		profile:
 			file:       profiles/adhoc.mobileprovision
@@ -20,7 +20,7 @@ Global Configuration Parameters:
 		branch:  
 			name:       master  
 			submodules: true
-	`branch.name` **[string]** - name of branch git repo will be switched to  
+	`branch.name` **[string]** - the name of branch git repo will be switched to  
 	`branch.submodules` **[bool]** - init submodules or not
 2. **Clean Module**  
 	Name: `clean`  
@@ -112,7 +112,7 @@ Global Configuration Parameters:
 	`copy_ipa.clear_old` **[bool]** - clear or not old builds
 
 10. **IPA Publisher _[Deprecated]_**  
-	_Old style publisher for IPAs to distrib them over air_  
+	_Old style publisher for IPAs to distribute them over air_  
 	Name: `ipa_publisher`  
 	Config Parameters:
 	

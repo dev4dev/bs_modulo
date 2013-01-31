@@ -1,4 +1,4 @@
-### Jenkins porject setup
+### Jenkins project setup
 
 1. Add new job with title as your app's name. 
 2. Add build parameter of type "choice" with name `CONFIGURATION` and list of configurations from your `builder.yml` file.
