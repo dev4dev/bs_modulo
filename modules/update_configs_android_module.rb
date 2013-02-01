@@ -27,6 +27,7 @@ module UpdateConfigsAndroidModule
       _doc = REXML::Document.new File.open('build.xml', 'r')
       app_name = _doc.root.attribute('name').to_s
       runner.config.runtime.apk_file = runner.config.runtime.project_dir + "bin/#{app_name}-#{runner.config.build_android.configuration}.apk"
+      runner.config.runtime.app_name = app_name
     end
     
     true
