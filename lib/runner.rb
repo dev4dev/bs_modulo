@@ -34,10 +34,10 @@ class Runner
             fail " Ooopss..."
           end
         rescue => ex
-          fail "ERROR: #{ex.message}"
+          fail "#{ex.message}"
         end
       else
-        fail %Q{\n\tERROR: module not found "#{id} => #{module_name}"}
+        fail %Q{module not found "#{id} => #{module_name}"}
       end
     end
     puts "\n SUCCESS!"

@@ -5,7 +5,7 @@ module BuildAndroidModule
   def run runner
     puts 'Building project...'
     
-    system %Q[ant #{runner.config.build_android.configuration}] or fail "Failed to build project"
+    system %Q[ant #{runner.config.build_android.configuration}] or fail "build project"
     
     true
   end

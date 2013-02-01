@@ -12,14 +12,14 @@ module CleanAndroidModule
       deps.each do |dep|
         path = workspace + dep
         FileUtils.cd path do
-          system %Q[ant clean] or fail "Failed to clean dependency #{dep}"
+          system %Q[ant clean] or fail "clean dependency #{dep}"
         end
       end
     end
     
     # clean project
     FileUtils.cd runner.config.runtime.project_dir do
-      system %Q[ant clean] or fail "Failed to clean project"
+      system %Q[ant clean] or fail "clean project"
     end
     
     true

@@ -9,7 +9,7 @@ class String
 end
 
 def fail message
-  puts message
+  puts "[BUILD FAILED]: " + message
   exit(-1)
 end
 

@@ -24,7 +24,7 @@ module PackIpaModule
       identity     = runner.config.profile.identity
       profile_file = real_file runner.config.profile.file
       FileUtils.cd(runner.config.runtime.build_dir) do
-        system %Q[xcrun -sdk "#{sdk}" PackageApplication -v "#{app_file}" -o "#{ipa_output_path}" --sign "#{identity}" --embed "#{profile_file}"] or fail "Failed xcrun packaging and signing ipa"
+        system %Q[xcrun -sdk "#{sdk}" PackageApplication -v "#{app_file}" -o "#{ipa_output_path}" --sign "#{identity}" --embed "#{profile_file}"] or fail "xcrun packaging and signing ipa"
       end
     else
       # pack ipa manually
@@ -37,7 +37,7 @@ module PackIpaModule
         if File.exists? "#{app_name}.app/iTunesArtwork"
            cp "#{app_name}.app/iTunesArtwork", 'Payload/iTunesArtwork'
         end
-        system %Q[ditto -c -k Payload "#{ipa_file}"] or fail "Failed to pack API arch file."
+        system %Q[ditto -c -k Payload "#{ipa_file}"] or fail "pack API arch file."
         rm_rf "Payload"
       end
     end
