@@ -38,6 +38,7 @@ default: &default
         output_dir: "~/Dropbox/<your_project_dir>"
     bump_version:
         enabled:    false
+        push:       false
     pack_ipa:
         naming:
             prefix:         TestProject
