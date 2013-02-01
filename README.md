@@ -4,7 +4,7 @@
 
 	git clone https://github.com/dev4dev/bs_modulo.git
 	cd bs_modulo
-	gem install
+	bundle install
 	ln -s "`pwd`/build.rb" /usr/local/bin/builder
 
 #### Usage
