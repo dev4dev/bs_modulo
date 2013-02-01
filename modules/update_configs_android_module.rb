@@ -16,12 +16,12 @@ module UpdateConfigsAndroidModule
     unless deps.empty?
       deps.each do |dep|
         path = workspace + dep
-        system %Q[android update project --path "#{path}" --target "#{android_target}"]
+        system %Q[android update project --path "#{path}" --target "#{android_target}"] or fail "updating project dep #{dep}"
       end
     end
     
     # update project config
-    system %Q[android update project --path "#{runner.config.runtime.project_dir}" --target "#{android_target}"]
+    system %Q[android update project --path "#{runner.config.runtime.project_dir}" --target "#{android_target}"] or fail "updating project"
     
     if File.exists? 'build.xml'
       _doc = REXML::Document.new File.open('build.xml', 'r')
