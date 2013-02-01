@@ -29,6 +29,8 @@ default: &default
     copy_apk:
         enabled:    false
         output_dir: "~/Dropbox/<your_project_dir>"
+        naming:
+            prefix: 
     hockeyapp:
         enabled:    false
         token:      token
