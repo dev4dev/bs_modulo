@@ -2,18 +2,18 @@ require "rexml/document"
 
 class AndroidVersion
   
-  def initialize(manifest_file_path, write_mode = false)
-    @write_mode = write_mode
-    @f = File.open(manifest_file_path, write_mode ? 'r+' : 'r') if File.exists? manifest_file_path
-    unless @f
+  def initialize(manifest_file_path)
+    @file = manifest_file_path
+    if File.exists? manifest_file_path
+      File.open(manifest_file_path, 'r') do |f|
+        read_data f
+      end
+    else
       raise "#{manifest_file_path} file does not exist"
     end
-    
-    read_data
   end
   
   def increment
-    return false unless @write_mode && !@f.closed?
     @version_code = @version_code.to_i + 1
     @doc.root.add_attribute('android:versionCode', @version_code)
     
@@ -33,24 +33,14 @@ class AndroidVersion
   end
   
   def write
-    return false if @f.closed?
-    if @write_mode
-      @f.rewind
-      @doc.write @f
-      @f.flush
+    File.open(@file, 'w') do |f|
+      @doc.write f
     end
   end
   
-  def close
-    return false if @f.closed?
-    write
-    @f.close
-    true
-  end
-  
   private
-  def read_data
-    @doc = REXML::Document.new @f
+  def read_data stream
+    @doc = REXML::Document.new stream
     if @doc
       @version_code = @doc.root.attribute('versionCode', 'android').to_s
       @version_name = @doc.root.attribute('versionName', 'android').to_s

@@ -12,7 +12,7 @@ module BumpVersionAndroidModule
     manifest_xml_file = runner.config.runtime.project_dir + 'AndroidManifest.xml'
     puts "Bumping Android version..."
     begin
-      ver = AndroidVersion.new manifest_xml_file, true
+      ver = AndroidVersion.new manifest_xml_file
       ver.increment
       puts "Bumping to versionCode:#{ver.version_code} versionName:#{ver.version_name}"
       if runner.config.bump_version_android.push?
@@ -20,7 +20,7 @@ module BumpVersionAndroidModule
         system %Q[git commit -am "AUTOBUILD -- configuration: #{runner.config.runtime.configuration}, versionCode:#{ver.version_code} versionName:#{ver.version_name}"]
         system %Q[git push origin #{runner.config.branch.name}]
       end
-      ver.close
+      ver.write
     rescue e
       fail 'Error bumping version'
     end
