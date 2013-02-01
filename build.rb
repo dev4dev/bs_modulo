@@ -28,14 +28,13 @@ unless errors.empty?
   exit(-1)
 end
 
-CONFIG_FILE_NAME = ARGV[0] || 'builder.yml'
+CONFIG_FILE_NAME = if ARGV[0] then File.basename ARGV[0] else 'builder.yml' end
+CONFIG_FILE_PATH = WORKSPACE + CONFIG_FILE_NAME
+MODULES_DIR      = __DIR__ + 'modules/'
 
-CONFIG_FILE     = WORKSPACE + CONFIG_FILE_NAME
-MODULES_DIR     = __DIR__ + 'modules/'
+fail 'config builder.yml file not found' unless File.exists? CONFIG_FILE_PATH
 
-fail 'config builder.yml file not found' unless File.exists? CONFIG_FILE
-
-queue, config = load_config CONFIG_FILE, CONFIGURATION
+queue, config = load_config CONFIG_FILE_PATH, CONFIGURATION
 PROJECT_DIR = real_dir(WORKSPACE + config['project_dir'])
 
 config['runtime'] = {
