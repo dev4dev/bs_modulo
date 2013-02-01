@@ -25,6 +25,7 @@ default: &default
             - dep2
     bump_version_android:
         enabled:    false
+        push:       false
     copy_apk:
         enabled:    false
         output_dir: "~/Dropbox/<your_project_dir>"

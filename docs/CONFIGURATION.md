@@ -33,7 +33,9 @@ Global Configuration Parameters:
 	
 		bump_version:
 			enabled:    false
-	`bump_version.enabled` **[bool]** - enable or disable module for configuration
+			push:		false
+	`bump_version.enabled` **[bool]** - enable or disable module for configuration  
+	`bump_version.push` **[bool]** - push changes to git repo or not
 4. **Build Module**  
 	_Main build module for iOS Projects_  
 	Name: `build`  
@@ -167,7 +169,9 @@ Global Configuration Parameters:
 	
 	    bump_version_android:
 	        enabled:    false
-	`bump_version_android.enabled` **[bool]** - whether is module enabled for configuration.
+	        push:       false
+	`bump_version_android.enabled` **[bool]** - whether is module enabled for 	configuration. 
+	`bump_version_android.push` **[bool]** - push changes to git repo or not
 
 16. **Build [Android] Module**  
 	_Build android project_  

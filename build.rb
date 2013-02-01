@@ -4,6 +4,7 @@ __DIR__ = File.expand_path(File.dirname(begin File.readlink(__FILE__) rescue __F
 require "#{__DIR__}lib/helpers.rb"
 require "#{__DIR__}lib/loader.rb"
 require "#{__DIR__}lib/runner.rb"
+require "#{__DIR__}lib/android_version.rb"
 
 ## check input parameters
 errors = []
