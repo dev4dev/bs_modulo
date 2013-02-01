@@ -24,10 +24,12 @@ module UpdateConfigsAndroidModule
     system %Q[android update project --path "#{runner.config.runtime.project_dir}" --target "#{android_target}"] or fail "updating project"
     
     if File.exists? 'build.xml'
-      _doc = REXML::Document.new File.open('build.xml', 'r')
-      app_name = _doc.root.attribute('name').to_s
-      runner.config.runtime.apk_file = runner.config.runtime.project_dir + "bin/#{app_name}-#{runner.config.build_android.configuration}.apk"
-      runner.config.runtime.app_name = app_name
+      File.open('build.xml', 'r') do |f|
+        _doc = REXML::Document.new f
+        app_name = _doc.root.attribute('name').to_s
+        runner.config.runtime.apk_file = runner.config.runtime.project_dir + "bin/#{app_name}-#{runner.config.build_android.configuration}.apk"
+        runner.config.runtime.app_name = app_name
+      end
     end
     
     true
