@@ -2,12 +2,11 @@
 module DummyModule
   extend self
   
-  # required run function with runner parameter
-  def run runner
+  # required run function with config parameter
+  def run config
     puts 'Dummy module...'
     
-    puts runner.config
-    puts runner.queue
+    puts config
     
     true
   end

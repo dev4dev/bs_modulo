@@ -28,7 +28,7 @@ class Runner
       if @modules.include? module_name
         puts %Q{\n ===> Running module #{id}...}
         begin
-          if eval(module_name).public_send(:run, self)
+          if eval(module_name).public_send(:run, self.config)
             puts " OK."
           else
             fail " Ooopss..."

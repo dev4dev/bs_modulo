@@ -2,12 +2,12 @@
 module UploadDoaModule
   extend self
   
-  def run runner
+  def run config
     puts 'Uploading build...'
     
-    ipa_file  = runner.config.runtime.ipa_file
-    info_file = runner.config.runtime.build_dir + runner.config.runtime.app_file_name + '.app/Info.plist'
-    url       = runner.config.doa.host + 'upload/' + runner.config.doa.guid
+    ipa_file  = config.runtime.ipa_file
+    info_file = config.runtime.build_dir + config.runtime.app_file_name + '.app/Info.plist'
+    url       = config.doa.host + 'upload/' + config.doa.guid
     system %Q[plutil -convert xml1 #{info_file}]
     result  = JSON.parse(post(url, {}, {
       :info => info_file,

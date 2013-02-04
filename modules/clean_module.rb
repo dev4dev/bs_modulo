@@ -2,10 +2,10 @@
 module CleanModule
   extend self
   
-  def run runner
+  def run config
     puts "Cleaning build dir..."
 
-    rm_rf "#{runner.config.runtime.project_dir}/build/"
+    rm_rf "#{config.runtime.project_dir}/build/"
     
     true
   end

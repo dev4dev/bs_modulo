@@ -2,10 +2,10 @@
 module BuildAndroidModule
   extend self
   
-  def run runner
+  def run config
     puts 'Building project...'
     
-    system %Q[ant #{runner.config.build_android.configuration}] or fail "build project"
+    system %Q[ant #{config.build_android.configuration}] or fail "build project"
     
     true
   end

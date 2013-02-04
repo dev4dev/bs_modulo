@@ -2,12 +2,12 @@
 module CleanAndroidModule
   extend self
   
-  def run runner
+  def run config
     puts "Cleaning..."
     
     # clean deps
-    deps      = runner.config.build_android.dependencies
-    workspace = runner.config.runtime.workspace
+    deps      = config.build_android.dependencies
+    workspace = config.runtime.workspace
     unless deps.empty?
       deps.each do |dep|
         path = workspace + dep
@@ -18,7 +18,7 @@ module CleanAndroidModule
     end
     
     # clean project
-    FileUtils.cd runner.config.runtime.project_dir do
+    FileUtils.cd config.runtime.project_dir do
       system %Q[ant clean] or fail "clean project"
     end
     
