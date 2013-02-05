@@ -28,7 +28,6 @@ def install_rvm_ruby_reqs
   system %Q[brew install bash curl git]
   puts 'Ruby requirements...'
   system %Q[brew install autoconf automake apple-gcc42 libtool pkg-config openssl readline libyaml sqlite libxml2 libxslt libksba]
-  
 end
 
 def install_rvm_ruby
