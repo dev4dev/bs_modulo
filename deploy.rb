@@ -18,14 +18,12 @@ end
 
 def install_brew
   puts 'Installing Homebrew...'
-  exit
   system %Q[ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"] or fail 'Brew installation failed'
   system %Q[brew doctor]
 end
 
 def install_rvm_ruby_reqs
   puts 'RVM requirements...'
-  exit
   system %Q[brew tap homebrew/dupes]
   system %Q[brew install bash curl git]
   puts 'Ruby requirements...'
@@ -35,7 +33,6 @@ end
 
 def install_rvm_ruby
   puts 'Installing RVM and Ruby...'
-  exit
   system %Q[curl -L https://get.rvm.io | bash -s stable --ruby] or fail 'RVM & Ruby Installation failed'
 end
 
@@ -80,3 +77,6 @@ FileUtils.cd 'builder' do
   # create link
   system %Q[ln -s "`pwd`/build.rb" /usr/local/bin/builder]
 end
+
+#  Add /usr/local/bin to $PATH
+system %Q[echo '\n\nPATH="/usr/local/bin:$PATH"\n' >> ~/.profile]

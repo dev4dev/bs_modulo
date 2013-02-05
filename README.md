@@ -1,5 +1,8 @@
 ## Build System
 
+#### Requirements
+Ruby 1.9.3
+
 #### Install
 
 	git clone https://github.com/dev4dev/bs_modulo.git
