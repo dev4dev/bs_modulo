@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'fileutils'
 require 'rest_client'
 require 'json'
