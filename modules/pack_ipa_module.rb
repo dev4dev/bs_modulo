@@ -7,7 +7,7 @@ module PackIpaModule
     output_file_name += "#{config.runtime.app_file_name}_#{config.branch.name}_#{config.build.configuration}"
     config.runtime.output_file_mask = "#{output_file_name}*"
     if config.pack_ipa.naming.append_version?
-      version_number = `agvtool vers -terse`.strip
+      version_number = `agvtool mvers -terse1`.strip
       output_file_name += version_number ? '_v' + version_number : ''
     end
     config.runtime.output_file_name = output_file_name
