@@ -3,6 +3,11 @@ module PackIpaModule
   extend self
   
   def run config
+    unless config.pack_ipa.enabled?
+      puts 'skipping...'
+      return true
+    end
+    
     output_file_name = config.pack_ipa.naming.prefix ?  config.pack_ipa.naming.prefix + '_' : ''
     output_file_name += "#{config.runtime.app_file_name}_#{config.branch.name}_#{config.build.configuration}"
     config.runtime.output_file_mask = "#{output_file_name}*"

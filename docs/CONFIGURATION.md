@@ -75,9 +75,11 @@ Global Configuration Parameters:
 	Config Parameters:
 	
 		pack_ipa:
+			enabled:	false
 			naming:
 				prefix:         TestProject
 				append_version: false
+	`pack_ipa.enabled` **[bool]** - enable or disable module for configuration  
 	`pack_ipa.naming.prefix` **[string]** - prefix for output IPA filename [default: `<empty string>`]  
 	`pack_ipa.naming.append_version` **[bool]** - enable or disable appending version number to output IPA filename
 
