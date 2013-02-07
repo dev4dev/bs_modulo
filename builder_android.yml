@@ -30,7 +30,7 @@ default: &default
         enabled:    false
         output_dir: "~/Dropbox/<your_project_dir>"
         naming:
-            prefix: 
+            prefix: Prefix
     hockeyapp:
         enabled:    false
         token:      token
