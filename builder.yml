@@ -39,6 +39,7 @@ default: &default
     bump_version:
         enabled:    false
         push:       false
+        nice_mver:  false # major<manual>.minor<manual>.build<auto>
     pack_ipa:
         naming:
             prefix:         TestProject
