@@ -7,7 +7,7 @@ module BuildModule
     
     profile_file  = real_file config.profile.file
     build_profile = real_file '~/Library/MobileDevice/Provisioning Profiles/build.mobileprovision'
-    cp profile_file, build_profile
+    cp(profile_file, build_profile) if File.exists? profile_file
     build_parameters = [
       %Q[-configuration "#{config.build.configuration}"],
       %Q[-sdk "#{config.build.sdk}"],
@@ -24,7 +24,7 @@ module BuildModule
       build_parameters.unshift %Q[-target "#{config.build.project.target}"]
     end
     result = system %Q[xcodebuild #{build_parameters.join(' ')}]
-    rm_f build_profile
+    rm_f build_profile if File.exists? build_profile
     unless result
        fail "Build failed"
     end
