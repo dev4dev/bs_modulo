@@ -1,4 +1,9 @@
 ## Build System Usage
+
+### Project preparation
+
+1. For all targets in **Build Settings** set **Versioning System** to `Apple Generic` and **Current Project Version** to initial project version e.g. `1.0.0`.
+
 ### NB!! CONFIG FILE MUST BE LOCATED IN `MASTER` BRANCH!
 
 1. Save [builder.yml](https://raw.github.com/dev4dev/bs_modulo/master/builder.yml) ([builder_android.yml](https://raw.github.com/dev4dev/bs_modulo/master/builder_android.yml) for android) file into your project's repo root folder.
