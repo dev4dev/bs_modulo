@@ -6,6 +6,7 @@ queue:
     - tests
     - pack_ipa
     - pack_dsym
+    - online_docs
     - upload_doa
     - copy_ipa
     - ipa_publisher
@@ -15,11 +16,18 @@ queue:
 
 default: &default
     platform:       ios
+    using_pods:     false
+    project_dir:    .
+    profile:
+        file:       "~/Dropbox/<your_project_dir>/adhoc.mobileprovision"
+        identity:   "iPhone Developer: Trololo, LLC"
     branch:
         name:       master
         submodules: false
-    using_pods:     false
-    project_dir:    .
+    bump_version:
+        enabled:    false
+        push:       false
+        up_mver:    false
     build:
         configuration:  AdHoc
         sdk:            iphoneos
@@ -32,29 +40,26 @@ default: &default
     tests:
         run:        false
         target:     TestProjectTest
-    pack_dsym:
-        enabled:    false
-        copy:       false
-        output_dir: "~/Dropbox/<your_project_dir>"
-    bump_version:
-        enabled:    false
-        push:       false
-        up_mver:    false
     pack_ipa:
         enabled:    true
         naming:
             prefix:         TestProject
             append_version: false
-    profile:
-        file:       "~/Dropbox/<your_project_dir>/adhoc.mobileprovision"
-        identity:   "iPhone Developer: Trololo, LLC"
+    pack_dsym:
+        enabled:    false
+        copy:       false
+        output_dir: "~/Dropbox/<your_project_dir>"
+    online_docs:
+        enabled:    false
+        fs_path:    /var/www/app/
+        web_path:   http://server.com/app/
+    doa:
+        host:       http://doa.domain/
+        guid:       app_guid
     copy_ipa:
         enabled:    true
         output_dir: "~/Dropbox/<your_project_dir>"
         clear_old:  false
-    doa:
-        host:       http://doa.domain/
-        guid:       app_guid
     ipa_publisher:
         enabled:    false
         fs_path:    /var/www/app/

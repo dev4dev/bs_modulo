@@ -50,6 +50,10 @@ def cp src, dest
   FileUtils.cp src, dest, {:verbose => true}
 end
 
+def mv src, dest
+  FileUtils.mv src, dest, {:verbose => true}
+end
+
 def module_name_from_id id
   id.gsub('_', ' ').ucwords.gsub(' ', '')
 end
