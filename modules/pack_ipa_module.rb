@@ -12,13 +12,13 @@ module PackIpaModule
     output_file_name += "#{config.runtime.app_file_name}_#{config.branch.name}_#{config.build.configuration}"
     config.runtime.output_file_mask = "#{output_file_name}*"
     if config.pack_ipa.naming.append_version?
-      version_number = `agvtool mvers -terse1`.strip
-      output_file_name += version_number ? '_v' + version_number : ''
+      version = `agvtool mvers -terse1`.strip
+      output_file_name += version ? '_v' + version : ''
     end
     config.runtime.output_file_name = output_file_name
     
-    ipa_file                       = "#{output_file_name}.ipa"
-    ipa_output_path                = config.runtime.build_dir + ipa_file
+    ipa_file                = "#{output_file_name}.ipa"
+    ipa_output_path         = config.runtime.build_dir + ipa_file
     config.runtime.ipa_file = ipa_output_path
     
     app_name = config.runtime.app_file_name

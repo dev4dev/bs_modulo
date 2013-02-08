@@ -43,8 +43,8 @@ module HockeyappModule
     
     result = post(url, params, files, headers)
     if result.code != 201
-      obj = JSON.parse(result)
-      errors = obj['errors']
+      obj     = JSON.parse(result)
+      errors  = obj['errors']
       message = ["Errors:\n"]
       obj['errors'].each_pair do |k, v|
         message << "#{k}: #{v}"
