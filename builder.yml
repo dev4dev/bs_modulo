@@ -39,7 +39,7 @@ default: &default
     bump_version:
         enabled:    false
         push:       false
-        nice_mver:  false # major<manual>.minor<manual>.build<auto>
+        up_mver:    false
     pack_ipa:
         enabled:    true
         naming:

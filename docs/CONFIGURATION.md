@@ -34,10 +34,10 @@ Global Configuration Parameters:
 		bump_version:
 			enabled:    false
 			push:		false
-			nice_mver:	false
+			up_mver:	false
 	`bump_version.enabled` **[bool]** - enable or disable module for configuration  
 	`bump_version.push` **[bool]** - push changes to git repo or not  
-	`bump_version.nice_mver` **[bool]** - use semantic (1.2.3) version for marketing version field instead of simple build number
+	`bump_version.up_mver` **[bool]** - update marketing version field or not (semantic version format major.minor.build)
 4. **Build Module**  
 	_Main build module for iOS Projects_  
 	Name: `build`  
