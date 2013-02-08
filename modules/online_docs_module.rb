@@ -14,7 +14,7 @@ module OnlineDocsModule
     system %Q[scp -r ./web_docs/docs/* #{config.online_docs.fs_path}#{path_prefix}]
     rm_rf './web_docs/' or fail 'to clean docs directory'
     webserver_dir = config.online_docs.web_path + path_prefix
-    # section_print "Documentation updated $WEBSERVER_DIR"
+    puts "Documentation updated #{webserver_dir}"
     
     true
   end
