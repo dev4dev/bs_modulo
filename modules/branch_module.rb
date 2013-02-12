@@ -9,7 +9,9 @@ module BranchModule
     system %Q[git checkout #{branch_name}]
     system %Q[git pull origin #{branch_name}]
     if config.branch.submodules?
-      system %Q[git submodule update --init]
+      FileUtils.cd config.runtime.workspace do
+        system %Q[git submodule update --init]
+      end
     end
 
     true
