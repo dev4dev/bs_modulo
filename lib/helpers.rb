@@ -50,6 +50,10 @@ def cp src, dest
   FileUtils.cp src, dest, {:verbose => true}
 end
 
+def cp_r src, dest
+  FileUtils.cp_r src, dest, {:verbose => true}
+end
+
 def mv src, dest
   FileUtils.mv src, dest, {:verbose => true}
 end
