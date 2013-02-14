@@ -22,11 +22,13 @@ module DocsModule
       config.docs.files.each do |doc_file|
         # pdf
         if config.docs.formats.pdf?
+          puts "Converting #{doc_file} to PDF..."
           system %Q[#{soffice} -invisible "macro:///OXMLibrary.OXMExport.ConvertDocToPDF(#{doc_file})"] or fail "Convert to PDF failed"
         end
         
         #html
         if config.docs.formats.html?
+          puts "Converting #{doc_file} to HTML..."
           system %Q[#{soffice} -invisible "macro:///OXMLibrary.OXMExport.ConvertDocToHTML(#{doc_file})"] or fail "Convert to HTML failed"
         end
       end
