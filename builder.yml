@@ -12,6 +12,7 @@ queue:
     - ipa_publisher
     - hockeyapp
     - docs
+    - package
     # - dummy => Names convention: dummy_module.rb|DummyModule
 
 
@@ -80,6 +81,14 @@ default: &default
         formats:
             pdf:    true
             html:   true
+    package:
+        enabled:    false
+        work_dir:   output_dir
+        output_dir: '~/Dropbox/<your_project_dir>/'
+        pack:
+            - "dirs Demo1"
+            - "to Demo2"
+            - "pack Demo3"
 
 adhoc:
     <<: *default
