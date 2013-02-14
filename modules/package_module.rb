@@ -45,7 +45,7 @@ module PackageModule
         build_number = `agvtool vers -terse`.strip
       end
       # # zip file name, which be putted in dropbox
-      output_file = real_dir(config.package.output_dir) + config.package.work_dir + "_#{version}#{build_number}.zip"
+      output_file = real_dir(config.package.output_dir) + config.package.work_dir + "_#{version}.#{build_number}.zip"
       
       # # create docs directory for release package
       docs = real_dir 'docs'
@@ -61,7 +61,7 @@ module PackageModule
       rm output_file if File.exists? output_file
       
       # # archive release folder and put it in dropbox directory
-      system %Q[zip -ry #{output_file} #{output_dir}] or fail "Release packaging failed"
+      system %Q[zip -ry #{output_file} #{config.package.output_dir}] or fail "Release packaging failed"
       
       # # remove temp directory
       rm_rf output_dir
