@@ -14,9 +14,10 @@ module DocsModule
     
     soffice = office_path + 'soffice'
     unopkg = office_path + 'unopkg'
-    FileUtils.cd 'docs' do
+    docs_dir = config.runtime.workspace + 'docs/'
+    FileUtils.cd docs_dir do
       # # add OXM lib extension in OpenOffice
-      system %Q[#{unopkg} add --shared #{docs}#{config.docs.ext}] if config.docs.ext
+      system %Q[#{unopkg} add --shared #{docs_dir}#{config.docs.ext}] if config.docs.ext
       
       config.docs.files.each do |doc_file|
         # pdf
