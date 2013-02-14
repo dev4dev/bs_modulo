@@ -11,6 +11,7 @@ queue:
     - copy_ipa
     - ipa_publisher
     - hockeyapp
+    - docs
     # - dummy => Names convention: dummy_module.rb|DummyModule
 
 
@@ -71,6 +72,14 @@ default: &default
         app_id:     app_id
         notify:     false
         download:   false
+    docs:
+        enabled:    false
+        ext:        OXM_Macro_Library.oxt
+        files:
+            - doc.odt
+        formats:
+            pdf:    true
+            html:   true
 
 adhoc:
     <<: *default
