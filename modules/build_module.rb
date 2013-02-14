@@ -5,9 +5,11 @@ module BuildModule
   def run config
     puts 'Building project...'
     
-    profile_file  = real_file config.profile.file
     build_profile = real_file '~/Library/MobileDevice/Provisioning Profiles/build.mobileprovision'
-    cp(profile_file, build_profile) if File.exists? profile_file
+    if config.profile.file
+      profile_file  = real_file config.profile.file
+      cp(profile_file, build_profile) if File.exists? profile_file && File.file? profile_file
+    end
     build_parameters = [
       %Q[-configuration "#{config.build.configuration}"],
       %Q[-sdk "#{config.build.sdk}"],
