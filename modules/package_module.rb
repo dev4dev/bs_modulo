@@ -43,7 +43,7 @@ module PackageModule
         build_number = `agvtool vers -terse`.strip
       end
       # # zip file name, which be putted in dropbox
-      output_file = readl_dir(config.package.output_dir) + config.package.work_dir + "_#{version}#{build_number}.zip"
+      output_file = real_dir(config.package.output_dir) + config.package.work_dir + "_#{version}#{build_number}.zip"
       
       # # create docs directory for release package
       docs = real_dir 'docs'
