@@ -69,6 +69,9 @@ If you want to inherit new configuration from different configuration than `defa
 		build:
 			configuration:	AdHoc_Free  <- and override necessary config parameter
 
+## CocoaPods
+For using CocoaPods you have to check your workspace's schemas as shared. To do so you have to open schemes manager and check `Shared` checkboxes opposite necessary schemes. It will create *.xcscheme files in corresponding project files.
+
 ## Jenkins
 [Jenkins job setup](https://github.com/dev4dev/bs_modulo/blob/master/docs/JENKINS.md)
 
