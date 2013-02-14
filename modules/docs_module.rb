@@ -10,7 +10,7 @@ module DocsModule
     
     # docs
     office_path = "/Applications/OpenOffice.org.app/Contents/MacOS/"
-    fail 'There is no Office' unless File.exists? OFFICE_PATH
+    fail 'There is no Office' unless File.exists? office_path
     
     soffice = office_path + 'soffice'
     unopkg = office_path + 'unopkg'
