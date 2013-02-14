@@ -21,7 +21,7 @@ module DocsModule
       
       config.docs.files.each do |doc_file|
         # pdf
-        doc_file = real_dir doc_file
+        doc_file = real_file doc_file
         if config.docs.formats.pdf?
           puts "Converting #{doc_file} to PDF..."
           system %Q[#{soffice} -invisible "macro:///OXMLibrary.OXMExport.ConvertDocToPDF(#{doc_file})"] or fail "Convert to PDF failed"
