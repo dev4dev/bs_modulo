@@ -21,7 +21,7 @@ module PackageModule
         # # copy demo projects and SDK folders
         next if dir.nil? || dir == '' || !(/^[\w\d]+$/i.match dir.to_s)
         cp_r dir, output_dir
-        project = Dir.glob(dir + '/**/*.xcodeproj').first
+        project = Dir.glob(output_dir + dir + '/**/*.xcodeproj').first
         if project
           target_dir = real_dir File.dirname(project)
           target_build_dir = target_dir + 'build'
@@ -38,6 +38,8 @@ module PackageModule
       end
       
       # output
+      version = ''
+      build_number = ''
       FileUtils.cd config.runtime.project_dir do
         version = `agvtool mvers -terse1`.strip
         build_number = `agvtool vers -terse`.strip
