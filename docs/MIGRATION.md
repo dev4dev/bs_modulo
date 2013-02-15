@@ -6,7 +6,7 @@
 
 		git checkout master
 		git pull origin master
-		/usr/local/bin/builder
+		builder
 3. Click Save button.
 
 
