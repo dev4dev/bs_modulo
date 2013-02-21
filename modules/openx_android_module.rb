@@ -30,7 +30,7 @@ module OpenxAndroidModule
     end
     
     build_lib = config.runtime.project_dir + Dir['bin/*.jar'].first
-    lib_name = "#{config.openx_android.work_dir}_#{version}.jar"
+    lib_name = "#{config.openx_android.work_dir}_#{version}.jar".downcase
     
     # pack lib
     puts 'packing data...'
@@ -79,7 +79,7 @@ module OpenxAndroidModule
         FileUtils.mkdir_p output_docs_dir
         
         # # copy documetation to release docs folder
-        Dir.glob('docs/*.{txt,odt,pdf,html}').each do |doc_file|
+        Dir.glob('docs/*.{txt,pdf,html}').each do |doc_file|
           cp doc_file, output_docs_dir
         end
       end

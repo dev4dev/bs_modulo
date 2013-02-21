@@ -54,7 +54,7 @@ module PackageModule
         FileUtils.mkdir_p output_docs_dir
         
         # # copy documetation to release docs folder
-        Dir.glob('docs/*.{txt,odt,pdf,html}').each do |doc_file|
+        Dir.glob('docs/*.{txt,pdf,html}').each do |doc_file|
           cp doc_file, output_docs_dir
         end
       end
