@@ -5,6 +5,7 @@ queue:
     - bump_version_android
     - build_android
     - copy_apk
+    - javadoc
     - hockeyapp
     # - dummy => Names convention: dummy_module.rb|DummyModule
 
@@ -31,6 +32,16 @@ default: &default
         output_dir: "~/Dropbox/<your_project_dir>"
         naming:
             prefix: Prefix
+    javadoc:
+        enabled:    false
+        output_dir: docs
+        src_dir:    src
+        subpackages:
+            - com.bla.bla.bla
+            - com.tra.la.la
+        classpath:  bin/classpath.jar
+        copy:       false
+        fs_path:    remote@path:/to/directory
     hockeyapp:
         enabled:    false
         token:      token
