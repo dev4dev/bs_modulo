@@ -71,9 +71,15 @@ def module_name_from_id id
   id.gsub('_', ' ').ucwords.gsub(' ', '')
 end
 
-def xc_product_name use_workspace, target_name
-  type = use_workspace ? '-scheme' : '-target'
-  `xcodebuild #{type} "#{target_name}" -showBuildSettings|grep "FULL_PRODUCT_NAME.*\.app"`.split('=').last.strip
-ensure
-  ''
+def xc_product_name config
+  app_file_name = ''
+  FileUtils.cd PROJECT_DIR do
+    target = config['using_pods'] ? config['build']['workspace']['scheme'] : config['build']['project']['target']
+    type = config['using_pods'] ? '-scheme' : '-target'
+    app_file_name = `xcodebuild #{type} "#{target}" -showBuildSettings|grep "FULL_PRODUCT_NAME.*\.app"`.split('=').last.strip
+  end
+  throw 'PRODUCT_NAME is empty' if app_file_name == ''
+  return app_file_name
+rescue
+  fail 'PRODUCT_NAME is empty'
 end

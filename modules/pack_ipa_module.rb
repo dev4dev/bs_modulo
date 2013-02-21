@@ -8,8 +8,8 @@ module PackIpaModule
       return true
     end
     
-    app_file = config.runtime.app_file_name
-    app_name = File.basename config.runtime.app_file_name, '.app'
+    app_file = xc_product_name config
+    app_name = File.basename app_file, '.app'
     
     output_file_name = config.pack_ipa.naming.prefix ?  config.pack_ipa.naming.prefix + '_' : ''
     output_file_name += "#{app_name}_#{config.branch.name}_#{config.build.configuration}"
