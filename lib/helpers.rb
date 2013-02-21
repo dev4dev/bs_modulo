@@ -70,3 +70,10 @@ end
 def module_name_from_id id
   id.gsub('_', ' ').ucwords.gsub(' ', '')
 end
+
+def xc_product_name use_workspace, target_name
+  type = use_workspace ? '-scheme' : '-target'
+  `xcodebuild #{type} "#{target_name}" -showBuildSettings|grep "FULL_PRODUCT_NAME.*\.app"`.split('=').last.strip
+ensure
+  ''
+end

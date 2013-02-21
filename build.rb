@@ -47,9 +47,15 @@ config['runtime'] = {
 platform_runtime = {}
 case config['platform']
   when 'ios'
+    app_file_name = ''
+    FileUtils.cd PROJECT_DIR do
+      target = config['using_pods'] ? config['build']['workspace']['scheme'] : config['build']['project']['target']
+      app_file_name = xc_product_name config['using_pods'], target
+    end
+    fail 'PRODUCT_NAME is empty' if app_file_name == ''
     platform_runtime = {
       'build_dir'     => "#{PROJECT_DIR}build/#{config['build']['configuration']}-#{config['build']['sdk']}/",
-      'app_file_name' => config['using_pods'] ? config['build']['workspace']['scheme'] : config['build']['project']['target']
+      'app_file_name' => app_file_name
     }
     
   when 'android'
