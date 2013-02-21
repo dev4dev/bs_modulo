@@ -47,14 +47,16 @@ module PackageModule
       # # zip file name, which be putted in dropbox
       output_file = real_dir(config.package.output_dir) + config.package.work_dir + "_#{version}.#{build_number}.zip"
       
-      # # create docs directory for release package
-      docs = real_dir 'docs'
-      output_docs_dir = output_dir + 'docs/'
-      FileUtils.mkdir_p output_docs_dir
-      
-      # # copy documetation to release docs folder
-      Dir.glob('docs/*.{txt,odt,pdf,html}').each do |doc_file|
-        cp doc_file, output_docs_dir
+      if config.package.copy_docs?
+        # # create docs directory for release package
+        docs = real_dir 'docs'
+        output_docs_dir = output_dir + 'docs/'
+        FileUtils.mkdir_p output_docs_dir
+        
+        # # copy documetation to release docs folder
+        Dir.glob('docs/*.{txt,odt,pdf,html}').each do |doc_file|
+          cp doc_file, output_docs_dir
+        end
       end
       
       # # clean old zip file
