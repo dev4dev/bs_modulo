@@ -8,7 +8,7 @@ module CleanAndroidModule
     # clean deps
     deps      = config.build_android.dependencies
     workspace = config.runtime.workspace
-    unless deps.empty?
+    if deps && !deps.empty?
       deps.each do |dep|
         path = workspace + dep
         FileUtils.cd path do

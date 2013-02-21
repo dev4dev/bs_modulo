@@ -13,7 +13,7 @@ module UpdateConfigsAndroidModule
     deps           = config.build_android.dependencies
     workspace      = config.runtime.workspace
     android_target = config.build_android.android_target
-    unless deps.empty?
+    if deps && !deps.empty?
       deps.each do |dep|
         path = workspace + dep
         system %Q[android update project --path "#{path}" --target "#{android_target}"] or fail "updating project dep #{dep}"
