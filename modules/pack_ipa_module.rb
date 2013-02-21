@@ -8,8 +8,11 @@ module PackIpaModule
       return true
     end
     
+    app_file = config.runtime.app_file_name
+    app_name = File.basename config.runtime.app_file_name, '.app'
+    
     output_file_name = config.pack_ipa.naming.prefix ?  config.pack_ipa.naming.prefix + '_' : ''
-    output_file_name += "#{config.runtime.app_file_name}_#{config.branch.name}_#{config.build.configuration}"
+    output_file_name += "#{app_name}_#{config.branch.name}_#{config.build.configuration}"
     config.runtime.output_file_mask = "#{output_file_name}*"
     if config.pack_ipa.naming.append_version?
       version = `agvtool mvers -terse1`.strip
@@ -21,11 +24,9 @@ module PackIpaModule
     ipa_output_path         = config.runtime.build_dir + ipa_file
     config.runtime.ipa_file = ipa_output_path
     
-    app_name = config.runtime.app_file_name
     if config.profile.identity
       puts 'Packing & Signing IPA...'
       sdk          = config.build.sdk
-      app_file     = app_name + ".app"
       identity     = config.profile.identity
       profile_file = real_file config.profile.file
       FileUtils.cd(config.runtime.build_dir) do
@@ -38,9 +39,9 @@ module PackIpaModule
         rm_rf 'Payload'
         rm_f "*.ipa"
         FileUtils.mkdir_p 'Payload/Payload'
-        FileUtils.cp_r("#{app_name}.app", 'Payload/Payload', {:preserve => true})
-        if File.exists? "#{app_name}.app/iTunesArtwork"
-           cp "#{app_name}.app/iTunesArtwork", 'Payload/iTunesArtwork'
+        FileUtils.cp_r(app_file, 'Payload/Payload', {:preserve => true})
+        if File.exists? "#{app_file}/iTunesArtwork"
+           cp "#{app_file}/iTunesArtwork", 'Payload/iTunesArtwork'
         end
         system %Q[ditto -c -k Payload "#{ipa_file}"] or fail "pack API arch file."
         rm_rf "Payload"

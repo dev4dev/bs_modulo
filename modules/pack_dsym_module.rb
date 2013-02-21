@@ -14,7 +14,7 @@ module PackDsymModule
     FileUtils.cd(config.runtime.build_dir) do
       dsym_file = "#{config.runtime.output_file_name}.dSYM.zip"
       config.runtime.dsym_file = config.runtime.build_dir + dsym_file
-      system %Q[zip -r "#{dsym_file}" "#{config.runtime.app_file_name}.app.dSYM"]
+      system %Q[zip -r "#{dsym_file}" "#{config.runtime.app_file_name}.dSYM"]
       if config.pack_dsym.copy?
         cp dsym_file, output_dir
       end
