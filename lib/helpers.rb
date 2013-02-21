@@ -54,6 +54,15 @@ def cp_r src, dest
   FileUtils.cp_r src, dest, {:verbose => true}
 end
 
+def cpdir src, dst, exclude=[]
+  src = File.expand_path(src) + '/'
+  dst = File.expand_path(dst) + '/'
+  
+  Dir[src + '*'].each do |item|
+    FileUtils.cp_r(item, dst) unless exclude.include? File.basename(item)
+  end
+end
+
 def mv src, dest
   FileUtils.mv src, dest, {:verbose => true}
 end
