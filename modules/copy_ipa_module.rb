@@ -1,13 +1,9 @@
 
-module CopyIpaModule
-  extend self
+class CopyIpaModule < BaseModule
+  config_key 'copy_ipa'
+  check_enabled!
   
-  def run config
-    unless config.copy_ipa.enabled?
-      puts 'skipping...'
-      return true
-    end
-    
+  def self.run config
     output_dir = real_dir config.copy_ipa.output_dir
     if config.copy_ipa.clear_old?
       puts "Removing #{output_dir}#{config.runtime.output_file_mask}..."
@@ -15,8 +11,5 @@ module CopyIpaModule
     end
     
     cp config.runtime.ipa_file, output_dir
-    
-    true
   end
-  
 end

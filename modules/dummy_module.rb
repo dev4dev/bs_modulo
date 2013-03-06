@@ -1,14 +1,11 @@
 
-module DummyModule
-  extend self
+class DummyModule < BaseModule
+  config_key 'dummy'
+  check_enabled!
   
-  # required run function with config parameter
-  def run config
+  # required self.run function with config parameter
+  def self.run config
     puts 'Dummy module...'
-    
     puts config
-    
-    true
   end
-  
 end

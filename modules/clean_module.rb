@@ -1,12 +1,9 @@
 
-module CleanModule
-  extend self
+class CleanModule < BaseModule
+  config_key 'clean'
   
-  def run config
+  def self.run config
     puts "Cleaning build dir..."
-
     rm_rf "#{config.runtime.project_dir}/build/"
-    
-    true
   end
 end

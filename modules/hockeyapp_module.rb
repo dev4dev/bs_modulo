@@ -1,19 +1,13 @@
 
-module HockeyappModule
-  extend self
+class HockeyappModule < BaseModule
+  config_key 'hockeyapp'
+  check_enabled!
   
-  def run config
-    unless config.hockeyapp.enabled?
-      puts 'skipping...'
-      return true
-    end
-    
+  def self.run config
     url = "https://rink.hockeyapp.net/api/2/apps/#{config.hockeyapp.app_id}/app_versions"
-    
     headers = {
       "X-HockeyAppToken" => config.hockeyapp.token
     }
-    
     params = {
       :notify => config.hockeyapp.notify? ? 1 : 0,
       :status => config.hockeyapp.download? ? 2 : 1
@@ -54,8 +48,5 @@ module HockeyappModule
     else
       puts result
     end
-    
-    true
   end
-  
 end

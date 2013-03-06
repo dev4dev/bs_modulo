@@ -1,8 +1,9 @@
 
-module UploadDoaModule
-  extend self
+class UploadDoaModule < BaseModule
+  config_key 'doa'
+  check_enabled!
   
-  def run config
+  def self.run config
     puts 'Uploading build...'
     
     app_file  = xc_product_name config
@@ -19,7 +20,5 @@ module UploadDoaModule
       puts result["message"]
       return false
     end
-    
-    true
   end
 end

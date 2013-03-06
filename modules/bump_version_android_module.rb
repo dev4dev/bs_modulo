@@ -1,14 +1,10 @@
 require "rexml/document"
 
-module BumpVersionAndroidModule
-  extend self
+class BumpVersionAndroidModule < BaseModule
+  config_key 'bump_version_android'
+  check_enabled!
   
-  def run config
-    unless config.bump_version_android.enabled?
-      puts 'skipping...'
-      return true
-    end
-    
+  def self.run config
     manifest_xml_file = config.runtime.project_dir + 'AndroidManifest.xml'
     puts "Bumping Android version..."
     begin
@@ -24,7 +20,5 @@ module BumpVersionAndroidModule
     rescue e
       fail 'Error bumping version'
     end
-    
-    true
   end
 end

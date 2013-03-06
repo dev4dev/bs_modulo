@@ -1,13 +1,9 @@
 
-module PackageModule
-  extend self
+class PackageModule < BaseModule
+  config_key 'package'
+  check_enabled!
   
-  def run config
-    unless config.package.enabled?
-      puts 'skipping...'
-      return true
-    end
-    
+  def self.run config
     FileUtils.cd config.runtime.workspace do
       output_dir = real_dir config.package.work_dir
       
@@ -27,7 +23,7 @@ module PackageModule
           target_build_dir = target_dir + 'build'
           # # remove build folders
           rm_rf target_build_dir if File.exists? target_build_dir
-
+          
           # HACK? replace Advanced with Advanced_forPackage project file
           package_project = target_dir + 'AdvancedDemoApp_ForPackage'
           if File.exists? package_project
@@ -68,7 +64,5 @@ module PackageModule
       # # remove temp directory
       rm_rf output_dir
     end
-    
-    true
   end
 end

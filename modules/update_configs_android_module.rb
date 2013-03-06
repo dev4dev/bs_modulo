@@ -1,14 +1,10 @@
 require "rexml/document"
 
-module UpdateConfigsAndroidModule
-  extend self
+class UpdateConfigsAndroidModule < BaseModule
+  config_key 'update_configs_android'
+  check_enabled!
   
-  def run config
-    unless config.update_configs_android.enabled?
-      puts 'skipping...'
-      return true
-    end
-    
+  def self.run config
     # update deps config
     deps           = config.build_android.dependencies
     workspace      = config.runtime.workspace
@@ -31,8 +27,5 @@ module UpdateConfigsAndroidModule
         config.runtime.app_name = app_name
       end
     end
-    
-    true
   end
-  
 end

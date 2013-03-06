@@ -1,15 +1,10 @@
 
-module IpaPublisherModule
-  extend self
+class IpaPublisherModule < BaseModule
+  config_key 'ipa_publisher'
+  check_enabled!
   
-  def run config
-    unless config.ipa_publisher.enabled?
-      puts 'skipping...'
-      return true
-    end
-    
+  def self.run config
     puts "Publishing IPA..."
-
     template_path = real_file config.ipa_publisher.template
     FileUtils.cd(config.runtime.build_dir) do
       tmp_dir  = real_dir './tmp/'
@@ -18,8 +13,5 @@ module IpaPublisherModule
       system %Q[scp -r #{tmp_dir}* #{config.ipa_publisher.fs_path}]
       rm_rf tmp_dir
     end
-    
-    true
   end
-  
 end

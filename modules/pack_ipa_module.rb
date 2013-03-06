@@ -1,13 +1,9 @@
 
-module PackIpaModule
-  extend self
+class PackIpaModule < BaseModule
+  config_key 'pack_ipa'
+  check_enabled!
   
-  def run config
-    unless config.pack_ipa.enabled?
-      puts 'skipping...'
-      return true
-    end
-    
+  def self.run config
     app_file = xc_product_name config
     app_name = File.basename app_file, '.app'
     
@@ -47,7 +43,5 @@ module PackIpaModule
         rm_rf "Payload"
       end
     end
-    
-    true
   end
 end

@@ -1,8 +1,8 @@
 
-module CleanAndroidModule
-  extend self
+class CleanAndroidModule < BaseModule
+  config_key 'build_android'
   
-  def run config
+  def self.run config
     puts "Cleaning..."
     
     # clean deps
@@ -21,8 +21,5 @@ module CleanAndroidModule
     FileUtils.cd config.runtime.project_dir do
       system %Q[ant clean] or fail "clean project"
     end
-    
-    true
   end
-  
 end

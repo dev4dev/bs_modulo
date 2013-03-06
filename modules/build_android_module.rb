@@ -1,13 +1,9 @@
 
-module BuildAndroidModule
-  extend self
+class BuildAndroidModule < BaseModule
+  config_key 'build_android'
   
-  def run config
+  def self.run config
     puts 'Building project...'
-    
     system %Q[ant #{config.build_android.configuration}] or fail "build project"
-    
-    true
   end
-  
 end

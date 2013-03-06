@@ -1,13 +1,9 @@
 
-module BumpVersionModule
-  extend self
+class BumpVersionModule < BaseModule
+  config_key 'bump_version'
+  check_enabled!
   
-  def run config
-    unless config.bump_version.enabled?
-      puts 'skipping...'
-      return true
-    end
-    
+  def self.run config
     puts "Bumping version..."
     
     system %Q[agvtool bump -all]
@@ -27,7 +23,5 @@ module BumpVersionModule
       system %Q[git commit -am "AUTOBUILD -- configuration: #{config.runtime.configuration}, ver: #{version}, build: #{build_number}"]
       system %Q[git push origin #{config.branch.name}]
     end
-    
-    true
   end
 end

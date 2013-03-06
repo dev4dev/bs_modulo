@@ -1,14 +1,9 @@
 
-module DocsModule
-  extend self
+class DocsModule < BaseModule
+  config_key 'docs'
+  check_enabled!
   
-  def run config
-    unless config.docs.enabled?
-      puts 'skipping...'
-      return true
-    end
-    
-    # docs
+  def self.run config
     office_path = "/Applications/OpenOffice.org.app/Contents/MacOS/"
     fail 'There is no Office' unless File.exists? office_path
     
@@ -34,8 +29,5 @@ module DocsModule
         end
       end
     end
-    
-    true
   end
-  
 end

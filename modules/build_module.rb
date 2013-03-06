@@ -1,10 +1,10 @@
 
-module BuildModule
-  extend self
+class BuildModule < BaseModule
+  config_key 'build'
   
-  def run config
+  def self.run config
     puts 'Building project...'
-    
+
     build_profile = real_file '~/Library/MobileDevice/Provisioning Profiles/build.mobileprovision'
     if config.profile.file
       profile_file  = real_file config.profile.file
@@ -30,7 +30,5 @@ module BuildModule
     unless result
        fail "Build failed"
     end
-    
-    true
   end
 end

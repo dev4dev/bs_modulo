@@ -1,9 +1,8 @@
 
-module IpaResignModule
-  extend self
+class IpaResignModule < BaseModule
+  config_key 'ipa_resign'
   
-  def run config
-    
+  def self.run config
     # Unzip
     app_file_name = config.app_file_name
     ipa_file_path = real_file config.ipa_file.input
@@ -18,7 +17,5 @@ module IpaResignModule
     # Repack
     output_ipa_path = real_file config.ipa_file.output
     system %Q[zip -qr "#{output_ipa_path}" Payload]
-    
-    true
   end
 end

@@ -1,13 +1,9 @@
 
-module PackDsymModule
-  extend self
+class PackDsymModule < BaseModule
+  config_key 'pack_dsym'
+  check_enabled!
   
-  def run config
-    unless config.pack_dsym.enabled?
-      puts 'skipping...'
-      return true
-    end
-    
+  def self.run config
     puts 'Packing dSYM...'
     
     output_dir = real_dir config.pack_dsym.output_dir
@@ -20,7 +16,5 @@ module PackDsymModule
         cp dsym_file, output_dir
       end
     end
-    
-    true
   end
 end

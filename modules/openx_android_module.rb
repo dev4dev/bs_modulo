@@ -1,13 +1,9 @@
 
-module OpenxAndroidModule
-  extend self
+class OpenxAndroidModule < BaseModule
+  config_key 'openx_android'
+  check_enabled!
   
-  def run config
-    unless config.openx_android.enabled?
-      puts 'skipping...'
-      return true
-    end
-    
+  def self.run config
     # bump version
     manifest_xml_file = Dir['**/assembly.xml'].first
     puts "Bumping Android version..."
@@ -93,8 +89,6 @@ module OpenxAndroidModule
       # # remove temp directory
       rm_rf output_dir
     end
-    
-    true
   end
   
   private
