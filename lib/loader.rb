@@ -1,6 +1,5 @@
 require "yaml"
-__DIR__ = real_dir File.dirname(__FILE__)
-require __DIR__ + "deep_symbolize.rb"
+require "deep_symbolize.rb"
 
 module Loader
   extend self
