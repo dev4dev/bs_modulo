@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby -KU
 
 __DIR__ = File.expand_path(File.dirname(begin File.readlink(__FILE__) rescue __FILE__ end)) + '/'
-require "#{__DIR__}lib/helpers.rb"
-require "#{__DIR__}lib/loader.rb"
-require "#{__DIR__}lib/runner.rb"
-require "#{__DIR__}lib/android_version.rb"
+$:.unshift "#{__DIR__}lib/"
+require "helpers.rb"
+require "loader.rb"
+require "runner.rb"
+require "android_version.rb"
+require "base_module.rb"
 
 ## check input parameters
 errors = []
@@ -47,9 +49,11 @@ config['runtime'] = {
 platform_runtime = {}
 case config['platform']
   when 'ios'
-    platform_runtime = {
-      'build_dir'     => "#{PROJECT_DIR}build/#{config['build']['configuration']}-#{config['build']['sdk']}/"
-    }
+    if config['build']
+      platform_runtime = {
+        'build_dir'     => "#{PROJECT_DIR}build/#{config['build']['configuration']}-#{config['build']['sdk']}/"
+      }
+    end
     
   when 'android'
     platform_runtime = {
