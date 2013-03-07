@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby -KU
 
-__DIR__ = File.expand_path(File.dirname(begin File.readlink(__FILE__) rescue __FILE__ end)) + '/'
+__F__ = if File.symlink? __FILE__ then File.readlink(__FILE__) else __FILE__ end
+__DIR__ = File.expand_path(File.dirname(__F__)) + '/'
 $:.unshift "#{__DIR__}lib/"
 require "helpers.rb"
 require "loader.rb"
