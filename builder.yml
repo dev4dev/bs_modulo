@@ -22,7 +22,7 @@ default: &default
     project_dir:    .
     profile:
         file:       "~/Dropbox/<your_project_dir>/adhoc.mobileprovision"
-        identity:   "iPhone Developer: Trololo, LLC"
+        identity:   "iPhone Distribution: Trololo, LLC"
     branch:
         name:       master
         submodules: false
