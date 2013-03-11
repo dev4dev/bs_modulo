@@ -4,10 +4,11 @@ class Runner
   attr_reader :queue
   attr_accessor :config
   
-  def initialize queue, config, modules_dir
-    @queue = queue
-    @config = Hashr.new config
-    @modules_dir = modules_dir
+  def initialize params
+    @queue = params[:queue] || []
+    @config = Hashr.new params[:config] || {}
+    @sysconf = Hashr.new params[:sysconf] || {}
+    @modules_dir = params[:modules_dir] || {}
     self.load_modules
     self.run_queue
   end
@@ -29,7 +30,7 @@ class Runner
         puts %Q{\n ===> Running module #{id}...}
         begin
           mod = eval(module_name)
-          if mod.check self.config
+          if mod.check @config, @sysconf
             puts " OK."
           else
             fail " Ooopss..."

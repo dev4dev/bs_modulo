@@ -2,10 +2,10 @@
 class BaseModule
   
   class << self
-    def check config_full
+    def check config_full, sysconf
       ## config direct access
       config = config_full[config_key]
-      
+      sysconf sysconf
       ## check enabled
       if check_enabled?
         unless config.enabled?

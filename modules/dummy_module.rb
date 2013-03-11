@@ -7,5 +7,6 @@ class DummyModule < BaseModule
   def self.run config
     puts 'Dummy module...'
     puts config
+    puts sysconf
   end
 end

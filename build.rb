@@ -9,6 +9,7 @@ require "loader.rb"
 require "runner.rb"
 require "android_version.rb"
 require "base_module.rb"
+require "properties.rb"
 
 ## check input parameters
 errors = []
@@ -42,6 +43,10 @@ fail 'config builder.yml file not found' unless File.exists? CONFIG_FILE_PATH
 queue, config = load_config CONFIG_FILE_PATH, CONFIGURATION
 PROJECT_DIR = real_dir(WORKSPACE + config['project_dir'])
 
+sysconf_file = File.expand_path '~/.bs_modulo.yml'
+sysconf = {}
+sysconf = YAML.load_file(sysconf_file) if File.exists? sysconf_file
+
 config['runtime'] = {
   'workspace'     => WORKSPACE,
   'project_dir'   => PROJECT_DIR,
@@ -66,5 +71,5 @@ config['runtime'].merge! platform_runtime
 
 FileUtils.mkdir_p PROJECT_DIR unless File.exists? PROJECT_DIR
 FileUtils.cd PROJECT_DIR do
-  runner = Runner.new queue, config, MODULES_DIR
+  runner = Runner.new  :queue => queue, :config => config, :sysconf => sysconf, :modules_dir => MODULES_DIR
 end
