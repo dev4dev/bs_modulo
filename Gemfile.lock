@@ -4,6 +4,7 @@ GEM
     hashr (0.0.22)
     json (1.7.6)
     mime-types (1.19)
+    ocunit2junit (1.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
 
@@ -13,4 +14,5 @@ PLATFORMS
 DEPENDENCIES
   hashr (~> 0.0.22)
   json (~> 1.7.6)
+  ocunit2junit
   rest-client (~> 1.6.7)
