@@ -3,9 +3,13 @@ class BaseModule
   
   class << self
     def check config_full, sysconf
+      # merge defaults
+      config_full[config_key] = @defaults.merge! config_full[config_key] if defined? @defaults
+      
       ## config direct access
       config = config_full[config_key]
       sysconf sysconf
+      
       ## check enabled
       if check_enabled?
         unless config.enabled?
@@ -24,6 +28,15 @@ class BaseModule
         @params[key] = value
       else
         @params[key]
+      end
+    end
+    
+    def defaults value
+      @defaults ||= {}
+      if value.is_a? Hash
+        @defaults.merge! value
+      elsif value.is_a? String or value.is_a? Symbol
+        return @defaults[value]
       end
     end
     
