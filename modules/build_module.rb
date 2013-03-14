@@ -1,10 +1,11 @@
 
 class BuildModule < BaseModule
   config_key 'build'
+  defaults :doclean => true
   
   def self.run config
     puts 'Building project...'
-
+    
     build_profile = real_file '~/Library/MobileDevice/Provisioning Profiles/build.mobileprovision'
     if config.profile.file
       profile_file  = real_file config.profile.file
@@ -14,7 +15,7 @@ class BuildModule < BaseModule
       %Q[-configuration "#{config.build.configuration}"],
       %Q[-sdk "#{config.build.sdk}"],
       %Q[CONFIGURATION_BUILD_DIR="#{config.runtime.build_dir}"],
-      %Q[clean],
+      (%Q[clean] if config.build.doclean?),
       %Q[build]
     ]
     if config.using_pods?

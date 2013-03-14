@@ -33,6 +33,7 @@ default: &default
     build:
         configuration:  AdHoc
         sdk:            iphoneos
+        doclean:        true
         workspace:
             name:       TestProject
             scheme:     TestProject
