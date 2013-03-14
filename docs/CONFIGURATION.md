@@ -46,6 +46,7 @@ Global Configuration Parameters:
 		build:
 			configuration:  Release
 			sdk:            iphoneos
+			doclean:		true
 			workspace:
 				name:       TestProject
 				scheme:     TestProject
@@ -54,6 +55,7 @@ Global Configuration Parameters:
 				target:     TestProject
 	`build.configuration` **[string]** - project's configuration name  
 	`build.sdk` **[string]** - SDK version  
+	`build.doclean` **[bool]** - enable or disable cleaning project before building  
 	`build.workspace.name` **[string]** - workspace name if using pods  
 	`build.workspace.scheme` **[string]** - scheme name if using pods  
 	`build.project.name` **[string]** - project name if not using pods  
