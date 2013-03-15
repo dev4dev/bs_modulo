@@ -1,9 +1,9 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     hashr (0.0.22)
-    json (1.7.6)
-    mime-types (1.19)
+    json (1.7.7)
+    mime-types (1.21)
     ocunit2junit (1.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
