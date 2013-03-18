@@ -220,5 +220,5 @@ Global Configuration Parameters:
 		Trololo on you!
 		piu piu {action}!
 	`template_file.enabled` **[bool]** whether is module enabled for configuration  
-	`template_file.files` **[hash]** array of hashes with required params: **from** - path to template file, **to** - path for output file, **vars** - hash with var names and its values
+	`template_file.files` **[array]** array of hashes with required params: **from** - path to template file, **to** - path for output file, **vars** - hash with var names and its values
 
