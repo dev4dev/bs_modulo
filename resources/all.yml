@@ -1,0 +1,4 @@
+template_file:
+    enabled: true
+    files:
+        - {from: 'tpl.txt', to: 'work.txt', vars: {name: 'Ololosha', action: 'destroy'}}
