@@ -194,7 +194,7 @@ Global Configuration Parameters:
 	`build_android.android_target` **[string]** - android SDK version  
 	`build_android.dependencies` **[list]** - project's dependencies
 
-17. **Copy APK Module**	
+17. **Copy APK Module**	  
 	_Copy APK file to specified directory_  
 	Name: `copy_apk`  
 	Config Parameters:
@@ -205,7 +205,7 @@ Global Configuration Parameters:
 	`copy_apk.enabled` **[bool]** - whether is module enabled for configuration  
 	`copy_apk.output_dir` **[string]** - path to output directory
 
-18. **Template File Module**
+18. **Template File Module**  
 	_Copy template files with replacing placeholders with vars specified in config file_  
 	Name: `template_file`  
 	Config Params:
