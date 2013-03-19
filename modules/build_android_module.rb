@@ -7,8 +7,11 @@ class BuildAndroidModule < BaseModule
     
     ## update ant.properties
     properties_file = sysconf.android_project_properties_file
-    properties = YAML.load_file(properties_file) if File.exists? properties_file
-    props = properties[config.build_android.properties_key] if properties
+    if properties_file
+      p properties_file
+      properties = YAML.load_file(properties_file) if File.exists? properties_file
+      props = properties[config.build_android.properties_key] if properties
+    end
     
     if props
       puts 'Updating ant.properties file...'
