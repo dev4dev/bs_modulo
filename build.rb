@@ -62,6 +62,13 @@ case config['platform']
       }
     end
     
+  when 'mac'
+    if config['build']
+      platform_runtime = {
+        'build_dir'     => "#{PROJECT_DIR}build/#{config['build']['configuration']}-#{config['build']['sdk']}/"
+      }
+    end
+    
   when 'android'
     platform_runtime = {
       
