@@ -83,3 +83,8 @@ def xc_product_name config
 rescue
   fail 'PRODUCT_NAME is empty'
 end
+
+def is_version_ok? ver
+  re = /^\d+(\.\d+(\.\d+)?)?$/i
+  !(re =~ ver).nil?
+end

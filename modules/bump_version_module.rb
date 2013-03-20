@@ -10,6 +10,12 @@ class BumpVersionModule < BaseModule
     build_number = `agvtool vers -terse`.strip
     
     version = `agvtool mvers -terse1`.strip
+    unless is_version_ok? version
+      puts "ERROR: Bad version value #{version}"
+      puts "Aborting..."
+      return false
+    end
+    
     if config.bump_version.up_mver
       version_parts = version.split '.'
       (3 - version_parts.count).times {version_parts << 0}
