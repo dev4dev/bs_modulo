@@ -14,6 +14,7 @@ module Loader
       config = yaml[configuration]
     else
       tree.each do |item|
+        fail %Q{Configuration "#{item}" from inheritance tree does not exist} if yaml[item].nil?
         config = deep_merge!(config, yaml[item])
       end
     end
