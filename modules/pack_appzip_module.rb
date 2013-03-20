@@ -20,13 +20,11 @@ class PackAppzipModule < BaseModule
     zip_output_path         = config.runtime.build_dir + zip_file
     config.runtime.zip_file = zip_output_path
     
-
-      # pack appzip manually
-      FileUtils.cd(config.runtime.build_dir) do
-        puts 'Packing Zip...'
-        rm_f "*.zip"
-        system %Q[ditto -c -k --sequesterRsrc --keepParent #{app_file} "#{zip_file}"] or fail "pack zip arch file."
-      end
-    
+    # pack appzip manually
+    FileUtils.cd(config.runtime.build_dir) do
+      puts 'Packing Zip...'
+      rm_f "*.zip"
+      system %Q[ditto -c -k --sequesterRsrc --keepParent #{app_file} "#{zip_file}"] or fail "pack zip arch file."
+    end
   end
 end
