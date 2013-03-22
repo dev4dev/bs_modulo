@@ -187,11 +187,13 @@ Global Configuration Parameters:
 	    build_android:
 	        configuration:  release
 	        android_target: "Google Inc.:Google APIs:17"
+	        properties_key: project_key
 	        dependencies:
 	            - dep1
 	            - dep2
 	`build_android.configuration` **[string]** - configuration to build  
 	`build_android.android_target` **[string]** - android SDK version  
+	`build_android.properties_key` **[string]** - key for retrieving data for updating ant.properties file  
 	`build_android.dependencies` **[list]** - project's dependencies
 
 17. **Copy APK Module**	  

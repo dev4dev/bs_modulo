@@ -21,6 +21,7 @@ default: &default
     build_android:
         configuration:  release
         android_target: "Google Inc.:Google APIs:17"
+        properties_key: project_key
         dependencies:
             - dep1
             - dep2
