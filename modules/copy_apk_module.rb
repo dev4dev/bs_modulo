@@ -12,6 +12,9 @@ class CopyApkModule < BaseModule
     puts dest_file_name
     output_dir = real_dir config.copy_apk.output_dir
     output_file_path = output_dir + dest_file_name
+    unless File.exists? config.runtime.apk_file
+      fail 'Signed .apk file not exists. check your sign keys properties in ant.properties file'
+    end
     cp config.runtime.apk_file, output_file_path
   end
 end
