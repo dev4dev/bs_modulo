@@ -1,7 +1,7 @@
 ## Build System
 Global Configuration Parameters:  
-1. `platform` **[choice (ios, android)]** - project platform  
-2. `using_pods` **[bool]** - whether project uses CocoaPods [iOS only]  
+1. `platform` **[choice (ios, osx, android)]** - project platform  
+2. `using_pods` **[bool]** - whether project uses CocoaPods [ios, osx]  
 3. `project_dir` **[string]** - path to project's dir [default: `.`]  
 4. `profile.file` **[string]** - path to profile file [iOS only]  
 5. `profile.identity` **[string]** - profile's identity string [iOS only]  
