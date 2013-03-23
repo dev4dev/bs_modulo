@@ -27,9 +27,9 @@ class Runner
     @queue.each do |id|
       module_name = module_name_from_id(id + '_module')
       if @modules.include? module_name
-        puts %Q{\n ===> Running module #{id}...}
         begin
           mod = eval(module_name)
+          puts %Q{\n ===> Running: #{mod}...}
           if mod.check @config, @sysconf
             puts " OK."
           else
