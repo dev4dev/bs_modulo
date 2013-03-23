@@ -13,6 +13,7 @@ def fail message
   exit(-1)
 end
 
+## paths
 def real_dir path
   File.expand_path(path) + '/'
 end
@@ -21,6 +22,7 @@ def real_file path
   File.expand_path(path)
 end
 
+## network
 def post url, params = {}, files = {}, *more_headers
   puts "post data to #{url} with params #{params} and files #{files}"
   params ||= {}
@@ -38,6 +40,7 @@ def post url, params = {}, files = {}, *more_headers
   RestClient.post(url, params, headers)
 end
 
+## file system
 def rm_f path
   FileUtils.rm_f path, {:verbose => true}
 end
@@ -67,6 +70,7 @@ def mv src, dest
   FileUtils.mv src, dest, {:verbose => true}
 end
 
+## util
 def module_name_from_id id
   id.gsub('_', ' ').ucwords.gsub(' ', '')
 end
@@ -88,3 +92,10 @@ def is_version_ok? ver
   re = /^\d+(\.\d+(\.\d+)?)?$/i
   !(re =~ ver).nil?
 end
+
+## system
+def shell command, params=[]
+  op = [command] + params
+  system *op
+end
+
