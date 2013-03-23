@@ -4,7 +4,7 @@ class PackDsymModule < BaseModule
   check_enabled!
   
   def self.run config
-    puts 'Packing dSYM...'
+    info 'Packing dSYM...'
     
     output_dir = real_dir config.pack_dsym.output_dir
     app_file_name = xc_product_name config

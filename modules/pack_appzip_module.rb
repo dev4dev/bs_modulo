@@ -22,7 +22,7 @@ class PackAppzipModule < BaseModule
     
     # pack appzip manually
     FileUtils.cd(config.runtime.build_dir) do
-      puts 'Packing Zip...'
+      info 'Packing Zip...'
       rm_f "*.zip"
       system %Q[ditto -c -k --sequesterRsrc --keepParent #{app_file} "#{zip_file}"] or fail "pack zip arch file."
     end

@@ -4,7 +4,7 @@ class IpaPublisherModule < BaseModule
   check_enabled!
   
   def self.run config
-    puts "Publishing IPA..."
+    info "Publishing IPA..."
     template_path = real_file config.ipa_publisher.template
     FileUtils.cd(config.runtime.build_dir) do
       tmp_dir  = real_dir './tmp/'

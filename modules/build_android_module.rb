@@ -3,7 +3,7 @@ class BuildAndroidModule < BaseModule
   config_key 'build_android'
   
   def self.run config
-    puts 'Building project...'
+    info 'Building project...'
     
     ## update ant.properties
     properties_file = real_file sysconf.android_project_properties_file
@@ -13,7 +13,7 @@ class BuildAndroidModule < BaseModule
     end
     
     if props
-      puts 'Updating ant.properties file...'
+      info 'Updating ant.properties file...'
       project_props_file = config.runtime.project_dir + 'ant.properties'
       project_props = nil
       if File.exists? project_props_file

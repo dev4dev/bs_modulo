@@ -4,7 +4,7 @@ class UploadDoaModule < BaseModule
   check_enabled!
   
   def self.run config
-    puts 'Uploading build...'
+    info 'Uploading build...'
     
     app_file  = xc_product_name config
     ipa_file  = config.runtime.ipa_file
@@ -17,7 +17,7 @@ class UploadDoaModule < BaseModule
     }))
     
     unless result["result"]
-      puts result["message"]
+      info result["message"]
       return false
     end
   end

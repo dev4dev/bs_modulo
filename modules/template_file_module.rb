@@ -9,7 +9,7 @@ class TemplateFileModule < BaseModule
       files.each do |file|
         if File.exists? real_file(file[:from])
           File.open(real_file(file[:from]), 'r') do |input_file|
-            puts "Copy #{file[:from]} to #{file[:to]} with #{file[:vars]}"
+            info "Copy #{file[:from]} to #{file[:to]} with #{file[:vars]}"
             data = input_file.read
             file[:vars].each {|from, to| data.gsub! %Q[{#{from.to_s}}], to}
             File.open(real_file(file[:to]), 'w') do |output_file|
@@ -17,7 +17,7 @@ class TemplateFileModule < BaseModule
             end
           end
         else
-          puts %Q[Warning: Template file does not exist "#{file[:from]}"...]
+          info %Q[Warning: Template file does not exist "#{file[:from]}"...]
         end
       end
     end

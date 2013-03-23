@@ -21,7 +21,7 @@ class PackIpaModule < BaseModule
     config.runtime.ipa_file = ipa_output_path
     
     if config.profile.identity
-      puts 'Packing & Signing IPA...'
+      info 'Packing & Signing IPA...'
       sdk          = config.build.sdk
       identity     = config.profile.identity
       profile_file = real_file config.profile.file
@@ -31,7 +31,7 @@ class PackIpaModule < BaseModule
     else
       # pack ipa manually
       FileUtils.cd(config.runtime.build_dir) do
-        puts 'Packing IPA...'
+        info 'Packing IPA...'
         rm_rf 'Payload'
         rm_f "*.ipa"
         FileUtils.mkdir_p 'Payload/Payload'

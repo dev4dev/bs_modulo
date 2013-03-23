@@ -6,18 +6,18 @@ class OpenxAndroidModule < BaseModule
   def self.run config
     # bump version
     manifest_xml_file = Dir['**/assembly.xml'].first
-    puts "Bumping Android version..."
+    info "Bumping Android version..."
     version = ''
     begin
       ver = AndroidVersion.new manifest_xml_file
       if config.openx_android.bump_version?
         ver.increment
         ver.write
-        puts "Bumping to versionCode:#{ver.version_code} versionName:#{ver.version_name}"
+        info "Bumping to versionCode:#{ver.version_code} versionName:#{ver.version_name}"
       end
       version = ver.version_name
       if config.openx_android.push_version?
-        puts "Push updated version numbers to git"
+        info "Push updated version numbers to git"
         system %Q[git commit -am "AUTOBUILD -- configuration: #{config.runtime.configuration}, versionCode:#{ver.version_code} versionName:#{ver.version_name}"]
         system %Q[git push origin #{config.branch.name}]
       end
@@ -29,7 +29,7 @@ class OpenxAndroidModule < BaseModule
     lib_name = "#{config.openx_android.work_dir}_#{version}.jar".downcase
     
     # pack lib
-    puts 'packing data...'
+    info 'packing data...'
     FileUtils.cd config.runtime.workspace do
       output_dir = real_dir config.openx_android.work_dir
       
@@ -40,21 +40,21 @@ class OpenxAndroidModule < BaseModule
       FileUtils.mkdir_p output_dir
       
       # copy projects
-      puts 'copying items to package...'
+      info 'copying items to package...'
       config.openx_android.pack.each do |item|
         if item.is_a? Array
           src, dst = item
         else
           src = dst = item
         end
-        puts '---> ' + src
+        info '---> ' + src
         next if src.nil? || src == '' || !(/^[\w\d]+$/i.match src.to_s)
         next if dst.nil? || dst == '' || !(/^[\w\d]+$/i.match dst.to_s)
-        puts 'copying...'
+        info 'copying...'
         copy_project(src, output_dir + dst)
-        puts 'preparing...'
+        info 'preparing...'
         prepare(output_dir + dst, dst, 'libs/' + lib_name, config.build_android.android_target)
-        puts 'copying lib into it...'
+        info 'copying lib into it...'
         libs_path = output_dir + dst + '/libs/'
         FileUtils.mkdir_p libs_path
         cp(build_lib, libs_path + lib_name)

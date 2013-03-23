@@ -3,7 +3,7 @@ class CleanAndroidModule < BaseModule
   config_key 'build_android'
   
   def self.run config
-    puts "Cleaning..."
+    info "Cleaning..."
     
     # clean deps
     deps      = config.build_android.dependencies

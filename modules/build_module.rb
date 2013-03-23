@@ -4,7 +4,7 @@ class BuildModule < BaseModule
   defaults :doclean => true
   
   def self.run config
-    puts 'Building project...'
+    info 'Building project...'
     
     build_profile = real_file '~/Library/MobileDevice/Provisioning Profiles/build.mobileprovision'
     if config.profile.file

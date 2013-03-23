@@ -8,6 +8,6 @@ class OnlineDocsModule < BaseModule
     mv './web_docs/html', './web_docs/docs'
     system %Q[scp -r ./web_docs/docs/* #{config.online_docs.fs_path}]
     rm_rf './web_docs/' or fail 'to clean docs directory'
-    puts "Documentation updated #{config.online_docs.web_path}"
+    info "Documentation updated #{config.online_docs.web_path}"
   end
 end

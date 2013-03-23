@@ -52,10 +52,10 @@ class HockeyappModule < BaseModule
       obj['errors'].each_pair do |k, v|
         message << "#{k}: #{v}"
       end
-      puts message.join "\n"
+      info message.join "\n"
       return false
     else
-      puts result
+      info result
     end
   end
 end

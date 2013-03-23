@@ -4,15 +4,15 @@ class BumpVersionModule < BaseModule
   check_enabled!
   
   def self.run config
-    puts "Bumping version..."
+    info "Bumping version..."
     
     system %Q[agvtool bump -all]
     build_number = `agvtool vers -terse`.strip
     
     version = `agvtool mvers -terse1`.strip
     unless is_version_ok? version
-      puts "ERROR: Bad version value #{version}"
-      puts "Aborting..."
+      info "ERROR: Bad version value #{version}"
+      info "Aborting..."
       return false
     end
     
@@ -25,7 +25,7 @@ class BumpVersionModule < BaseModule
     end
     
     if config.bump_version.push?
-      puts "Push updated version numbers to git"
+      info "Push updated version numbers to git"
       system %Q[git commit -am "AUTOBUILD -- configuration: #{config.runtime.configuration}, ver: #{version}, build: #{build_number}"]
       system %Q[git push origin #{config.branch.name}]
     end
