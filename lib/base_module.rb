@@ -63,7 +63,7 @@ class BaseModule
     end
     
     def info message
-      puts "> #{self} INFO: #{message}"
+      puts "> #{self}: #{message}"
     end
     
   end
