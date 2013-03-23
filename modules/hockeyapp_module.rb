@@ -29,7 +29,7 @@ class HockeyappModule < BaseModule
           files[:dsym] = config.runtime.dsym_file
         end
         
-      when 'mac'
+      when 'osx'
         files = {
           :ipa => config.runtime.zip_file
         }
