@@ -4,6 +4,7 @@ class BaseModule
   class << self
     def check config_full, sysconf
       # merge defaults
+      config_full[config_key] = {} if config_full[config_key].nil?
       config_full[config_key] = @defaults.merge! config_full[config_key] if defined? @defaults
       
       ## config direct access
@@ -54,5 +55,16 @@ class BaseModule
       end
       return param k, v
     end
+    
+    ## helpers methods
+    def fail message
+      puts "> #{self} ERROR: #{message}"
+      exit(-1)
+    end
+    
+    def info message
+      puts "> #{self} INFO: #{message}"
+    end
+    
   end
 end
