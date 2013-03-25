@@ -12,7 +12,7 @@ class CleanAndroidModule < BaseModule
       deps.each do |dep|
         path = workspace + dep
         FileUtils.cd path do
-          system %Q[ant clean] or fail "clean dependency #{dep}"
+          system %Q[ant clean] if File.exists? 'build.xml' or fail "clean dependency #{dep}"
         end
       end
     end
