@@ -1,7 +1,7 @@
 ## Build System
 
 #### Requirements
-Ruby 1.9.3 --  checkout [rvm.io](https://rvm.io/)  
+Ruby 1.9.3+ --  checkout [rvm.io](https://rvm.io/)  
 Bundler gem -- `gem install bundler`  
 
 #### Install
