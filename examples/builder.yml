@@ -30,6 +30,7 @@ default: &default
         enabled:    false
         push:       false
         up_mver:    false
+        simple:     false
     build:
         configuration:  AdHoc
         sdk:            iphoneos

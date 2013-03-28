@@ -17,10 +17,14 @@ class BumpVersionModule < BaseModule
     end
     
     if config.bump_version.up_mver
-      version_parts = version.split '.'
-      (3 - version_parts.count).times {version_parts << 0}
-      version_parts[2] = build_number
-      version = version_parts.join '.'
+      if config.bump_version.simple?
+        version = build_number
+      else
+        version_parts = version.split '.'
+        (3 - version_parts.count).times {version_parts << 0}
+        version_parts[2] = build_number
+        version = version_parts.join '.'
+      end
       system %Q[agvtool new-marketing-version "#{version}"]
     end
     
