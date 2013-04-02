@@ -16,7 +16,7 @@ errors = []
 if ENV['CONFIGURATION']
   CONFIGURATION = ENV['CONFIGURATION']
 else
-  errors << "\tpass CONFIGURATION parameter"
+  CONFIGURATION = 'default'
 end
 
 if ENV['WORKSPACE']
