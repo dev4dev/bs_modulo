@@ -2,8 +2,16 @@
 
 ### Project preparation
 
+##### iOS
+
 1. For all targets in **Build Settings** set **Versioning System** to `Apple Generic` and **Current Project Version** to initial project version e.g. `1.0.0`.
 2. DO NOT use spaces in target names e.g. `Cool App Lite` --> `CoolAppLite`.
+
+#### Android
+
+1. Project's `src` directory **MUST** be always in git repo even it's empty. Put empty `.gitignore` fil in it and commit.
+2. Ask somebody to generate keystore file for you and provide `properties_key` for your config :)
+
 
 ### NB!! CONFIG FILE MUST BE LOCATED IN `MASTER` BRANCH!
 
