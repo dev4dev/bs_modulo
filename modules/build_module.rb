@@ -2,7 +2,8 @@
 class BuildModule < BaseModule
   config_key 'build'
   defaults :doclean => true
-  
+  check_enabled_if_set_explicitly!
+
   def self.run config
     info 'Building project...'
     
