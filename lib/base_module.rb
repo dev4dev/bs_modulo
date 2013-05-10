@@ -19,6 +19,14 @@ class BaseModule
         end
       end
       
+      
+      if check_enabled_if_set_explicitly?
+        if config.enabled == false
+          puts 'DISABLED: skipping...'
+          return true
+        end
+      end
+      
       res = run config_full
       return res != false
     end
