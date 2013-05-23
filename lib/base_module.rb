@@ -2,8 +2,10 @@
 class BaseModule
   
   class << self
-    def check config_full, sysconf
-      # merge defaults
+    def check config_full, sysconf, hooks
+      ## hooks
+      @hooks = hooks
+      ## merge defaults
       config_full[config_key] = {} if config_full[config_key].nil?
       config_full[config_key] = @defaults.merge! config_full[config_key] if defined? @defaults
       
@@ -64,6 +66,11 @@ class BaseModule
     
     def info message
       puts "> #{self}: #{message}"
+    end
+    
+    ## hooks
+    def hook name, code
+      @hooks.add name, code
     end
     
   end

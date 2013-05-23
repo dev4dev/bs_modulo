@@ -29,9 +29,11 @@ class BumpVersionModule < BaseModule
     end
     
     if config.bump_version.push?
-      info "Push updated version numbers to git"
-      system %Q[git commit -am "AUTOBUILD -- configuration: #{config.runtime.configuration}, ver: #{version}, build: #{build_number}"]
-      system %Q[git push origin #{config.branch.name}]
+      hook :complete, proc {
+        info "Push updated version numbers to git"
+        system %Q[git commit -am "AUTOBUILD -- configuration: #{config.runtime.configuration}, ver: #{version}, build: #{build_number}"]
+        system %Q[git push origin #{config.branch.name}]
+      }
     end
   end
 end

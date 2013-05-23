@@ -69,7 +69,4 @@ case config['platform']
 end
 config['runtime'].merge! platform_runtime
 
-FileUtils.mkdir_p PROJECT_DIR unless File.exists? PROJECT_DIR
-FileUtils.cd PROJECT_DIR do
-  runner = Runner.new  :queue => queue, :config => config, :sysconf => sysconf, :modules_dir => MODULES_DIR
-end
+Runner.new :queue => queue, :config => config, :sysconf => sysconf, :modules_dir => MODULES_DIR
