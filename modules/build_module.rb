@@ -1,3 +1,4 @@
+require "xcodeproj"
 
 class BuildModule < BaseModule
   config_key 'build'
@@ -26,10 +27,32 @@ class BuildModule < BaseModule
       build_parameters.unshift %Q[-project "#{config.build.project.name}.xcodeproj"]
       build_parameters.unshift %Q[-target "#{config.build.project.target}"]
     end
+    
+    if config.using_pods?
+      workspace = Xcodeproj::Workspace.new_from_xcworkspace "#{config.build.workspace.name}.xcworkspace"
+      project_name = workspace.schemes[config.build.workspace.scheme]
+      unless project_name
+        fail %Q[Scheme "#{config.build.workspace.scheme}" not found]
+      end
+    else
+      project_name = "#{config.build.project.name}.xcodeproj"
+    end
+    
+    unless check_build_configuration project_name, config.build.configuration
+      fail %Q[Build configuration "#{config.build.configuration}" not found in project "#{config.build.project.name}"]
+    end
+    
     result = system %Q[xcodebuild #{build_parameters.join(' ')}]
     rm_f build_profile if File.exists? build_profile
     unless result
        fail "Build failed"
     end
+  end
+  
+  private
+  def self.check_build_configuration project, configuration
+    project = Xcodeproj::Project.new project
+    configurations = project.build_configurations.map(&:name)
+    configurations.include? configuration
   end
 end
