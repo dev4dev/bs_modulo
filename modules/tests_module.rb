@@ -6,7 +6,18 @@ class TestsModule < BaseModule
   def self.run config
     info 'Running tests...'
     system %Q[killall -m -KILL "iPhone Simulator"]
-    result = system %Q[xcodebuild -target #{config.tests.target} -configuration Debug -sdk iphonesimulator TEST_AFTER_BUILD=YES clean build 2>&1 | ocunit2junit]
+    
+    parameters = [
+      "-scheme #{config.tests.scheme}",
+      "test"
+    ]
+    if config.using_pods?
+      parameters.unshift %Q[-workspace "#{config.build.workspace.name}.xcworkspace"]
+    else
+      parameters.unshift %Q[-project "#{config.build.project.name}.xcodeproj"]
+    end
+    
+    result = system %Q[xctool #{parameters.join(' ')} 2>&1 | ocunit2junit]
     unless result
       fail "Unit tests failed"
     end
