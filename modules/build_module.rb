@@ -25,7 +25,7 @@ class BuildModule < BaseModule
       build_parameters.unshift %Q[-scheme "#{config.build.workspace.scheme}"]
     else
       build_parameters.unshift %Q[-project "#{config.build.project.name}.xcodeproj"]
-      build_parameters.unshift %Q[-target "#{config.build.project.target}"]
+      build_parameters.unshift %Q[-scheme "#{config.build.project.target}"]
     end
     
     if config.using_pods?
@@ -42,7 +42,7 @@ class BuildModule < BaseModule
       fail %Q[Build configuration "#{config.build.configuration}" not found in project "#{config.build.project.name}"]
     end
     
-    result = system %Q[xcodebuild #{build_parameters.join(' ')}]
+    result = system %Q[xctool #{build_parameters.join(' ')}]
     rm_f build_profile if File.exists? build_profile
     unless result
        fail "Build failed"
