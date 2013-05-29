@@ -44,10 +44,6 @@ default: &default
     tests:
         enabled:        false
         target:         TestProjectTest
-        use_workspace:  false
-        workspace:
-            name:       workspace_name
-            scheme:     scheme_name
     pack_ipa:
         enabled:    true
         naming:

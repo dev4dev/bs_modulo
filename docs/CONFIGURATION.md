@@ -68,9 +68,9 @@ Global Configuration Parameters:
 	Config Parameters:
 	
 		tests:
-			run:        false
+			enabled:        false
 			target:     TestProjectTest
-	`tests.run` **[bool]** - run tests or not  
+	`tests.enabled` **[bool]** - run tests or not  
 	`tests.target` **[string]** - tests target name
 
 6. **Pack IPA Module**  
