@@ -9,7 +9,8 @@ class TestsModule < BaseModule
     
     parameters = [
       "-scheme #{config.tests.scheme}",
-      "test"
+      "test",
+      "-reporter junit:test-reports/junit-report.xml"
     ]
     if config.using_pods?
       parameters.unshift %Q[-workspace "#{config.build.workspace.name}.xcworkspace"]
@@ -17,7 +18,7 @@ class TestsModule < BaseModule
       parameters.unshift %Q[-project "#{config.build.project.name}.xcodeproj"]
     end
     
-    result = system %Q[xctool #{parameters.join(' ')} 2>&1 | ocunit2junit]
+    result = system %Q[xctool #{parameters.join(' ')}]
     unless result
       fail "Unit tests failed"
     end
