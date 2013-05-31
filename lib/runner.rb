@@ -48,7 +48,7 @@ class Runner
             fail " Ooopss..."
           end
         rescue => ex
-          fail "#{ex.message}"
+          fail "#{mod} exception: #{ex.message}"
         end
       else
         fail %Q{module not found "#{id} => #{module_name}"}

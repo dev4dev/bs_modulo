@@ -8,6 +8,12 @@ class String
   end
 end
 
+def fail message
+  puts "> ERROR: #{message}"
+  exit(-1)
+end
+
+
 ## paths
 def real_dir path
   File.expand_path(path) + '/'
