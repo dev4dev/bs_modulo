@@ -11,6 +11,7 @@ queue:
     - copy_ipa
     - ipa_publisher
     - hockeyapp
+    - testflight
     - docs
     - package
     # - dummy => Names convention: dummy_module.rb|DummyModule
@@ -75,6 +76,11 @@ default: &default
         app_id:     app_id
         notify:     false
         download:   false
+    testflight:
+        enabled:    false
+        api_token:  token
+        team_token: team
+        notify:     false
     docs:
         enabled:    false
         ext:        OXM_Macro_Library.oxt

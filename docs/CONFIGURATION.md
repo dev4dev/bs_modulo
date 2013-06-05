@@ -152,9 +152,15 @@ Global Configuration Parameters:
 			enabled:    false
 			token:      token
 			app_id:     app_id
+	        notify:     false
+	        download:   false
+
+
 	`hockeyapp.enabled` **[bool]** - enabled or disabled module for configuration  
 	`hockeyapp.token` **[string]** - HockeyApp API Token  
 	`hockeyapp.app_id` **[string]** - HockeyApp App ID  
+	`hockeyapp.notify` **[bool]** - send notifications to project related people  
+	`hockeyapp.download` **[bool]** - set ability to download build  
 	Accepts parameter `HOCKEYAPP_NOTES` as release note for upload. You can add it in Jenkins build job as "Text Field" parameter. Or just pass as ENV parameter.
 
 13.	**Update Config [Android] Module**  
@@ -170,6 +176,7 @@ Global Configuration Parameters:
 	_Clean project & dependencies before build_  
 	Name: `clean_android`  
 	Config Parameters: nothing
+	
 15. **Bump Version [Android] Module**  
 	_Bump version in android project_  
 	Name: `bump_version_android`  
@@ -212,7 +219,7 @@ Global Configuration Parameters:
 18. **Template File Module**  
 	_Copy template files with replacing placeholders with vars specified in config file_  
 	Name: `template_file`  
-	Config Params:
+	Config Parameters:
 	
 	    template_file:
 	        enabled: true
@@ -223,6 +230,22 @@ Global Configuration Parameters:
 		Hello {name},
 		Trololo on you!
 		piu piu {action}!
-	`template_file.enabled` **[bool]** whether is module enabled for configuration  
-	`template_file.files` **[array]** array of hashes with required params: **from** - path to template file, **to** - path for output file, **vars** - hash with var names and its values
+	`template_file.enabled` **[bool]** - whether is module enabled for configuration  
+	`template_file.files` **[array]** - array of hashes with required params: **from** - path to template file, **to** - path for output file, **vars** - hash with var names and its values
 
+19. **TestFlight Module**
+	_Upload build to TestFlight Service_
+	Name: `testflight`
+	Config Parameters:
+	
+	    testflight:
+	        enabled:    false
+	        api_token:  token
+	        team_token: team
+	        notify:     false
+
+	`testflight.enabled` **[bool]** - whether is module enabled for configuration  
+	`testflight.api_token` **[string]** - testflight api token  
+	`testflight.team_token` **[string]** - testflight your team token  
+	`testflight.notify` **[bool]** - send notifications to teammates
+	Accepts parameter `TESTFLIGHT_NOTES` as release note for upload. You can add it in Jenkins build job as "Text Field" parameter. Or just pass as ENV parameter.
