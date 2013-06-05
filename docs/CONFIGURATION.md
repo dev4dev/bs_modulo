@@ -247,5 +247,5 @@ Global Configuration Parameters:
 	`testflight.enabled` **[bool]** - whether is module enabled for configuration  
 	`testflight.api_token` **[string]** - testflight api token  
 	`testflight.team_token` **[string]** - testflight your team token  
-	`testflight.notify` **[bool]** - send notifications to teammates
+	`testflight.notify` **[bool]** - send notifications to teammates  
 	Accepts parameter `TESTFLIGHT_NOTES` as release note for upload. You can add it in Jenkins build job as "Text Field" parameter. Or just pass as ENV parameter.
