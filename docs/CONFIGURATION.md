@@ -161,7 +161,7 @@ Global Configuration Parameters:
 	`hockeyapp.app_id` **[string]** - HockeyApp App ID  
 	`hockeyapp.notify` **[bool]** - send notifications to project related people  
 	`hockeyapp.download` **[bool]** - set ability to download build  
-	Accepts parameter `HOCKEYAPP_NOTES` as release note for upload. You can add it in Jenkins build job as "Text Field" parameter. Or just pass as ENV parameter.
+	Accepts parameter `BUILD_NOTES` as release note for upload. You can add it in Jenkins build job as "Text Field" parameter. Or just pass as ENV parameter.
 
 13.	**Update Config [Android] Module**  
 	_Update configurations for android project & dependencies, generate build.xml files for ant._  
@@ -248,4 +248,4 @@ Global Configuration Parameters:
 	`testflight.api_token` **[string]** - testflight api token  
 	`testflight.team_token` **[string]** - testflight your team token  
 	`testflight.notify` **[bool]** - send notifications to teammates  
-	Accepts parameter `TESTFLIGHT_NOTES` as release note for upload. You can add it in Jenkins build job as "Text Field" parameter. Or just pass as ENV parameter.
+	Accepts parameter `BUILD_NOTES` as release note for upload. You can add it in Jenkins build job as "Text Field" parameter. Or just pass as ENV parameter.

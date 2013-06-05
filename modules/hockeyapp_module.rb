@@ -13,7 +13,7 @@ class HockeyappModule < BaseModule
       :status => config.hockeyapp.download? ? 2 : 1
     }
     
-    notes = ENV['HOCKEYAPP_NOTES'] || ''
+    notes = ENV['BUILD_NOTES'] || ''
     unless notes.empty?
       params[:notes] = notes
       params[:notes_type] = 1

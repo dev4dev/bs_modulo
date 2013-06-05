@@ -11,7 +11,7 @@ class TestflightModule < BaseModule
       :notify     => config.testflight.notify? ? 1 : 0
     }
 
-    notes = ENV['TESTFLIGHT_NOTES'] || '<empty>'
+    notes = ENV['BUILD_NOTES'] || '<empty>'
     params[:notes] = notes
 
     case config.platform
