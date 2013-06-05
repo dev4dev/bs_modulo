@@ -150,9 +150,15 @@ Global Configuration Parameters:
 			enabled:    false
 			token:      token
 			app_id:     app_id
+	        notify:     false
+	        download:   false
+
+
 	`hockeyapp.enabled` **[bool]** - enabled or disabled module for configuration  
 	`hockeyapp.token` **[string]** - HockeyApp API Token  
 	`hockeyapp.app_id` **[string]** - HockeyApp App ID  
+	`hockeyapp.notify` **[bool]** - send notifications to project related people  
+	`hockeyapp.download` **[bool]** - set ability to download build  
 	Accepts parameter `HOCKEYAPP_NOTES` as release note for upload. You can add it in Jenkins build job as "Text Field" parameter. Or just pass as ENV parameter.
 
 13.	**Update Config [Android] Module**  
