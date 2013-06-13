@@ -9,7 +9,7 @@ class TestsModule < BaseModule
     
     parameters = [
       "-scheme #{config.tests.scheme}",
-      "test",
+      "clean build test",
       "-reporter junit:test-reports/junit-report.xml"
     ]
     if config.using_pods?
