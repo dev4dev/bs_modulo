@@ -10,7 +10,7 @@ xctool - [https://github.com/facebook/xctool](https://github.com/facebook/xctool
 	git clone https://github.com/dev4dev/bs_modulo.git
 	cd bs_modulo
 	bundle install
-	ln -s "`pwd`/build.rb" /usr/local/bin/builder
+	ln -s "`pwd`/builder.rb" /usr/local/bin/builder
 	# check that /usr/local/bin is in your $PATH var
 
 #### Usage
