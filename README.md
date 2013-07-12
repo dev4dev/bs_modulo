@@ -3,6 +3,7 @@
 #### Requirements
 Ruby 1.9.3+ --  checkout [rvm.io](https://rvm.io/)  
 Bundler gem -- `gem install bundler`  
+xctool - [https://github.com/facebook/xctool](https://github.com/facebook/xctool)
 
 #### Install
 
