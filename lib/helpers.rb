@@ -94,6 +94,32 @@ def is_version_ok? ver
   !(re =~ ver).nil?
 end
 
+def gen_keystore name, al, pass, names={}
+  # commonName - common name of a person, e.g., "Susan Jones"
+  # organizationUnit - small organization (e.g., department or division) name, e.g., "Purchasing"
+  # organizationName - large organization name, e.g., "ABCSystems, Inc."
+  # localityName - locality (city) name, e.g., "Palo Alto"
+  # stateName - state or province name, e.g., "California"
+  # country - two-letter country code, e.g., "CH"
+  dname = []
+  %w{CN OU O L ST C}.each do |key|
+    dname << "#{key}=#{names[key].gsub(',', '\\,')}" unless names[key].nil?
+  end
+  params = [
+    "keytool",
+    "-genkeypair",
+    "-dname '#{dname.join(', ')}'",
+    "-keystore #{name}.keystore",
+    "-keypass #{pass}",
+    "-alias #{al}",
+    "-storepass #{pass}",
+    "-keyalg RSA",
+    "-keysize 2048",
+    "-validity 100000"
+  ]
+  res = system params.join(' ')
+end
+
 ## system
 def shell command, params=[]
   op = [command] + params
