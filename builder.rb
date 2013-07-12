@@ -13,7 +13,7 @@ program :version, '1.0.0'
 program :description, 'Build System'
 
 command :build do |c|
-  c.syntax = '[WORKSPACE=/path/to/project] [CONFIGURATION=configuration_name builder] build [build_config_file]'
+  c.syntax = '[WORKSPACE=/path/to/project] [CONFIGURATION=configuration_name] builder build [build_config_file]'
   c.description = 'Run build'
   c.action do |args, options|
     Runner::run args
