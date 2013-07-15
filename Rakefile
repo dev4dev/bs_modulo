@@ -17,7 +17,7 @@ namespace :gen do
       fail 'Keystore file already exists'
     end
     
-    props_file = Settings::System.get.android.project_properties_file
+    props_file = Settings::System.get.android.properties_file
     properties = YAML.load_file(props_file)
     if properties.keys.include? args[:prop_key_name]
       fail 'App with such property key exists'
