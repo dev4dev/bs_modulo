@@ -67,7 +67,6 @@ module Runner
     require "properties.rb"
 
     ## check input parameters
-    errors = []
     if ENV['CONFIGURATION']
       configuration = ENV['CONFIGURATION']
     else
