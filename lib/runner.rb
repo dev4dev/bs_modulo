@@ -89,10 +89,6 @@ module Runner
     queue, config = load_config config_file_path, configuration
     project_dir = real_dir(workspace + config['project_dir'])
 
-    sysconf_file = File.expand_path '~/.bs_modulo.yml'
-    sysconf = {}
-    sysconf = YAML.load_file(sysconf_file) if File.exists? sysconf_file
-
     config['runtime'] = {
       'workspace'     => workspace,
       'project_dir'   => project_dir,
@@ -115,7 +111,7 @@ module Runner
     end
     config['runtime'].merge! platform_runtime
 
-    Runner.new :queue => queue, :config => config, :sysconf => sysconf, :modules_dir => modules_dir
+    Runner.new :queue => queue, :config => config, :sysconf => Settings::System.get, :modules_dir => modules_dir
   end
 
 end

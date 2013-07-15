@@ -94,7 +94,7 @@ def is_version_ok? ver
   !(re =~ ver).nil?
 end
 
-def gen_keystore name, al, pass, names={}
+def gen_keystore name, al, pass
   # commonName - common name of a person, e.g., "Susan Jones"
   # organizationUnit - small organization (e.g., department or division) name, e.g., "Purchasing"
   # organizationName - large organization name, e.g., "ABCSystems, Inc."
