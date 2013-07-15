@@ -51,9 +51,9 @@ class BuildModule < BaseModule
   end
   
   private
-  def self.check_build_configuration project, configuration
-    project = Xcodeproj::Project.new project
+  def self.check_build_configuration project_name, configuration_name
+    project = Xcodeproj::Project.new project_name
     configurations = project.build_configurations.map(&:name)
-    configurations.include? configuration
+    configurations.include? configuration_name
   end
 end
