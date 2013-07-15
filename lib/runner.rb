@@ -8,8 +8,8 @@ module Runner
 
     def initialize params
       @queue = params[:queue] || []
-      @config = Hashr.new params[:config] || {}
-      @sysconf = Hashr.new params[:sysconf] || {}
+      @config = params[:config] || {}
+      @sysconf = params[:sysconf] || {}
       @modules_dir = params[:modules_dir] || {}
       @hooks = Hook.new
 

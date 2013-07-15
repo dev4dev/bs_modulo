@@ -1,5 +1,6 @@
 require "yaml"
 require "deep_symbolize.rb"
+require "hashr"
 
 module Loader
   extend self
@@ -18,7 +19,7 @@ module Loader
         config = deep_merge!(config, yaml[item])
       end
     end
-    return queue, config
+    return queue, Hashr.new(config)
   end
   
   def self.deep_merge!(target, data)

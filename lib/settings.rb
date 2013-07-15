@@ -1,4 +1,5 @@
 require "yaml"
+require "hashr"
 
 module Settings
   class System
@@ -7,7 +8,7 @@ module Settings
       unless @sysconf
         @sysconf ||= {}
         sysconf_file = File.expand_path GLOBAL_CONFIG_FILE
-        @sysconf = YAML.load_file(sysconf_file) if File.exists? sysconf_file
+        @sysconf = Hashr.new(YAML.load_file(sysconf_file)) if File.exists? sysconf_file
       end
       @sysconf
     end
