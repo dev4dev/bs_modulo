@@ -94,7 +94,7 @@ def is_version_ok? ver
   !(re =~ ver).nil?
 end
 
-def gen_keystore name, al, pass
+def gen_keystore name, al, pass, names={}
   # commonName - common name of a person, e.g., "Susan Jones"
   # organizationUnit - small organization (e.g., department or division) name, e.g., "Purchasing"
   # organizationName - large organization name, e.g., "ABCSystems, Inc."
@@ -103,7 +103,8 @@ def gen_keystore name, al, pass
   # country - two-letter country code, e.g., "CH"
   dname = []
   %w{CN OU O L ST C}.each do |key|
-    dname << "#{key}=#{names[key].gsub(',', '\\,')}" unless names[key].nil?
+    value = names[key].nil? ? 'Unknown' : names[key].gsub(',', '\\,')
+    dname << "#{key}=#{value}"
   end
   params = [
     "keytool",
@@ -117,7 +118,7 @@ def gen_keystore name, al, pass
     "-keysize 2048",
     "-validity 100000"
   ]
-  res = system params.join(' ')
+  system params.join(' ')
 end
 
 ## system
