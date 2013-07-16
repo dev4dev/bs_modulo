@@ -121,6 +121,16 @@ def gen_keystore name, al, pass, names={}
   system params.join(' ')
 end
 
+def get_sha1_from_keystore keystore_file, key_alias, keystore_password
+  res = `keytool -list -v -keystore #{keystore_file} -storepass #{keystore_password}`
+  matches = /Alias name: #{key_alias}\b.+?sha1:\s(?<sha1>[:0-9A-Z]+)/mi.match res
+  matches[:sha1]
+end
+
+def get_base64_from_keystore  keystore_file, key_alias, keystore_password
+  `keytool -exportcert -alias #{key_alias} -keystore #{keystore_file} -storepass #{keystore_password} | openssl sha1 -binary | openssl base64`
+end
+
 ## system
 def shell command, params=[]
   op = [command] + params

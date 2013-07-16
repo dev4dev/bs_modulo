@@ -5,12 +5,29 @@ require "settings"
 require "fileutils"
 require "yaml"
 
+module Rake
+  class Task
+    def all_required! args
+      arg_names().each do |var|
+        fail "#{var} var is required" if args[var].nil?
+      end
+    end
+  end
+end
+
+def get_app_data app_name
+  props_file = Settings::System.get.android.properties_file
+  properties = YAML.load_file(props_file)
+  unless properties.keys.include? app_name
+    fail 'app with such app name does not exist'
+  end
+  properties[app_name]
+end
+
 namespace :gen do
   desc "Generate keystore"
   task :keystore, [:app_name, :password] do |t, args|
-    %w{app_name password}.each do |var|
-      fail "#{var} var is required" if args[var].nil?
-    end
+    t.all_required! args
     keystore_path = Settings::System.get.android.keystore_dir
     keystore_file_path = File.join(keystore_path, args[:app_name] + '.keystore')
     if File.exists? keystore_file_path
@@ -42,5 +59,25 @@ namespace :gen do
         fail "error."
       end
     end
+  end
+end
+
+namespace :hash do
+  desc "Get sha1 hash"
+  task :sha1, [:app_name] do |t, args|
+    t.all_required! args
+
+    app_data = get_app_data args[:app_name]
+    hash = get_sha1_from_keystore app_data['key.store'], app_data['key.alias'], app_data['key.store.password']
+    puts "SHA1 Hash: #{hash}"
+  end
+
+  desc "Get base64 hash"
+  task :base64, [:app_name] do |t, args|
+    t.all_required! args
+
+    app_data = get_app_data args[:app_name]
+    hash = get_base64_from_keystore app_data['key.store'], app_data['key.alias'], app_data['key.store.password']
+    puts "Base64 Hash: #{hash}"
   end
 end
