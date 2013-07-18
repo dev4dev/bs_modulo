@@ -17,17 +17,23 @@ program :description, 'Build System'
 command :install do |c|
   c.syntax = ' builder install'
   c.description = 'Install builder in system'
+  c.option '-f', '--force', 'Force install'
   c.action do |args, options|
-    if File.exist? BIN_PATH
-      fail "builder is already installed or its default name '#{BIN_PATH}' is already taken by another app"
-    else
-      puts 'Installing...'
-      puts "...creating [#{BIN_PATH}] symlink..."
-      File.symlink __F__, BIN_PATH
-      puts "...creating global configuration file [#{GLOBAL_CONFIG_FILE}]..."
-      open(GLOBAL_CONFIG_FILE, "w") { |io|  io << ''} unless File.exist? GLOBAL_CONFIG_FILE
-      puts 'Done.'
+    if File.exist?(BIN_PATH) && !options.force
+      fail "builder is already installed or its default name '#{BIN_PATH}' is already taken by another app\nyou can overwrite it by passing --force option"
+    elsif options.force
+      begin
+        File.delete BIN_PATH
+      rescue Exception => e
+        fail "failed while deleting old file/link at #{BIN_PATH}..."
+      end
     end
+    puts 'Installing...'
+    puts "...creating [#{BIN_PATH}] symlink..."
+    File.symlink __F__, BIN_PATH
+    puts "...creating global configuration file [#{GLOBAL_CONFIG_FILE}]..."
+    open(GLOBAL_CONFIG_FILE, "w") { |io|  io << ''} unless File.exist? GLOBAL_CONFIG_FILE
+    puts 'Done.'
   end
 end
 
