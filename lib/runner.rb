@@ -19,10 +19,14 @@ module Runner
     end
 
     protected
+    def project_dir
+      @config['runtime']['project_dir']
+    end
+    
     def prepare
       @hooks.add :start, proc {
-        FileUtils.mkdir_p PROJECT_DIR unless File.exists? PROJECT_DIR
-        FileUtils.cd PROJECT_DIR
+        FileUtils.mkdir_p project_dir unless File.exists? project_dir
+        FileUtils.cd project_dir
       }
     end
 

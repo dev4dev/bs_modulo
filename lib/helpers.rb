@@ -78,7 +78,7 @@ end
 
 def xc_product_name config
   app_file_name = ''
-  FileUtils.cd PROJECT_DIR do
+  FileUtils.cd config.runtime.project_dir do
     target = config['using_pods'] ? config['build']['workspace']['scheme'] : config['build']['project']['target']
     type = config['using_pods'] ? '-scheme' : '-target'
     app_file_name = `xcodebuild #{type} "#{target}" -showBuildSettings|grep "FULL_PRODUCT_NAME.*\.app"`.split('=').last.strip
