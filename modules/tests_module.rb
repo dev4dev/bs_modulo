@@ -9,6 +9,7 @@ class TestsModule < BaseModule
     
     parameters = [
       "-scheme #{config.tests.scheme}",
+      '-sdk iphonesimulator',
       "clean build test",
       "-reporter junit:test-reports/junit-report.xml"
     ]
