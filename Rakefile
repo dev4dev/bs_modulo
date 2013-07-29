@@ -28,7 +28,7 @@ namespace :gen do
   desc "Generate keystore"
   task :keystore, [:app_name, :password] do |t, args|
     t.all_required! args
-    keystore_path = Settings::System.get.android.keystore_dir
+    keystore_path = real_dir Settings::System.get.android.keystore_dir
     keystore_file_path = File.join(keystore_path, args[:app_name] + '.keystore')
     if File.exists? keystore_file_path
       fail 'Keystore file already exists'
