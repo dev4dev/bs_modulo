@@ -16,7 +16,7 @@ module Rake
 end
 
 def get_app_data app_name
-  props_file = Settings::System.get.android.properties_file
+  props_file = real_file Settings::System.get.android.properties_file
   properties = YAML.load_file(props_file)
   unless properties.keys.include? app_name
     fail 'app with such app name does not exist'
@@ -26,7 +26,7 @@ end
 
 desc "List applications"
 task :list do
-  props_file = Settings::System.get.android.properties_file
+  props_file = real_file Settings::System.get.android.properties_file
   properties = YAML.load_file(props_file)
   puts 'Applications:'
   puts properties.keys.map{|x| "\t * " + x}.join("\n")
@@ -42,7 +42,7 @@ namespace :gen do
       fail 'Keystore file already exists'
     end
     
-    props_file = Settings::System.get.android.properties_file
+    props_file = real_file Settings::System.get.android.properties_file
     properties = YAML.load_file(props_file)
     if properties.keys.include? args[:app_name]
       fail 'App with such property key exists'
