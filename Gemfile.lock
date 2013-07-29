@@ -1,7 +1,10 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    commander (4.1.4)
+      highline (~> 1.6.11)
     hashr (0.0.22)
+    highline (1.6.19)
     json (1.7.7)
     mime-types (1.21)
     ocunit2junit (1.2)
@@ -12,6 +15,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  commander
   hashr (~> 0.0.22)
   json (~> 1.7.6)
   ocunit2junit
