@@ -5,7 +5,7 @@
 
 		git checkout master
 		git pull origin master
-		builder
+		builder build
 		cpd
 
 3. In **Post-build Actions** section add 2 actions

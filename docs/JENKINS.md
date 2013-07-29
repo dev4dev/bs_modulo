@@ -9,7 +9,7 @@
 
 		git checkout master
 		git pull origin master
-		builder
+		builder build
 7. Click save button.
 
 Now you can build it.

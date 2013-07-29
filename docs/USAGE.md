@@ -61,7 +61,7 @@
 	
 			git checkout master
 			git pull origin master
-			builder
+			builder build
 	4. Click Save button
 
 ## Configuration file

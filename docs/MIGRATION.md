@@ -6,7 +6,7 @@
 
 		git checkout master
 		git pull origin master
-		builder
+		builder build
 3. Click Save button.
 
 
