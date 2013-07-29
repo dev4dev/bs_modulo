@@ -24,6 +24,14 @@ def get_app_data app_name
   properties[app_name]
 end
 
+desc "List applications"
+task :list do
+  props_file = Settings::System.get.android.properties_file
+  properties = YAML.load_file(props_file)
+  puts 'Applications:'
+  puts properties.keys.map{|x| "\t * " + x}.join("\n")
+end
+
 namespace :gen do
   desc "Generate keystore"
   task :keystore, [:app_name, :password] do |t, args|
