@@ -103,7 +103,7 @@ module Runner
       when 'ios', 'osx'
         if config['build']
           platform_runtime = {
-            'build_dir'     => "#{project_dir}build/#{config['build']['configuration']}-#{config['build']['sdk']}/"
+            :build_dir => "#{project_dir}build/#{config['build']['configuration']}-#{config['build']['sdk']}/"
           }
         end
 
