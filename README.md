@@ -16,7 +16,7 @@ xctool - [https://github.com/facebook/xctool](https://github.com/facebook/xctool
 #### Usage
 Execute command in project directory (where builder.yml file is located)
 
-	WORKSPACE=/project/dir CONFIGURATION=configuration_name builder [builder.yml]
+	WORKSPACE=/project/dir CONFIGURATION=configuration_name builder build [builder.yml]
 
 Usage [documentation](https://github.com/dev4dev/bs_modulo/blob/master/docs/USAGE.md).  
 Module's config params [documentation](https://github.com/dev4dev/bs_modulo/blob/master/docs/CONFIGURATION.md).
