@@ -33,7 +33,7 @@ namespace :apps do
     puts properties.keys.map{|x| "\t * " + x}.join("\n")
   end
 
-  desc "Generate keystore"
+  desc "Add new app (generate keystore)"
   task :add, [:app_name, :password] do |t, args|
     t.all_required! args
     keystore_path = real_dir Settings::System.get.android.keystore_dir
@@ -70,7 +70,7 @@ namespace :apps do
   end
   
   namespace :hash do
-    desc "Get sha1 hash"
+    desc "Get sha1 hash for app"
     task :sha1, [:app_name] do |t, args|
       t.all_required! args
 
@@ -79,7 +79,7 @@ namespace :apps do
       puts "SHA1 Hash: #{hash}"
     end
 
-    desc "Get base64 hash"
+    desc "Get base64 hash for app"
     task :base64, [:app_name] do |t, args|
       t.all_required! args
 
