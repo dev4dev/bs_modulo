@@ -24,17 +24,17 @@ def get_app_data app_name
   properties[app_name]
 end
 
-desc "List applications"
-task :list do
-  props_file = real_file Settings::System.get.android.properties_file
-  properties = YAML.load_file(props_file)
-  puts 'Applications:'
-  puts properties.keys.map{|x| "\t * " + x}.join("\n")
-end
+namespace :apps do
+  desc "List applications"
+  task :list do
+    props_file = real_file Settings::System.get.android.properties_file
+    properties = YAML.load_file(props_file)
+    puts 'Applications:'
+    puts properties.keys.map{|x| "\t * " + x}.join("\n")
+  end
 
-namespace :gen do
   desc "Generate keystore"
-  task :keystore, [:app_name, :password] do |t, args|
+  task :add, [:app_name, :password] do |t, args|
     t.all_required! args
     keystore_path = real_dir Settings::System.get.android.keystore_dir
     keystore_file_path = File.join(keystore_path, args[:app_name] + '.keystore')
@@ -68,24 +68,24 @@ namespace :gen do
       end
     end
   end
-end
+  
+  namespace :hash do
+    desc "Get sha1 hash"
+    task :sha1, [:app_name] do |t, args|
+      t.all_required! args
 
-namespace :hash do
-  desc "Get sha1 hash"
-  task :sha1, [:app_name] do |t, args|
-    t.all_required! args
+      app_data = get_app_data args[:app_name]
+      hash = get_sha1_from_keystore app_data['key.store'], app_data['key.alias'], app_data['key.store.password']
+      puts "SHA1 Hash: #{hash}"
+    end
 
-    app_data = get_app_data args[:app_name]
-    hash = get_sha1_from_keystore app_data['key.store'], app_data['key.alias'], app_data['key.store.password']
-    puts "SHA1 Hash: #{hash}"
-  end
+    desc "Get base64 hash"
+    task :base64, [:app_name] do |t, args|
+      t.all_required! args
 
-  desc "Get base64 hash"
-  task :base64, [:app_name] do |t, args|
-    t.all_required! args
-
-    app_data = get_app_data args[:app_name]
-    hash = get_base64_from_keystore app_data['key.store'], app_data['key.alias'], app_data['key.store.password']
-    puts "Base64 Hash: #{hash}"
+      app_data = get_app_data args[:app_name]
+      hash = get_base64_from_keystore app_data['key.store'], app_data['key.alias'], app_data['key.store.password']
+      puts "Base64 Hash: #{hash}"
+    end
   end
 end
