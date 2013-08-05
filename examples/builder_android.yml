@@ -16,6 +16,7 @@ default: &default
         name:       master
         submodules: false
     project_dir:    .
+    project_name:   project_name
     update_configs_android:
         enabled:    true
     build_android:
