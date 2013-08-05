@@ -162,6 +162,8 @@ Global Configuration Parameters:
 	`hockeyapp.notify` **[bool]** - send notifications to project related people  
 	`hockeyapp.download` **[bool]** - set ability to download build  
 	Accepts parameter `BUILD_NOTES` as release note for upload. You can add it in Jenkins build job as "Text Field" parameter. Or just pass as ENV parameter.
+	
+	NOTE: For Android projects you can define `project_name` property in config and it will be used for naming APK file before uploading to HockeyAPP. Thus it will add mo clarity to downloadable file insted of some plain name like `MainActivity-release.apk`  
 
 13.	**Update Config [Android] Module**  
 	_Update configurations for android project & dependencies, generate build.xml files for ant._  
