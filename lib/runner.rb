@@ -53,7 +53,7 @@ module Runner
               fail " Ooopss..."
             end
           rescue => ex
-            fail "#{mod} exception: #{ex.message}"
+            fail %Q{#{mod} exception: #{ex.message} \nBacktrace:\n\t#{ex.backtrace.join("\n\t")}}
           end
         else
           fail %Q{module not found "#{id} => #{module_name}"}
