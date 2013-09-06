@@ -114,6 +114,12 @@ module Runner
     end
     config['runtime'].merge! platform_runtime
 
+    info_string = %Q{Starting build in "#{workspace}" with configuration "#{configuration}"}
+    delimiter = "*" * (info_string.length + 4)
+    puts delimiter
+    puts "* #{info_string} *"
+    puts delimiter
+    
     Runner.new :queue => queue, :config => config, :sysconf => Settings::System.get, :modules_dir => modules_dir
   end
 
