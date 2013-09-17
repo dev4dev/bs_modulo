@@ -3,6 +3,7 @@
 ### List
 
 * :start
+* :failed
 * :complete
 
 ### Add

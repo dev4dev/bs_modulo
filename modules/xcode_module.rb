@@ -27,11 +27,13 @@ class XcodeModule < BaseModule
       info "Xcode is already at required version"
     end
     
-    hook :complete, proc {
+    rollback = proc {
       if do_switch
         switch "default", default_path
       end
     }
+    hook :failed, rollback
+    hook :complete, rollback
   end
   
   private

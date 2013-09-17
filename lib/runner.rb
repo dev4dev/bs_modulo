@@ -51,6 +51,7 @@ module Runner
               puts " OK."
             else
               fail " Ooopss..."
+              @hooks.fire :failed, :config => @config
             end
           rescue => ex
             fail %Q{#{mod} exception: #{ex.message} \nBacktrace:\n\t#{ex.backtrace.join("\n\t")}}
