@@ -20,7 +20,7 @@ class XcodeModule < BaseModule
         fail "Xcode doesn't exist at #{version_path}"
       end
       info "Switching Xcode version to #{version}"
-      result = system %Q{sudo xcode-select -switch #{version_path}}
+      result = system %Q{sudo xcode-select -switch "#{version_path}"}
       fail "Switching Xcode to version #{version} failed" unless result
     else
       info "Xcode is already at required version"
@@ -29,7 +29,7 @@ class XcodeModule < BaseModule
     hook :complete, proc {
       if do_switch
         info "Switching Xcode back to default version"
-        result = system %Q{sudo xcode-select -switch #{default_path}}
+        result = system %Q{sudo xcode-select -switch "#{default_path}"}
         fail "Switching Xcode to default version failed" unless result
       end
     }
