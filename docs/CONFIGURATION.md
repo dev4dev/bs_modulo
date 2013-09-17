@@ -251,3 +251,15 @@ Global Configuration Parameters:
 	`testflight.team_token` **[string]** - testflight your team token  
 	`testflight.notify` **[bool]** - send notifications to teammates  
 	Accepts parameter `BUILD_NOTES` as release note for upload. You can add it in Jenkins build job as "Text Field" parameter. Or just pass as ENV parameter.
+
+20. **Xcode Module**  
+	_Switch between Xcode versions_  
+	name: `xcode`  
+	Config Parameters:
+	
+		xcode:
+			enabled: false
+			version: v4
+
+	`xcode.enabled` **[bool]** - whether is module enabled for configuration  
+	`xcode.version` **[string]** - Xcode version defined in global config (by default in `~/.bs_modulo.yml`)
