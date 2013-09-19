@@ -19,6 +19,11 @@ module Runner
       run_queue
     end
 
+    def failed
+      @hooks.fire :failed, :config => @config
+    end
+    
+
     protected
     def project_dir
       @config['runtime']['project_dir']
@@ -62,10 +67,6 @@ module Runner
       end
       @hooks.fire :complete, :config => @config
       puts "\n SUCCESS!"
-    end
-    
-    def failed
-      @hooks.fire :failed, :config => @config
     end
   end
 
