@@ -2,9 +2,10 @@
 class BaseModule
   
   class << self
-    def check config_full, sysconf, hooks
+    def check runner, sysconf
       ## hooks
-      @hooks = hooks
+      @runner = runner
+      config_full = @runner.config
       ## merge defaults
       config_full[config_key] = {} if config_full[config_key].nil?
       config_full[config_key] = @defaults.merge! config_full[config_key] if defined? @defaults
@@ -61,6 +62,7 @@ class BaseModule
     ## helpers methods
     def fail message
       puts "> #{self} ERROR: #{message}"
+      @runner.failed
       exit(-1)
     end
     
@@ -70,7 +72,7 @@ class BaseModule
     
     ## hooks
     def hook name, code
-      @hooks.add name, code
+      @runner.hooks.add name, code
     end
     
   end

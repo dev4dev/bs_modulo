@@ -5,6 +5,7 @@ module Runner
   class Runner
     attr_reader :queue
     attr_accessor :config
+    attr_reader :hooks
 
     def initialize params
       @queue = params[:queue] || []
@@ -47,11 +48,10 @@ module Runner
           begin
             mod = eval(module_name)
             puts %Q{\n ===> Running: #{mod}...}
-            if mod.check @config, @sysconf, @hooks
+            if mod.check self, @sysconf
               puts " OK."
             else
               fail " Ooopss..."
-              @hooks.fire :failed, :config => @config
             end
           rescue => ex
             fail %Q{#{mod} exception: #{ex.message} \nBacktrace:\n\t#{ex.backtrace.join("\n\t")}}
@@ -62,6 +62,10 @@ module Runner
       end
       @hooks.fire :complete, :config => @config
       puts "\n SUCCESS!"
+    end
+    
+    def failed
+      @hooks.fire :failed, :config => @config
     end
   end
 
