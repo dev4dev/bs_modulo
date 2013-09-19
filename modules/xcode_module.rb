@@ -38,7 +38,7 @@ class XcodeModule < BaseModule
   
   private
   def self.switch name, path
-    info "Switching Xcode back to #{name} version"
+    info "Switching Xcode to #{name} version"
     result = system %Q{sudo xcode-select -switch "#{path}"}
     fail "Switching Xcode to #{name} version failed" unless result
   end
