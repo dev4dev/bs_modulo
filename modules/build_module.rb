@@ -14,6 +14,7 @@ class BuildModule < BaseModule
     end
     
     self.copy_provision_profile config
+    self.unlock_keychain config
     
     command = %Q[xctool #{self.build_params config}]
     info command
@@ -70,6 +71,27 @@ class BuildModule < BaseModule
     if config.profile.file
       profile_file  = real_file config.profile.file
       cp(profile_file, build_profile) if File.exists?(profile_file) && File.file?(profile_file)
+    end
+  end
+
+  def self.unlock_keychain config
+    properties_file = real_file sysconf.xcode.properties_file
+    if properties_file
+      properties = YAML.load_file(properties_file) if File.exists? properties_file
+      props = properties[config.profile.identity] if properties
+      if props
+        keychain_file  =  sysconf.xcode.keychain_dir + props['keychain']
+        info "Unlock keychain #{keychain_file}..."
+        system %Q[security unlock-keychain -p #{props['password']} #{keychain_file}] or fail "failed unlock #{props['keychain']}"
+        system %Q[security default-keychain -s #{keychain_file}] or fail "failed switch keychain"
+
+        rollback = proc {
+          info "swith to default keychain"
+          system %Q[security default-keychain -s login.keychain] or fail "failed switch keychain"
+        }
+        hook :failed, rollback
+        hook :complete, rollback
+      end
     end
   end
   
