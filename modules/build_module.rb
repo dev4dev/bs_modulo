@@ -83,10 +83,13 @@ class BuildModule < BaseModule
         keychain_file  =  sysconf.xcode.keychain_dir + props['keychain']
         info "Unlock keychain #{keychain_file}..."
         system %Q[security unlock-keychain -p #{props['password']} #{keychain_file}] or fail "failed unlock #{props['keychain']}"
+        system %Q[security default-keychain -s #{keychain_file}] or fail "failed switch keychain"
         system %Q[security list-keychains -s #{keychain_file}] or fail "failed switch keychain"
 
         rollback = proc {
           info "swith to default keychain"
+          system %Q[security lock-keychain  #{keychain_file}] 
+          system %Q[security default-keychain -s login.keychain] or fail "failed switch keychain"
           system %Q[security list-keychains -s login.keychain] or fail "failed switch keychain"
         }
         hook :failed, rollback
