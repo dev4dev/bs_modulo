@@ -9,18 +9,23 @@ class BuildModule < BaseModule
   def self.run config
     info 'Building project...'
     
-    unless check_build_configuration self.project_name(config), config.build.configuration
+    project_name = self.project_name(config)
+    unless check_build_configuration project_name, config.build.configuration
       fail %Q[Build configuration "#{config.build.configuration}" not found in project "#{config.build.project.name}"]
     end
     
     self.copy_provision_profile config
     self.unlock_keychain config
+    self.add_version_number_to_icon config, project_name
     
+    ## building
     command = %Q[xctool #{self.build_params config}]
     info command
     result = system command
+    ## done building
     
     self.remove_provision_profile
+    hook! :build_complete
     unless result
        fail "Build failed"
     end
@@ -100,5 +105,55 @@ class BuildModule < BaseModule
   
   def self.remove_provision_profile
     rm_f build_profile if File.exists? build_profile
+  end
+  
+  def self.add_version_number_to_icon config, project_name
+    return unless config.runtime.version and config.build.ver_on_icon?
+    
+    ## get icons
+    target_name = if config.build.using_pods?
+      config.build.workspace.scheme
+    else
+      config.build.project.target
+    end
+    project = Xcodeproj::Project.open project_name
+    target = project.targets.select{|t| t.name == target_name}.first
+    project_info_file = real_path(target.build_settings(config.build.configuration)['INFOPLIST_FILE'])
+    
+    require 'Plist'
+    begin
+      project_info = Plist::parse_xml project_info_file
+      icons_names = project_info['CFBundleIcons']['CFBundlePrimaryIcon']['CFBundleIconFiles']
+    rescue Exception => e
+      icons_names = []
+    end
+    return if icons_names.empty?
+    
+    icons_patterns = icons_names.map do |icon|
+      "**/#{icon}"
+    end
+    
+    require "rmagick"
+    include Magick
+    Dir[icons_patterns].each do |icon|
+      filename = real_path icon
+      retina = !!filename.index('@')
+      image = Image::read(filename).first
+      draw = Draw::new
+      draw.annotate(image, 0, 0, 0, 0, config.runtime.version) {
+        self.font_family = 'Arial'
+        self.fill = 'green'
+        self.stroke = 'black'
+        self.pointsize = if retina then 22 else 11
+        self.font_weight = BoldWeight
+        self.gravity = SouthGravity
+        self.text_antialias = true
+      }
+      image.write filename
+    end
+    
+    hook :build_complete, proc {
+      `git reset --hard`
+    }
   end
 end

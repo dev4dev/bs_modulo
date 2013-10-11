@@ -28,6 +28,8 @@ class BumpVersionModule < BaseModule
       system %Q[agvtool new-marketing-version "#{version}"]
     end
     
+    config.runtime.version = version
+    
     if config.bump_version.push?
       hook :complete, proc {
         info "Push updated version numbers to git"

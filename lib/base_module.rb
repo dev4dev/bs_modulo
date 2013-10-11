@@ -75,5 +75,9 @@ class BaseModule
       @runner.hooks.add name, code
     end
     
+    def hook! name
+      @runner.hooks.fire name, :config => @runner.config
+    end
+    
   end
 end

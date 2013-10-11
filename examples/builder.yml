@@ -36,6 +36,7 @@ default: &default
         configuration:  AdHoc
         sdk:            iphoneos
         doclean:        true
+        ver_on_icon:    false
         workspace:
             name:       TestProject
             scheme:     TestProject
