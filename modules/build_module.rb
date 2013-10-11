@@ -1,4 +1,7 @@
 require "xcodeproj"
+require 'plist'
+require "rmagick"
+include Magick
 
 class BuildModule < BaseModule
   config_key 'build'
@@ -120,7 +123,6 @@ class BuildModule < BaseModule
     target = project.targets.select{|t| t.name == target_name}.first
     project_info_file = real_path(target.build_settings(config.build.configuration)['INFOPLIST_FILE'])
     
-    require 'Plist'
     begin
       project_info = Plist::parse_xml project_info_file
       icons_names = project_info['CFBundleIcons']['CFBundlePrimaryIcon']['CFBundleIconFiles']
@@ -132,24 +134,26 @@ class BuildModule < BaseModule
     icons_patterns = icons_names.map do |icon|
       "**/#{icon}"
     end
-    
-    require "rmagick"
-    include Magick
-    Dir[icons_patterns].each do |icon|
+    puts icons_patterns
+    Dir.glob(icons_patterns).each do |icon|
       filename = real_path icon
       retina = !!filename.index('@')
-      image = Image::read(filename).first
-      draw = Draw::new
-      draw.annotate(image, 0, 0, 0, 0, config.runtime.version) {
-        self.font_family = 'Arial'
-        self.fill = 'green'
-        self.stroke = 'black'
-        self.pointsize = if retina then 22 else 11
-        self.font_weight = BoldWeight
-        self.gravity = SouthGravity
-        self.text_antialias = true
-      }
-      image.write filename
+      begin
+        image = Image::read(filename).first
+        draw = Draw::new
+        draw.annotate(image, 0, 0, 0, 0, config.runtime.version) {
+          self.font_family = 'Arial'
+          self.fill = 'blue'
+          self.stroke = 'black'
+          self.pointsize = if retina then 22 else 11 end
+          self.font_weight = BoldWeight
+          self.gravity = SouthGravity
+          self.text_antialias = true
+        }
+        image.write filename
+      rescue Exception => e
+        next
+      end
     end
     
     hook :build_complete, proc {
