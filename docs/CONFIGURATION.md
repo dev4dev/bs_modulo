@@ -215,8 +215,11 @@ Global Configuration Parameters:
 		copy_apk:
 	        enabled:    false
 	        output_dir: "~/Dropbox/<your_project_dir>"
+	        naming:
+	            prefix: Prefix
 	`copy_apk.enabled` **[bool]** - whether is module enabled for configuration  
-	`copy_apk.output_dir` **[string]** - path to output directory
+	`copy_apk.output_dir` **[string]** - path to output directory  
+	`copy_apk.naming.prefix` **[string]** - apk filename prefix  
 
 18. **Template File Module**  
 	_Copy template files with replacing placeholders with vars specified in config file_  
