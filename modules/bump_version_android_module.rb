@@ -11,7 +11,7 @@ class BumpVersionAndroidModule < BaseModule
       ver = AndroidVersion.new manifest_xml_file
       ver.increment
       ver.write
-      config.runtime.version = ver.version_code
+      config.runtime.version = ver.version_name
       info "Bumping to versionCode:#{ver.version_code} versionName:#{ver.version_name}"
       if config.bump_version_android.push?
         info "Push updated version numbers to git"
