@@ -134,7 +134,7 @@ class BuildModule < BaseModule
     icons_patterns = icons_names.map do |icon|
       "**/#{icon}"
     end
-    puts icons_patterns
+    info icons_patterns
     Dir.glob(icons_patterns).each do |icon|
       filename = real_path icon
       retina = !!filename.index('@')
@@ -150,8 +150,10 @@ class BuildModule < BaseModule
           self.gravity = SouthGravity
           self.text_antialias = true
         }
+        info "Saving icon with version to #{filename}..."
         image.write filename
       rescue Exception => e
+        info "Something went wrong: #{e.message}"
         next
       end
     end
