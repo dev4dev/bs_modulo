@@ -10,6 +10,7 @@ Global Configuration Parameters:
 		profile:
 			file:       profiles/adhoc.mobileprovision
 			identity:   "iPhone Developer: Trololo, LLC"
+6. `project_name` **[string]** - project name for naming APK file before uploading to hockeyapp  
 
 ###Modules
 
