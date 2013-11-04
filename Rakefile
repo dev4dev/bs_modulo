@@ -4,6 +4,7 @@ require "helpers"
 require "settings"
 require "fileutils"
 require "yaml"
+require "xcode"
 
 module Rake
   class Task
@@ -86,6 +87,20 @@ namespace :apps do
       app_data = get_app_data args[:app_name]
       hash = get_base64_from_keystore app_data['key.store'], app_data['key.alias'], app_data['key.store.password']
       puts "Base64 Hash: #{hash}"
+    end
+  end
+end
+
+namespace :xcode do
+  desc "Switch to Xcode version"
+  task :switch, [:version] do |t, args|
+    t.all_required! args
+    version = args[:version]
+    path = Settings::System.get.xcode[version]
+    begin
+      Xcode::switch_to_version version, path
+    rescue Exception => e
+      puts e.message
     end
   end
 end

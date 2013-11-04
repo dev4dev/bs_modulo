@@ -1,4 +1,4 @@
-
+require "xcode"
 
 class XcodeModule < BaseModule
   config_key 'xcode'
@@ -20,26 +20,19 @@ class XcodeModule < BaseModule
       unless File.exists? version_path
         fail "Xcode doesn't exist at #{version_path}"
       end
-      switch version, version_path
+      Xcode::switch_to_version version, version_path
     elsif default_path != current_path
-      switch "default", default_path
+      Xcode::switch_to_version "default", default_path
     else
       info "Xcode is already at required version"
     end
     
     rollback = proc {
       if do_switch
-        switch "default", default_path
+        Xcode::switch_to_version "default", default_path
       end
     }
     hook :failed, rollback
     hook :complete, rollback
-  end
-  
-  private
-  def self.switch name, path
-    info "Switching Xcode to #{name} version"
-    result = system %Q{sudo xcode-select -switch "#{path}"}
-    fail "Switching Xcode to #{name} version failed" unless result
   end
 end

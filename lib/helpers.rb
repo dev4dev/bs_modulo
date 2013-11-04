@@ -8,9 +8,12 @@ class String
   end
 end
 
+def info message
+  puts "> #{message}"
+end
+
 def fail message
-  puts "> ERROR: #{message}"
-  exit(-1)
+  throw "> ERROR: #{message}"
 end
 
 
