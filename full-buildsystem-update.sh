@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-rake xcode:switch[v5]
+sudo xcode-select -s /Applications/Xcode5.app/Contents/Developer
 ./update.sh
-rake xcode:switch[v4]
+sudo xcode-select -s /Applications/Xcode4.app/Contents/Developer
