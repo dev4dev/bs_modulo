@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-git pull
-
-#brew part
-brew install ghostscript
-brew install imagemagick
-
-#bundle
-bundle install
+rake xcode:switch[v5]
+./update.sh
+rake xcode:switch[v4]
