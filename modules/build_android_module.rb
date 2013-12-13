@@ -7,9 +7,11 @@ class BuildAndroidModule < BaseModule
     
     ## update ant.properties
     properties_file = real_file sysconf.android.properties_file
+    keystores_path = real_dir sysconf.android.keystore_dir
     if properties_file
       properties = YAML.load_file(properties_file) if File.exists? properties_file
       props = properties[config.build_android.properties_key] if properties
+      props['key.store'] = keystores_path + props['key.store'] if defined?(props['key.store'])
     end
     
     if props
